@@ -233,11 +233,12 @@ bool Gauge::ClickTest(int button, int state, int x, int y)
 void Gauge::DrawGaugeOutline()
 {
 	const float vertices[] = {
-		0.0, 0.0,
-		0.0, m_PhysicalSize.y,
-		m_PhysicalSize.x, m_PhysicalSize.y,
-		m_PhysicalSize.x, 0.0
+		0.0f, 0.0f,
+		0.0f, (float) m_PhysicalSize.y,
+		(float) m_PhysicalSize.x, (float) m_PhysicalSize.y,
+		(float) m_PhysicalSize.x, 0.0f
 	};
+
 	glLineWidth(2.0);
 	glColor3ub(0, 190, 190);
 	glVertexPointer(2, GL_FLOAT, 0, &vertices);

@@ -7,19 +7,19 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 /**
  * Sets up the data class structure and methods for receiving a UDP data
@@ -37,9 +37,9 @@
 
 namespace OpenGC {
 
-// Constructor
-FGDataSource::FGDataSource()
-{ 
+    // Constructor
+    FGDataSource::FGDataSource()
+    { 
 	// Initialize the data, but we're going to delay opening the sockets until all
 	// the other data files and command line arguments have been read
 	this->InitializeData();
@@ -52,36 +52,36 @@ FGDataSource::FGDataSource()
 
 	// Temp buffer used to extract message
 	m_TempMsg = new char[m_BufferLength];
-}
+    }
 
-FGDataSource::~FGDataSource()
-{
-//	m_Socket.close();
+    FGDataSource::~FGDataSource()
+    {
+	//	m_Socket.close();
 	delete[] m_Buffer;
 	delete[] m_TempMsg;
-}
+    }
 
-bool FGDataSource::Open()
-{
+    bool FGDataSource::Open()
+    {
 	// Get the host:port string from the Config system and parse it
 	m_Host = globals->m_PrefManager->GetPrefS("FlightGearHost");
 	m_ReceivePort = globals->m_PrefManager->GetPrefI("FlightGearPort");
 	if (true)
-	{
+	    {
 		printf("FGDataSourse: host \"%s\", port %d\n", 
-				m_Host.c_str(), m_ReceivePort);
-	}
+		       m_Host.c_str(), m_ReceivePort);
+	    }
 	else
-	{
+	    {
 		std::cerr << "FGDataSource: invalid configuration.\n";
 		return false;
-	}
+	    }
 	
 	if (m_ReceivePort < 1025 || m_ReceivePort > 65535)
-	{
+	    {
 		std::cerr << "FGDataSource: invalid port number.\n";
 		return false;
-	}
+	    }
 
 #if 0
 	// Must call this before any other net stuff
@@ -92,28 +92,28 @@ bool FGDataSource::Open()
 
 	// Try to open a socket
 	if (!m_Socket.open(false))
-	{
+	    {
 		printf("FlightGear data source: error opening socket\n");
 		m_ValidConnection = false;
 		return false;
-	}
+	    }
 
 	m_Socket.setBlocking(false);
 
 	if (m_Socket.bind(m_Host.c_str(), m_ReceivePort) == -1)
-	{
+	    {
 		printf("FGDataSource: error binding to port %d\n", m_ReceivePort);
 		m_ValidConnection = false;
 		return false;
-	}
+	    }
 #endif
 	return true;
-}
+    }
 
-bool FGDataSource::GetData()
-{
+    bool FGDataSource::GetData()
+    {
 	if (!m_ValidConnection)
-		return false;
+	    return false;
 
 #if 0
 	// Length of the message received from Flightgear
@@ -127,40 +127,40 @@ bool FGDataSource::GetData()
 	// of old messages in the network buffer (which we don't directly
 	// control)
 	do
-	{
+	    {
 		receivedLength = m_Socket.recv(m_TempMsg, m_BufferLength, 0);
 
 		if(receivedLength >= 0)
-		{
+		    {
 			for(int i = 0; i < m_BufferLength; i++)
-				m_Buffer[i] = m_TempMsg[i];
+			    m_Buffer[i] = m_TempMsg[i];
 
 			finalReceivedLength = receivedLength;
-		}
-	} while(receivedLength >=0);
+		    }
+	    } while(receivedLength >=0);
 
 	// At this point, m_Buffer[] contains the most recent message
 	if(finalReceivedLength>0)
-	{
+	    {
 		assert(finalReceivedLength == sizeof(FGData)); // possible superfluous
 		m_FDM = (FGData*) m_Buffer;
 		return true;
-	}
+	    }
 	else
-		return false;
+	    return false;
 #endif
 	return false;
-}
+    }
 
-bool FGDataSource::OnIdle()
-{
+    bool FGDataSource::OnIdle()
+    {
    	// Abort if the connection isn't valid
    	if( !m_ValidConnection )
-   		return false;
+	    return false;
 
    	// Input data from the LAN socket
    	if ( !GetData() )
-   		return false;
+	    return false;
 
 #if 0
    	// keep in sync with FG changes
@@ -175,7 +175,7 @@ bool FGDataSource::OnIdle()
 	m_Airframe->SetMag_Variation(m_FDM->magvar * RAD_TO_DEG);
 	double magHeading = m_FDM->heading - m_Airframe->GetMag_Variation();
 	if (magHeading < 0.0 )
-		magHeading += 360.0;
+	    magHeading += 360.0;
 	m_Airframe->SetMag_Heading(magHeading);
 
 	m_Airframe->SetPressure_Alt_Feet(m_FDM->altitude);
@@ -225,6 +225,6 @@ bool FGDataSource::OnIdle()
 	Oil_Pressure = m_FDM->oil_pressure[0];
 #endif
 	return false;
-}
+    }
 
 } // end namespace OpenGC

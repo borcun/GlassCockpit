@@ -7,19 +7,19 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 #ifndef FGDataSource_h
 #define FGDataSource_h
@@ -35,47 +35,47 @@ using namespace std;
 namespace OpenGC
 {
 
-/** This is the actual DataSource */
-class FGDataSource : public DataSource
-{
-	public:
+    /** This is the actual DataSource */
+    class FGDataSource : public DataSource
+    {
+    public:
 
-		FGDataSource();  
-		virtual ~FGDataSource();
+	FGDataSource();  
+	virtual ~FGDataSource();
 
-		// Open the network connection
-		bool Open();
+	// Open the network connection
+	bool Open();
 
-		// The "money" function
-		bool OnIdle(); 
+	// The "money" function
+	bool OnIdle(); 
 
-	protected:
+    protected:
 
-		// Get data from FlightGear
-		bool GetData();
+	// Get data from FlightGear
+	bool GetData();
 
-		// Flight model data received from FlightGear
-		FGData *m_FDM;
+	// Flight model data received from FlightGear
+	FGData *m_FDM;
 
-		// The socket
-//		netSocket m_Socket;
+	// The socket
+	//		netSocket m_Socket;
 
-		// The host and port we're receiving on
-		string m_Host;
-		int m_ReceivePort;
+	// The host and port we're receiving on
+	string m_Host;
+	int m_ReceivePort;
 
-		// Are we connected to Flightgear?
-		bool m_ValidConnection;
+	// Are we connected to Flightgear?
+	bool m_ValidConnection;
 
-		// The message received from Flightgear
-		char *m_Buffer;
+	// The message received from Flightgear
+	char *m_Buffer;
 
-		// A temporary buffer used in the receive process
-		char *m_TempMsg;
+	// A temporary buffer used in the receive process
+	char *m_TempMsg;
 
-		// Maximum length of the buffer
-		int m_BufferLength;
-};
+	// Maximum length of the buffer
+	int m_BufferLength;
+    };
 
 } // end namespace OpenGC
 

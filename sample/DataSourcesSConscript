@@ -1,0 +1,22 @@
+# Builds: Data sources library ('libopengc_datasource')
+# Project: GlassCockpit
+# Author: Hugo Vincent
+# Date: 22 March 2006, updated 28 August 2010
+
+# Get the top level configuration options
+Import('conf')
+
+# All the source files need to be built (none require special treatment)
+source = [
+	'#../../Source/DataSources/AirframeDataContainer.cpp',
+	'#../../Source/DataSources/AlbatrossDataSource.cpp',
+	'#../../Source/DataSources/DataContainer.cpp',
+	'#../../Source/DataSources/DataSource.cpp',
+	'#../../Source/DataSources/FGDataSource.cpp',
+	'#../../Source/DataSources/TestDataSource.cpp'
+]
+
+# Build the library
+Library('#build/opengc_datasource', source, CPPPATH=conf["inc_path"], 
+	CCFLAGS=conf["cflags"], CXX=conf['compiler'])
+
