@@ -13,7 +13,7 @@
   the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
   PURPOSE.  See the above copyright notice for more information.
 
- =========================================================================*/
+  =========================================================================*/
 
 /**
  * AppObject is the functional piece of the OpenGC example program.
@@ -32,29 +32,29 @@
 namespace OpenGC
 {
 
-class AppObject : public Messageable
-{
-	public:
-		AppObject();
-		virtual ~AppObject();
+    class AppObject : public Messageable
+    {
+    public:
+	AppObject();
+	virtual ~AppObject();
 
-		/** Setup and run the glass cockpit - enters message loop */
-		bool Go(XMLNode rootNode);
+	/** Setup and run the glass cockpit - enters message loop */
+	bool Go(XMLNode rootNode);
 
-		/** The idle function used to repeatedly update the display */
-		void IdleFunction();
+	/** The idle function used to repeatedly update the display */
+	void IdleFunction();
 
-		/** Handler to receive messages */
-		virtual void OnMessage(Message message, void *data);
+	/** Handler to receive messages */
+	virtual void OnMessage(Message message, void *data);
 
-	private:
+    private:
 
-		/** Main pieces of the application */
-		FLTKRenderWindow* m_pRenderWindow;
+	/** Main pieces of the application */
+	FLTKRenderWindow* m_pRenderWindow;
 
-		/** Object to manage AirframeData variables calculated from other variables */
-		CalcManager* m_CalcManager;
-};
+	/** Object to manage AirframeData variables calculated from other variables */
+	CalcManager* m_CalcManager;
+    };
 
 } // end namespace OpenGC
 
