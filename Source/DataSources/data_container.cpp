@@ -21,45 +21,9 @@
 
 =========================================================================*/
 
-#ifndef DataSource_h
-#define DataSource_h
+#include "data_container.h"
 
-#include "AirframeDataContainer.h"
-
-namespace OpenGC
+void OpenGC::DataContainer::initialize()
 {
-
-class DataSource
-{
-	public:
-		
-		DataSource();
-		virtual ~DataSource();
-
-		/** Initialize the data to a default value*/
-		void InitializeData();
-
-		/** Called by the base AppObject after all the init parameters
-		 * have been complete. This should open the connection to the sim
-		 */
-		virtual bool Open();
-
-		/** Called by the render window during idle processing
-		 * This function is the one and only place where OpenGC
-		 * should acquire data from the sim
-		 */
-		virtual bool OnIdle();
-
-		/** Get access to airframe data */
-		AirframeDataContainer* GetAirframe() { return m_Airframe; }
-
-	protected:
-
-		/** Data that describes the airframe (alt, heading, control surfaces, etc.) */
-		AirframeDataContainer* m_Airframe;
-};
-
-} // end namespace OpenGC
-
-#endif
-
+    return;
+}

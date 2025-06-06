@@ -20,10 +20,10 @@
 
 =========================================================================*/
 
-#ifndef Globals_h
-#define Globals_h
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
-#include "DataSource.h"
+#include "data_source.h"
 #include "NavDatabase.h"
 #include "PrefManager.h"
 #include "FontManager.h"

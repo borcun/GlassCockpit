@@ -6,19 +6,19 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 #include <iostream>
 #include <stdio.h>
@@ -36,16 +36,15 @@
 #include "NavaidGeoObj.h"
 
 namespace OpenGC
-{
-
-const double NavDisplay::CENTER_X, NavDisplay::CENTER_Y, NavDisplay::OVERLAY_Y;
-const int NavDisplay::compass_interval;
+{    
+    double NavDisplay::CENTER_X = 90.0, NavDisplay::CENTER_Y = 95.0, NavDisplay::OVERLAY_Y = 45.0;
+    int NavDisplay::compass_interval = 20;
 	
-GLuint NavDisplay::m_TileTextures[49];
-bool NavDisplay::m_TilesInitted;
+    GLuint NavDisplay::m_TileTextures[49];
+    bool NavDisplay::m_TilesInitted;
 
-NavDisplay::NavDisplay()
-{
+    NavDisplay::NavDisplay()
+    {
 	//this->SetGaugeOutline(true);
 
 	m_Font = globals->m_FontManager->LoadDefaultFont();
@@ -63,15 +62,15 @@ NavDisplay::NavDisplay()
 	m_SizeNM = 2.0;
 	
 	m_TilesInitted = false;
-}
+    }
 
-NavDisplay::~NavDisplay()
-{
+    NavDisplay::~NavDisplay()
+    {
 	glDeleteTextures(49, &m_TileTextures[0]);
-}
+    }
 
-void NavDisplay::Render()
-{
+    void NavDisplay::Render()
+    {
 	Gauge::Render();
 
 	///////////////////////////////////////////////////////////////////////////
@@ -85,22 +84,22 @@ void NavDisplay::Render()
 	aircraftLat = globals->m_DataSource->GetAirframe()->GetLatitude();
 	aircraftLon = globals->m_DataSource->GetAirframe()->GetLongitude();
 
-// FIXME what was this all about??
-//	bool isInSouthernHemisphere = false;
-//	if(aircraftLat < 0)
-//	{
-//		isInSouthernHemisphere = true;
-//		aircraftLat = aircraftLat * -1;
-//	}
+	// FIXME what was this all about??
+	//	bool isInSouthernHemisphere = false;
+	//	if(aircraftLat < 0)
+	//	{
+	//		isInSouthernHemisphere = true;
+	//		aircraftLat = aircraftLat * -1;
+	//	}
 	
 	// Northing and Easting in nautical miles (Mercator Coordinates)
 	GeographicObject::LatLonToMercator(aircraftLat, aircraftLon, 
-			mercatorNorthing, mercatorEasting);
+					   mercatorNorthing, mercatorEasting);
 	mercatorNorthing /= METER_PER_NM;
 	mercatorEasting /= METER_PER_NM;
 
-//	if(isInSouthernHemisphere)
-//		mercatorNorthing = mercatorNorthing * -1.0;
+	//	if(isInSouthernHemisphere)
+	//		mercatorNorthing = mercatorNorthing * -1.0;
 
 	glMatrixMode(GL_MODELVIEW);
 	
@@ -109,10 +108,10 @@ void NavDisplay::Render()
 	///////////////////////////////////////////////////////////////////////////
 	
 	glPushMatrix();
-		glTranslatef(CENTER_X, CENTER_Y, 0.0);
-		glRotatef(aircraftHeading, 0, 0, 1);
+	glTranslatef(CENTER_X, CENTER_Y, 0.0);
+	glRotatef(aircraftHeading, 0, 0, 1);
 
-		PlotMap();
+	PlotMap();
 	glPopMatrix();
 	
 	///////////////////////////////////////////////////////////////////////////
@@ -165,13 +164,13 @@ void NavDisplay::Render()
 	static float vertices1[2*10];
 	unsigned int vertexIdx = 0;
 	for (int i = -30; i <= (30 + compass_interval); i += compass_interval)
-	{
+	    {
 		float angle = (i - heading_offset) * DEG_TO_RAD;
 		vertices1[2 * vertexIdx]       = CENTER_X + 120.0 * sinf(angle); 
 		vertices1[2 * vertexIdx++ + 1] = CENTER_Y + 120.0 * cosf(angle);
 		vertices1[2 * vertexIdx]       = CENTER_X + 130.0 * sinf(angle); 
 		vertices1[2 * vertexIdx++ + 1] = CENTER_Y + 130.0 * cosf(angle);
-	}
+	    }
 	glVertexPointer(2, GL_FLOAT, 0, &vertices1);
 	glDrawArrays(GL_LINES, 0, 10);
 	
@@ -181,20 +180,20 @@ void NavDisplay::Render()
 
 	// Rotate graphics context about the heading
 	glPushMatrix();
-		glTranslatef(CENTER_X, CENTER_Y, 0.0);
-		glRotatef(aircraftHeading, 0, 0, 1);
+	glTranslatef(CENTER_X, CENTER_Y, 0.0);
+	glRotatef(aircraftHeading, 0, 0, 1);
 
-		PlotCourse();
+	PlotCourse();
 		
-		// Naviads (blue)
-		glColor3f(0.0, 0.0, 1.0);
-		PlotGeoObjs(globals->m_NavDatabase->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+	// Naviads (blue)
+	glColor3f(0.0, 0.0, 1.0);
+	PlotGeoObjs(globals->m_NavDatabase->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
-		// Airports (red)
-		glColor3f(1.0, 0.0, 0.0);
-		PlotGeoObjs(globals->m_NavDatabase->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+	// Airports (red)
+	glColor3f(1.0, 0.0, 0.0);
+	PlotGeoObjs(globals->m_NavDatabase->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
-		PlotWaypoints();
+	PlotWaypoints();
 	glPopMatrix();
 	
 	///////////////////////////////////////////////////////////////////////////
@@ -204,16 +203,16 @@ void NavDisplay::Render()
 	// Black background
 	glColor4f(0.0, 0.0, 0.0, 0.8); // 80% alpha
 	static const float vertices2[] = {
-		// behind zoom buttons
-		0.0, OVERLAY_Y,
-		0.0, OVERLAY_Y+20,
-		10.5, OVERLAY_Y+20,
-		10.5, OVERLAY_Y,
-		// behind bottom part
-		0.0, 0.0,
-		0.0, OVERLAY_Y,
-		m_PhysicalSize.x, OVERLAY_Y,
-		m_PhysicalSize.x, 0.0
+	    // behind zoom buttons
+	    0.0, OVERLAY_Y,
+	    0.0, OVERLAY_Y+20,
+	    10.5, OVERLAY_Y+20,
+	    10.5, OVERLAY_Y,
+	    // behind bottom part
+	    0.0, 0.0,
+	    0.0, OVERLAY_Y,
+	    m_PhysicalSize.x, OVERLAY_Y,
+	    m_PhysicalSize.x, 0.0
 	};
 	glVertexPointer(2, GL_FLOAT, 0, &vertices2);
 	glDrawArrays(GL_QUADS, 0, 8);
@@ -222,18 +221,18 @@ void NavDisplay::Render()
 	glColor3f(0.7, 0.7, 0.6);
 	glLineWidth(1.0);
 	static const float vertices3[] = {
-		// lines around the zoom buttons
-		0.0,  OVERLAY_Y+10,
-		10.5, OVERLAY_Y+10,
-		10.5, OVERLAY_Y,
-		10.5, OVERLAY_Y+20.1,
-		0.0,  OVERLAY_Y+20.1,
-		10.5, OVERLAY_Y+20.1,
-		10.5, OVERLAY_Y,
-		10.5, OVERLAY_Y+20,
-		// line along top edge of overlay
-		0.0, OVERLAY_Y,
-		m_PhysicalSize.x, OVERLAY_Y
+	    // lines around the zoom buttons
+	    0.0,  OVERLAY_Y+10,
+	    10.5, OVERLAY_Y+10,
+	    10.5, OVERLAY_Y,
+	    10.5, OVERLAY_Y+20.1,
+	    0.0,  OVERLAY_Y+20.1,
+	    10.5, OVERLAY_Y+20.1,
+	    10.5, OVERLAY_Y,
+	    10.5, OVERLAY_Y+20,
+	    // line along top edge of overlay
+	    0.0, OVERLAY_Y,
+	    m_PhysicalSize.x, OVERLAY_Y
 	};
 	glVertexPointer(2, GL_FLOAT, 0, &vertices3);
 	glDrawArrays(GL_LINES, 0, 12);
@@ -242,14 +241,14 @@ void NavDisplay::Render()
 	glLineWidth(2.0);
 	glColor3f(1.0, 1.0, 1.0);
 	static float vertices4[] = {
-		// Plus symbol
-		2.5, OVERLAY_Y+15.0,
-		7.5, OVERLAY_Y+15.0,
-		5.0, OVERLAY_Y+12.5,
-		5.0, OVERLAY_Y+17.5,
-		// Minus symbol
-		2.5, OVERLAY_Y+5.0,
-		7.5, OVERLAY_Y+5.0
+	    // Plus symbol
+	    2.5, OVERLAY_Y+15.0,
+	    7.5, OVERLAY_Y+15.0,
+	    5.0, OVERLAY_Y+12.5,
+	    5.0, OVERLAY_Y+17.5,
+	    // Minus symbol
+	    2.5, OVERLAY_Y+5.0,
+	    7.5, OVERLAY_Y+5.0
 	};
 	glVertexPointer(2, GL_FLOAT, 0, &vertices4);
    	glDrawArrays(GL_LINES, 0, 6);
@@ -275,17 +274,17 @@ void NavDisplay::Render()
 	glLineWidth(2.0);
 	const float width = 1.0;
 	static float vertices5[] = {
-		CENTER_X-width, CENTER_Y-6,
-		CENTER_X-width, CENTER_Y+6,
-		CENTER_X+width, CENTER_Y-6,
-		CENTER_X+width, CENTER_Y+6,
-		CENTER_X-4,     CENTER_Y-6,
-		CENTER_X-width, CENTER_Y-6,
-		CENTER_X-8,     CENTER_Y,
-		CENTER_X-width, CENTER_Y,
-		CENTER_X+4,     CENTER_Y-6,
-		CENTER_X+width, CENTER_Y-6,
-		CENTER_X+8,     CENTER_Y,
+	    CENTER_X-width, CENTER_Y-6,
+	    CENTER_X-width, CENTER_Y+6,
+	    CENTER_X+width, CENTER_Y-6,
+	    CENTER_X+width, CENTER_Y+6,
+	    CENTER_X-4,     CENTER_Y-6,
+	    CENTER_X-width, CENTER_Y-6,
+	    CENTER_X-8,     CENTER_Y,
+	    CENTER_X-width, CENTER_Y,
+	    CENTER_X+4,     CENTER_Y-6,
+	    CENTER_X+width, CENTER_Y-6,
+CENTER_X+8,     CENTER_Y,
 		CENTER_X+width, CENTER_Y
 	};
 	glVertexPointer(2, GL_FLOAT, 0, &vertices5);

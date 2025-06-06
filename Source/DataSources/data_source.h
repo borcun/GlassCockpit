@@ -21,63 +21,39 @@
 
   =========================================================================*/
 
-#ifndef FGDataSource_h
-#define FGDataSource_h
+#ifndef DATA_SOURCE_H
+#define DATA_SOURCE_H
 
-#include "DataSource.h"
+#include "airframe_data_container.h"
 
-#include <string>
-//#include <plib/netSocket.h>
-#include "FlightGear_Protocol.h"
+namespace OpenGC {
+    class DataSource {
+    public:		
+	DataSource(void);
+	virtual ~DataSource();
 
-using namespace std;
+	/** Get access to airframe data */
+	AirframeDataContainer *GetAirframe(void) const;
 
-namespace OpenGC
-{
+	/**
+	 * Called by the base AppObject after all the init parameters
+	 * have been complete. This should open the connection to the sim
+	 */
+	virtual bool Open();
 
-    /** This is the actual DataSource */
-    class FGDataSource : public DataSource
-    {
-    public:
-
-	FGDataSource();  
-	virtual ~FGDataSource();
-
-	// Open the network connection
-	bool Open();
-
-	// The "money" function
-	bool OnIdle(); 
+	/**
+	 * Called by the render window during idle processing
+	 * This function is the one and only place where OpenGC
+	 * should acquire data from the sim
+	 */
+	virtual bool OnIdle();
 
     protected:
-
-	// Get data from FlightGear
-	bool GetData();
-
-	// Flight model data received from FlightGear
-	FGData *m_FDM;
-
-	// The socket
-	//		netSocket m_Socket;
-
-	// The host and port we're receiving on
-	string m_Host;
-	int m_ReceivePort;
-
-	// Are we connected to Flightgear?
-	bool m_ValidConnection;
-
-	// The message received from Flightgear
-	char *m_Buffer;
-
-	// A temporary buffer used in the receive process
-	char *m_TempMsg;
-
-	// Maximum length of the buffer
-	int m_BufferLength;
+	// Data that describes the airframe (alt, heading, control surfaces, etc.) 
+	AirframeDataContainer *m_airframe = nullptr;
     };
 
 } // end namespace OpenGC
 
-
 #endif
+
