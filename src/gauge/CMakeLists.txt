@@ -7,15 +7,15 @@ file(GLOB SOURCES *.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
+  ../tinyjpeg
+  ../libshape
+  ../util
+  ../base
+  ../data
+  ../navigation
   /usr/include/libxml2
   /usr/include/freetype2
   /usr/include/FTGL
-  ../base
-  ../tinyjpeg
-  ../data
-  ../navigation
-  ../libshape
-  ../util
 )
 
 target_link_directories(${PROJECT_NAME} PUBLIC

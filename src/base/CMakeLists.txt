@@ -11,9 +11,9 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE USE_FREETYPE2 TARGET_RT_LITTL
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   ../tinyjpeg
+  ../util
   ../data
   ../navigation
-  ../util
   /usr/include/libxml2
   /usr/include/FTGL
   /usr/include/freetype2
