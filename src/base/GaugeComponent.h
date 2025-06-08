@@ -31,36 +31,29 @@
  * of code is encouraged between different gauge designs.
  */
 
-#ifndef GaugeComponent_h
-#define GaugeComponent_h
+#ifndef GAUGE_COMPONENT_H
+#define GAUGE_COMPONENT_H
 
 #include "FontManager.h"
 #include "data_source.h"
 #include "RenderObject.h"
 
-namespace OpenGC
-{
-
-  class GaugeComponent: public RenderObject
-  {
+namespace OpenGC {
+  class GaugeComponent: public RenderObject {
   public:
     GaugeComponent();
     virtual ~GaugeComponent();
 
     /** Render the gauge component */
-    virtual void Render();
-
+    virtual void Render() override;
     /** Return true if the click is inside the gauge component */
-    bool ClickTest(int button, int state, int x, int y);
-
+    bool ClickTest(const int button, const int state, const int x, const int y) override;
     /** Set to true to have an opaque background */
     void SetOpaque(bool opaque) { m_Opaque = opaque; }
 
   private:
     bool m_Opaque;
   };
-
-} // end namespace OpenGC
+}
 
 #endif
-

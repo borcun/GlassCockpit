@@ -22,26 +22,21 @@
   =========================================================================*/
 
 #include <stdio.h>
-#include "GLHeaders.h"
-
 #include "GaugeComponent.h"
 
 namespace OpenGC
 {
-
   GaugeComponent::GaugeComponent()
     :m_Opaque(true)
   {
 
   }
 
-  GaugeComponent::~GaugeComponent()
-  {
+  GaugeComponent::~GaugeComponent() {
 
   }
 
-  void GaugeComponent::Render()
-  {
+  void GaugeComponent::Render() {
     // Overload this function in derived classes to render
     // the guage component
     std::pair<double, double> parentPhysicalPosition = m_pParentRenderObject->GetPhysicalPosition();
@@ -71,19 +66,16 @@ namespace OpenGC
     glScalef(m_Scale.first, m_Scale.second, 1.0f);
   }
 
-  bool GaugeComponent::ClickTest(int button, int state, int x, int y)
-  {
+  bool GaugeComponent::ClickTest(const int button, const int state, const int x, const int y) {
     if( (x >= (int)m_PixelPosition.first)&&(x <= (int)(m_PixelPosition.first + m_PixelSize.first))
 	&&(y >= (int)m_PixelPosition.second)&&(y <= (int)(m_PixelPosition.second + m_PixelSize.second)) )
       {
 	// Click is inside the GaugeComponent
 	return true;
       }
-    else
-      {
-	// Click is NOT inside the GaugeComponent
-	return false;
-      }
+    else {
+      // Click is NOT inside the GaugeComponent
+      return false;
+    }
   }
-
 } // end namespace OpenGC

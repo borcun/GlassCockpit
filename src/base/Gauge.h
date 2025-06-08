@@ -37,8 +37,8 @@
  * client rendering space and a viewport transform.
  */
 
-#ifndef Gauge_h
-#define Gauge_h
+#ifndef GAUGE_H
+#define GAUGE_H
 
 #include <list>
 #include "FontManager.h"
@@ -54,52 +54,40 @@ namespace OpenGC
     Gauge();
     virtual ~Gauge();
 
-    /** Overloaded render method */
-    void Render();
-
-    /** Set up using XML options. Pass it the <Gauge> node. */
-    void InitFromXMLNode(XMLNode gaugeNode);
-		
-    /** Add a gauge component */
-    void AddGaugeComponent(GaugeComponent* pComponent);
-
-    /** Overloaded method for setting the monitor calibration */
-    void SetUnitsPerPixel(double unitsPerPixel);
-
-    /** Set the x and y scale of the gauge (and member components) */
-    void SetScale(double xScale, double yScale);
-
     /** Recalculates placement of the gauge in the window */
     void RecalcWindowPlacement();
-
     /** Resets the gauge coordinate system before and after rendering components */
     void ResetGaugeCoordinateSystem();
-
-    /** Return true if the click is inside the gauge
-	If true, tests gauge components prior to returning */
-    bool ClickTest(int button, int state, int x, int y);
-
     /** Determine whether or not to draw the gauge outline */
     void SetGaugeOutline(bool outline) { m_DrawGaugeOutline = outline; }
 
+
+    /** Set up using XML options. Pass it the <Gauge> node. */
+    void InitFromXMLNode(XMLNode gaugeNode);	
+    /** Add a gauge component */
+    void AddGaugeComponent(GaugeComponent* pComponent);
+    /** Overloaded method for setting the monitor calibration */
+    void SetUnitsPerPixel(const double unitsPerPixel) override;
+    /** Set the x and y scale of the gauge (and member components) */
+    void SetScale(const double xScale, const double yScale) override;
+    /** Overloaded render method */
+    void Render() override;
+    /** Return true if the click is inside the gauge
+	If true, tests gauge components prior to returning */
+    bool ClickTest(const int button, const int state, const int x, const int y);
   protected:
+    /** All of the guage components */
+    std::list<GaugeComponent *> m_GaugeComponentList;
+    /** The number of gauge components in this gauge */
+    int m_NumGaugeComponents;
+    /** Whether or not to draw a blue line around the gauge */
+    bool m_DrawGaugeOutline;
 
     /** Overload to set Gauge-specific options */
     virtual void CustomXMLInit(XMLNode node) {}
-
     /** Draw the gauge outline */
     void DrawGaugeOutline();
-
-    /** All of the guage components */
-    std::list<GaugeComponent*> m_GaugeComponentList;
-
-    /** The number of gauge components in this gauge */
-    int m_NumGaugeComponents;
-
-    /** Whether or not to draw a blue line around the gauge */
-    bool m_DrawGaugeOutline;
   };
-
-} // end namespace OpenGC
+}
 
 #endif

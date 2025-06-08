@@ -24,90 +24,82 @@
 #include "RenderObject.h"
 #include "Debug.h"
 
-namespace OpenGC
-{
+OpenGC::RenderObject::RenderObject(void) {
+  m_UnitsPerPixel = 1.0;
+  m_PhysicalPosition.first = 0;
+  m_PhysicalPosition.second = 0;
+  m_PhysicalSize.first = 0;
+  m_PhysicalSize.second = 0;
+  m_Scale.first = 1.0;
+  m_Scale.second = 1.0;
+}
 
-  RenderObject::RenderObject()
-  {
-    // Initialize with safe default parameters
+OpenGC::RenderObject::~RenderObject() {
+  
+}
 
-    m_UnitsPerPixel = 1.0;
+void OpenGC::RenderObject::SetUnitsPerPixel(const double unitsPerPixel) {
+  m_UnitsPerPixel = unitsPerPixel;
+  return;
+}
 
-    m_PhysicalPosition.first = 0;
-    m_PhysicalPosition.second = 0;
+void OpenGC::RenderObject::SetScale(const double xScale, const double yScale) {
+  if(xScale > 0.0) { m_Scale.first = xScale; }
+  if(yScale > 0.0) { m_Scale.second = yScale; }
 
-    m_PhysicalSize.first = 0;
-    m_PhysicalSize.second = 0;
+  return;
+}
 
-    m_Scale.first = 1.0;
-    m_Scale.second = 1.0;
-  }
+void OpenGC::RenderObject::SetPosition(const double xPos, const double yPos) {
+  m_PhysicalPosition.first = xPos;
+  m_PhysicalPosition.second = yPos;
 
-  RenderObject::~RenderObject()
-  {
+  return;
+}
 
-  }
+void OpenGC::RenderObject::SetParentRenderObject(RenderObject* pObject) {
+  m_pParentRenderObject = pObject;
+  return;
+}
 
-  void RenderObject::SetScale(double xScale, double yScale)
-  {
-    // Set gauge scaling factors
-    // Must be a double greater than 0
+std::pair<double, double> OpenGC::RenderObject::GetPhysicalPosition(void) {
+  return m_PhysicalPosition;
+}
 
-    if(xScale > 0)
-      m_Scale.first = xScale;
-
-    if(yScale > 0)
-      m_Scale.second = yScale;
-  }
-
-  void RenderObject::SetPosition(double xPos, double yPos)
-  {
-    m_PhysicalPosition.first = xPos;
-    m_PhysicalPosition.second = yPos;
-  }
-
-  void RenderObject::SetUnitsPerPixel(double unitsPerPixel)
-  {
-    m_UnitsPerPixel = unitsPerPixel;
-  }
-
-  // Called by framework when a mouse click occurs
-  void RenderObject::HandleMouseButton(int button, int state, int x, int y)
-  {
-    if(this->ClickTest(button, state, x, y))
-      {
-	// Convert the click to an x/y position in render object physical coordinates
-	double physX, physY;
+// Called by framework when a mouse click occurs
+void OpenGC::RenderObject::HandleMouseButton(const int button, const int state, const int x, const int y) {
+  if (ClickTest(button, state, x, y)) {
+    // Convert the click to an x/y position in render object physical coordinates
+    double physX, physY;
 	
-	physX = (((double) x - (double) m_PixelPosition.first)/(double)m_PixelSize.first)*m_PhysicalSize.first;
-	physY = (((double) y - (double) m_PixelPosition.second)/(double)m_PixelSize.second)*m_PhysicalSize.second;
+    physX = (((double) x - (double) m_PixelPosition.first) / (double) m_PixelSize.first) * m_PhysicalSize.first;
+    physY = (((double) y - (double) m_PixelPosition.second) / (double) m_PixelSize.second) * m_PhysicalSize.second;
 
-	if(state==0)
-	  this->OnMouseDown(button, physX, physY);
-	else
-	  this->OnMouseUp(button, physX, physY);
-      }
+    if(0 == state) {
+      this->OnMouseDown(button, physX, physY);
+    }
+    else {
+      this->OnMouseUp(button, physX, physY);
+    }
   }
 
-  // Called when a mouse "down" event occurs
-  void RenderObject::OnMouseDown(int button, double physicalX, double physicalY)
-  {
-    // The default version of this doesn't do anything
-    // Overload to provide specific functionality
-  }
+  return;
+}
 
-  // Called when a mouse "up" event occurs
-  void RenderObject::OnMouseUp(int button, double physicalX, double physicalY)
-  {
-    // The default version of this doesn't do anything
-    // Overload to provide specific functionality
-  }
+// Called when a mouse "down" event occurs
+void OpenGC::RenderObject::OnMouseDown(const int button, const double physicalX, const double physicalY) {
+  // The default version of this doesn't do anything
+  // Overload to provide specific functionality
+}
 
-  // Called when keyboard event occurs
-  void RenderObject::OnKeyboard(int keycode, int modifiers)
-  {
-    // The default version of this doesn't do anything
-    // Overload to provide specific functionality
-  }
+// Called when a mouse "up" event occurs
+void OpenGC::RenderObject::OnMouseUp(const int button, const double physicalX, const double physicalY) {
+  // The default version of this doesn't do anything
+  // Overload to provide specific functionality
+}
 
-} // end namespace OpenGC
+// Called when keyboard event occurs
+void OpenGC::RenderObject::OnKeyboard(const int keycode, const int modifiers) {
+  // The default version of this doesn't do anything
+  // Overload to provide specific functionality
+}

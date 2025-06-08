@@ -22,21 +22,14 @@
   =========================================================================*/
 
 #include <stdio.h>
-#include "GLHeaders.h"
-
 #include "Globals.h"
-#include "FontManager.h"
 #include "data_source.h"
-#include "GaugeComponent.h"
-#include "RenderObject.h"
 #include "Gauge.h"
 #include "Debug.h"
 
 namespace OpenGC
 {
-
-  Gauge::Gauge()
-  {
+  Gauge::Gauge() {
     m_NumGaugeComponents = 0;
     m_DrawGaugeOutline = false;
 
@@ -53,21 +46,18 @@ namespace OpenGC
     m_PixelSize.second = 0;
   }
 
-  Gauge::~Gauge()
-  {
+  Gauge::~Gauge() {
     // If there are gauge components, delete them
-    if( m_NumGaugeComponents!=0 )
-      {
-	std::list<GaugeComponent*>::iterator it;
-	for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it)
-	  {
-	    delete *it;
-	  }
+    if( m_NumGaugeComponents!=0 ) {
+      std::list<GaugeComponent*>::iterator it;
+	
+      for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
+	delete *it;
       }
+    }
   }
 
-  void Gauge::InitFromXMLNode(XMLNode gaugeNode)
-  {
+  void Gauge::InitFromXMLNode(XMLNode gaugeNode) {
     Check(gaugeNode.IsValid() && gaugeNode.GetName() == "Gauge");
 
     double scale = globals->m_PrefManager->GetPrefD("DefaultGaugeScale");
@@ -114,14 +104,12 @@ namespace OpenGC
     CustomXMLInit(gaugeNode);
   }
 
-  void Gauge::AddGaugeComponent(GaugeComponent* pComponent)
-  {
+  void Gauge::AddGaugeComponent(GaugeComponent *pComponent) {
     m_GaugeComponentList.push_back(pComponent);
     m_NumGaugeComponents++;
   }
 
-  void Gauge::Render()
-  {
+  void Gauge::Render(void) {
     // Overload this function in derived classes to render
     // parts of the guage not defined by gauge components
 
@@ -130,26 +118,25 @@ namespace OpenGC
 
     this->ResetGaugeCoordinateSystem();
 
-    if(m_NumGaugeComponents > 0)
-      {
-	std::list<GaugeComponent*>::iterator it;
-	for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it)
-	  {
-	    (*it)->Render();
-	  }
+    if (m_NumGaugeComponents > 0) {
+      std::list<GaugeComponent*>::iterator it;
+      
+      for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
+	(*it)->Render();
       }
+    }
 
     this->ResetGaugeCoordinateSystem();
 
-    if(m_DrawGaugeOutline)
-      {
-	this->DrawGaugeOutline();
-      }
+    if(m_DrawGaugeOutline) {
+      this->DrawGaugeOutline();
+    }
+
+    return;
   }
 
   // Resets the gauge coordinate system before and after rendering components
-  void Gauge::ResetGaugeCoordinateSystem()
-  {
+  void Gauge::ResetGaugeCoordinateSystem() {
     this->RecalcWindowPlacement();
 
     // The viewport is established in order to clip things
@@ -166,8 +153,7 @@ namespace OpenGC
     glLoadIdentity();
   }
 
-  void Gauge::RecalcWindowPlacement()
-  {
+  void Gauge::RecalcWindowPlacement() {
     // Figure out where we're drawing in the window
     m_PixelPosition.first = (int) (m_PhysicalPosition.first / m_UnitsPerPixel);
     m_PixelPosition.second = (int) (m_PhysicalPosition.second / m_UnitsPerPixel);
@@ -176,58 +162,53 @@ namespace OpenGC
     m_PixelSize.second = (int) (m_PhysicalSize.second / m_UnitsPerPixel * m_Scale.second);
   }
 
-  void Gauge::SetUnitsPerPixel(double unitsPerPixel)
-  {
+  void Gauge::SetUnitsPerPixel(const double unitsPerPixel) {
     m_UnitsPerPixel = unitsPerPixel;
 
-    if(m_NumGaugeComponents > 0)
-      {
-	std::list<GaugeComponent*>::iterator it;
-	for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it)
-	  {
-	    (*it)->SetUnitsPerPixel(m_UnitsPerPixel);
-	  }
+    if (m_NumGaugeComponents > 0) {
+      std::list<GaugeComponent*>::iterator it;
+      
+      for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
+	(*it)->SetUnitsPerPixel(m_UnitsPerPixel);
       }
+    }
+
+    return;
   }
 
-  void Gauge::SetScale(double xScale, double yScale)
-  {
+  void Gauge::SetScale(const double xScale, const double yScale) {
     // Set gauge scaling factors, must be greater than 0
-    if( (xScale > 0) && (yScale > 0 ) )
-      {
-	m_Scale.first = xScale;
-	m_Scale.second = yScale;
+    if ((xScale > 0) && (yScale > 0)) {
+      m_Scale.first = xScale;
+      m_Scale.second = yScale;
 
-	if(m_NumGaugeComponents > 0)
-	  {
-	    std::list<GaugeComponent*>::iterator it;
-	    for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it)
-	      {
-		(*it)->SetScale(xScale, yScale);
-	      }
-	  }
+      if (m_NumGaugeComponents > 0) {
+	std::list<GaugeComponent*>::iterator it;
+	  
+	for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
+	  (*it)->SetScale(xScale, yScale);
+	}
       }
+    }
+
+    return;
   }
 
-  bool Gauge::ClickTest(int button, int state, int x, int y)
-  {
+  bool Gauge::ClickTest(const int button, const int state, const int x, const int y) {
     if( (x >= (int)m_PixelPosition.first)&&(x <= (int)(m_PixelPosition.first + m_PixelSize.first))
-	&&(y >= (int)m_PixelPosition.second)&&(y <= (int)(m_PixelPosition.second + m_PixelSize.second)) )
+	&&(y >= (int)m_PixelPosition.second)&&(y <= (int)(m_PixelPosition.second + m_PixelSize.second)))
       {
-	if(m_NumGaugeComponents > 0)
-	  {
-	    std::list<GaugeComponent*>::iterator it;
-	    for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it)
-	      {
-		(*it)->HandleMouseButton(button, state, x, y);
-	      }
+	if(m_NumGaugeComponents > 0) {
+	  std::list<GaugeComponent*>::iterator it;
+	  for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
+	    (*it)->HandleMouseButton(button, state, x, y);
 	  }
+	}
 	return true;
       }
-    else
-      {
-	return false;
-      }
+    else {
+      return false;
+    }
   }
 
   void Gauge::DrawGaugeOutline()
@@ -244,5 +225,4 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_LINE_LOOP, 0, 4);
   }
-
-} // end namespace OpenGC
+}
