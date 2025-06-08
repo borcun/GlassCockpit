@@ -13,7 +13,7 @@
   the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
   PURPOSE.  See the above copyright notice for more information.
 
- =========================================================================*/
+  =========================================================================*/
 
 /**
  * Responsible for creating a global AppObject (the application), processing
@@ -45,90 +45,89 @@ AppObject *theApp;
 /** Print usage information */
 void usage()
 {
-	LogPrintf("usage: OpenGC [config.xml]\nIf no XML configuration file"
-		   "is provided Data/Default.xml is used.\n");
+  LogPrintf("usage: OpenGC [config.xml]\nIf no XML configuration file"
+	    "is provided Data/Default.xml is used.\n");
 }
 
 /** Global idle function to handle app updates */
 void GlobalIdle(void *)
 {
-	theApp->IdleFunction();
-	Fl::repeat_timeout(globals->m_PrefManager->GetPrefD(
-				"AppUpdateRate"), GlobalIdle);
+  theApp->IdleFunction();
+  Fl::repeat_timeout(globals->m_PrefManager->GetPrefD(
+						      "AppUpdateRate"), GlobalIdle);
 }
 
 /** Main entry point for the application */
 int main(int argc, char* argv[])
 {	
-	// Check the command line arguments
-	char *xmlFileName = DEFAULT_XML_FILE;
-	if (argc > 2)
-	{
-		usage();
-		return 1;
-	}
-	else if (argc == 2)
-	{
-		// Check the file exists
-		FILE *f = fopen(argv[1], "r");
-		if (f == NULL) 
-		{
-			usage();
-			return 1;
-		}
-		else
-		{
-			xmlFileName = argv[1];
-		}
-	}
+  // Check the command line arguments
+  char *xmlFileName = DEFAULT_XML_FILE;
+
+  if (argc > 2) {
+    usage();
+    return 1;
+  }
+  else if (argc == 2) {
+    // Check the file exists
+    FILE *f = fopen(argv[1], "r");
+    if (f == NULL) 
+      {
+	usage();
+	return 1;
+      }
+    else
+      {
+	xmlFileName = argv[1];
+      }
+  }
 	
-	// Construct the application
-	OpenGC::globals = new Globals();
-	theApp= new AppObject();
+  // Construct the application
+  OpenGC::globals = new Globals();
+  theApp= new AppObject();
 	
-	// Initialise preferences manager
-	globals->m_PrefManager->InitPreferences(PREFERENCES_XML_FILE);
+  // Initialise preferences manager
+  globals->m_PrefManager->InitPreferences(PREFERENCES_XML_FILE);
 	
-	// Read the XML file and do some basic checks about its contents
-	XMLParser parser;
-	Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
-	Check(parser.HasNode("/"));
-	Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
-	Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
+  // Read the XML file and do some basic checks about its contents
+  XMLParser parser;
+  Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
+  Check(parser.HasNode("/"));
+  Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
+  Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
 	
-	// Set the user-defined (in XML file) application preferences
-	if (parser.HasNode("/Preferences"))
-	{
-		globals->m_PrefManager->SetPrefsFromXML(parser.GetNode("/Preferences"));
-	}
+  // Set the user-defined (in XML file) application preferences
+  if (parser.HasNode("/Preferences"))
+    {
+      globals->m_PrefManager->SetPrefsFromXML(parser.GetNode("/Preferences"));
+    }
 
-	// Set RasterMaps path
-	globals->m_RasterMapManager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-			globals->m_PrefManager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+  // Set RasterMaps path
+  globals->m_RasterMapManager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
+					    globals->m_PrefManager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
 
-	// FIXME debug:
-	globals->m_PrefManager->PrintAll();
+  // FIXME debug:
+  globals->m_PrefManager->PrintAll();
 
-	// Set the update rate in nominal seconds per frame
-	Fl::add_timeout(globals->m_PrefManager->GetPrefD(
-				"AppUpdateRate"), GlobalIdle);
+  // Set the update rate in nominal seconds per frame
+  Fl::add_timeout(globals->m_PrefManager->GetPrefD(
+						   "AppUpdateRate"), GlobalIdle);
 
-	// Run up the application
-	int retval;
-	XMLNode rootNode = parser.GetNode("/");
-	if (theApp->Go(rootNode)) {
-		LogPrintf("Done, exiting cleanly.\n");
-		retval = 0;
-	}
-	else {
-		LogPrintf("Error, exiting.\n");
-		retval = 1;
-	}
+  // Run up the application
+  int retval;
+  XMLNode rootNode = parser.GetNode("/");
+  if (theApp->Go(rootNode)) {
+    LogPrintf("Done, exiting cleanly.\n");
+    retval = 0;
+  }
+  else {
+    LogPrintf("Error, exiting.\n");
+    retval = 1;
+  }
 
-	// Clean up
-	delete theApp;
-	delete globals;
+  // Clean up
+  delete theApp;
+  delete globals;
 
-	return retval;
+  return retval;
 }
 

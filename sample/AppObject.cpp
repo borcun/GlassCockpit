@@ -26,9 +26,9 @@
 #include "Debug.h"
 
 //--------Data Sources---------
-#include "AlbatrossDataSource.h"
-#include "TestDataSource.h"
-#include "FGDataSource.h"
+#include "albatross_data_source.h"
+#include "test_data_source.h"
+#include "fg_data_source.h"
 
 //--------Gauges---------------
 #include "PFD.h"

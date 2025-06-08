@@ -4,14 +4,14 @@ project(opengc-gauges)
 set(CMAKE_CXX_STANDARD 11)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.cpp)
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   /usr/include/libxml2
   /usr/include/freetype2
   /usr/include/FTGL
   ../Base
-  ../Base/ImageCodecs
+  ../ImageCodecs
   ../DataSources
   ../Navigation
   ../Navigation/ShapeLib

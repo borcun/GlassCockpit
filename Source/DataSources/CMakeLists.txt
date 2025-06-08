@@ -4,7 +4,7 @@ project(opengc-datasources)
 set(CMAKE_CXX_STANDARD 11)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.cpp)
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   .

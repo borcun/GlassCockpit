@@ -3,14 +3,14 @@ project(opengc-base)
 
 set(CMAKE_CXX_STANDARD 11)
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.cpp ImageCodecs/*.cpp)
-file(GLOB_RECURSE IMG_SOURCES CONFIGURE_DEPENDS ImageCodes/*.c)
-add_library(${PROJECT_NAME} STATIC ${SOURCES} ${IMG_SOURCES})
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.cpp ImageCodecs/*.cpp ImageCodecs/*.c)
+
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE USE_FREETYPE2 TARGET_RT_LITTLE_ENDIAN)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-  ./ImageCodecs
+  ../ImageCodecs
   ../DataSources
   ../Navigation
   ../../Util
@@ -21,9 +21,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 target_link_directories(${PROJECT_NAME} PUBLIC
   /usr/lib/x86_64-linux-gnu
+  ImageCodecs
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
+  tinyjpeg
   xml2
   ftgl
   freetype

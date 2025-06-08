@@ -3,6 +3,8 @@ project(opengc)
 
 set(CMAKE_CXX_STANDARD 11)
 
+add_subdirectory(Source/ImageCodecs)
+add_subdirectory(Source/ShapeLib)
 add_subdirectory(Source/Base)
 add_subdirectory(Source/DataSources)
 add_subdirectory(Source/Gauges)
@@ -12,6 +14,8 @@ include_directories(
   /usr/include/libxml2
   /usr/include/FTGL
   /usr/include/freetype2
+  Source/ImageCodecs
+  Source/ShapeLib
   Source/Base
   Source/DataSources
   Source/Gauges
