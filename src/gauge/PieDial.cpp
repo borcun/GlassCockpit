@@ -34,14 +34,14 @@ namespace OpenGC
   {
     m_Font = globals->m_FontManager->LoadDefaultFont();
 
-    m_PhysicalPosition.x = 0;
-    m_PhysicalPosition.y = 0;
+    m_PhysicalPosition.first = 0;
+    m_PhysicalPosition.second = 0;
 
-    m_PhysicalSize.x = 42;
-    m_PhysicalSize.y = 34;
+    m_PhysicalSize.first = 42;
+    m_PhysicalSize.second = 34;
 
-    m_Scale.x = 1.0;
-    m_Scale.y = 1.0;
+    m_Scale.first = 1.0;
+    m_Scale.second = 1.0;
 
     m_DataFn = 0;
     m_Min = 0.0, m_Max = 0.0;

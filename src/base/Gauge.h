@@ -7,19 +7,19 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 /**
  * The base class for all gauges in the OpenGC object model.
@@ -41,7 +41,6 @@
 #define Gauge_h
 
 #include <list>
-#include "OrderedPair.h"
 #include "FontManager.h"
 #include "RenderObject.h"
 #include "GaugeComponent.h"
@@ -49,58 +48,57 @@
 
 namespace OpenGC
 {
+  class Gauge: public RenderObject
+  {
+  public:
+    Gauge();
+    virtual ~Gauge();
 
-class Gauge: public RenderObject
-{
-	public:
-		Gauge();
-		virtual ~Gauge();
+    /** Overloaded render method */
+    void Render();
 
-		/** Overloaded render method */
-		void Render();
-
-		/** Set up using XML options. Pass it the <Gauge> node. */
-		void InitFromXMLNode(XMLNode gaugeNode);
+    /** Set up using XML options. Pass it the <Gauge> node. */
+    void InitFromXMLNode(XMLNode gaugeNode);
 		
-		/** Add a gauge component */
-		void AddGaugeComponent(GaugeComponent* pComponent);
+    /** Add a gauge component */
+    void AddGaugeComponent(GaugeComponent* pComponent);
 
-		/** Overloaded method for setting the monitor calibration */
-		void SetUnitsPerPixel(double unitsPerPixel);
+    /** Overloaded method for setting the monitor calibration */
+    void SetUnitsPerPixel(double unitsPerPixel);
 
-		/** Set the x and y scale of the gauge (and member components) */
-		void SetScale(double xScale, double yScale);
+    /** Set the x and y scale of the gauge (and member components) */
+    void SetScale(double xScale, double yScale);
 
-		/** Recalculates placement of the gauge in the window */
-		void RecalcWindowPlacement();
+    /** Recalculates placement of the gauge in the window */
+    void RecalcWindowPlacement();
 
-		/** Resets the gauge coordinate system before and after rendering components */
-		void ResetGaugeCoordinateSystem();
+    /** Resets the gauge coordinate system before and after rendering components */
+    void ResetGaugeCoordinateSystem();
 
-		/** Return true if the click is inside the gauge
-		  If true, tests gauge components prior to returning */
-		bool ClickTest(int button, int state, int x, int y);
+    /** Return true if the click is inside the gauge
+	If true, tests gauge components prior to returning */
+    bool ClickTest(int button, int state, int x, int y);
 
-		/** Determine whether or not to draw the gauge outline */
-		void SetGaugeOutline(bool outline) { m_DrawGaugeOutline = outline; }
+    /** Determine whether or not to draw the gauge outline */
+    void SetGaugeOutline(bool outline) { m_DrawGaugeOutline = outline; }
 
-	protected:
+  protected:
 
-		/** Overload to set Gauge-specific options */
-		virtual void CustomXMLInit(XMLNode node) {}
+    /** Overload to set Gauge-specific options */
+    virtual void CustomXMLInit(XMLNode node) {}
 
-		/** Draw the gauge outline */
-		void DrawGaugeOutline();
+    /** Draw the gauge outline */
+    void DrawGaugeOutline();
 
-		/** All of the guage components */
-		std::list<GaugeComponent*> m_GaugeComponentList;
+    /** All of the guage components */
+    std::list<GaugeComponent*> m_GaugeComponentList;
 
-		/** The number of gauge components in this gauge */
-		int m_NumGaugeComponents;
+    /** The number of gauge components in this gauge */
+    int m_NumGaugeComponents;
 
-		/** Whether or not to draw a blue line around the gauge */
-		bool m_DrawGaugeOutline;
-};
+    /** Whether or not to draw a blue line around the gauge */
+    bool m_DrawGaugeOutline;
+  };
 
 } // end namespace OpenGC
 

@@ -36,7 +36,6 @@
 
 #include "FontManager.h"
 #include "data_source.h"
-#include "OrderedPair.h"
 #include "RenderObject.h"
 
 namespace OpenGC

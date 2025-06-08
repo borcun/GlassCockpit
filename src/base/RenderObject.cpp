@@ -33,14 +33,14 @@ namespace OpenGC
 
     m_UnitsPerPixel = 1.0;
 
-    m_PhysicalPosition.x = 0;
-    m_PhysicalPosition.y = 0;
+    m_PhysicalPosition.first = 0;
+    m_PhysicalPosition.second = 0;
 
-    m_PhysicalSize.x = 0;
-    m_PhysicalSize.y = 0;
+    m_PhysicalSize.first = 0;
+    m_PhysicalSize.second = 0;
 
-    m_Scale.x = 1.0;
-    m_Scale.y = 1.0;
+    m_Scale.first = 1.0;
+    m_Scale.second = 1.0;
   }
 
   RenderObject::~RenderObject()
@@ -54,16 +54,16 @@ namespace OpenGC
     // Must be a double greater than 0
 
     if(xScale > 0)
-      m_Scale.x = xScale;
+      m_Scale.first = xScale;
 
     if(yScale > 0)
-      m_Scale.y = yScale;
+      m_Scale.second = yScale;
   }
 
   void RenderObject::SetPosition(double xPos, double yPos)
   {
-    m_PhysicalPosition.x = xPos;
-    m_PhysicalPosition.y = yPos;
+    m_PhysicalPosition.first = xPos;
+    m_PhysicalPosition.second = yPos;
   }
 
   void RenderObject::SetUnitsPerPixel(double unitsPerPixel)
@@ -78,8 +78,9 @@ namespace OpenGC
       {
 	// Convert the click to an x/y position in render object physical coordinates
 	double physX, physY;
-	physX = (((double)x - (double)m_PixelPosition.x)/(double)m_PixelSize.x)*m_PhysicalSize.x;
-	physY = (((double)y - (double)m_PixelPosition.y)/(double)m_PixelSize.y)*m_PhysicalSize.y;
+	
+	physX = (((double) x - (double) m_PixelPosition.first)/(double)m_PixelSize.first)*m_PhysicalSize.first;
+	physY = (((double) y - (double) m_PixelPosition.second)/(double)m_PixelSize.second)*m_PhysicalSize.second;
 
 	if(state==0)
 	  this->OnMouseDown(button, physX, physY);

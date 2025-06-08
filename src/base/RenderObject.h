@@ -30,7 +30,7 @@
 #ifndef RenderObject_h
 #define RenderObject_h
 
-#include "OrderedPair.h"
+#include <utility>
 #include "GLHeaders.h"
 #include "data_source.h"
 
@@ -57,7 +57,7 @@ namespace OpenGC
     void SetPosition(double xPos, double yPos);
 
     /** Get the physical position */
-    OrderedPair<double> GetPhysicalPosition() { return m_PhysicalPosition; }
+    std::pair<double, double> GetPhysicalPosition() { return m_PhysicalPosition; }
 
     /** Set the parent render object (in order to cascade transformations) */
     void SetParentRenderObject(RenderObject* pObject) { m_pParentRenderObject = pObject; }
@@ -85,19 +85,19 @@ namespace OpenGC
     RenderObject* m_pParentRenderObject;
 
     /** 1.0=normal scale, 0.5=half, 2=double, etc. */
-    OrderedPair<double> m_Scale;
+    std::pair<double, double> m_Scale;
 
     /** Position in mm in the render window */
-    OrderedPair<double> m_PhysicalPosition;
+    std::pair<double, double> m_PhysicalPosition;
 
     /** Placement in render window in pixel units */
-    OrderedPair<unsigned int> m_PixelPosition;
+    std::pair<unsigned int, unsigned int> m_PixelPosition;
 
     /** Size in mm, defined by derived classes, NOT initialized */
-    OrderedPair<double> m_PhysicalSize;
+    std::pair<double, double> m_PhysicalSize;
 
     /** Size in render window in pixel units */
-    OrderedPair<unsigned int> m_PixelSize;
+    std::pair<unsigned int, unsigned int> m_PixelSize;
   };
 
 } // end namespace OpenGC
