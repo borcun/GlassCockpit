@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(opengc-base)
 
-set(CMAKE_CXX_STANDARD 98)
+set(CMAKE_CXX_STANDARD 11)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.cpp ImageCodecs/*.cpp)
 file(GLOB_RECURSE IMG_SOURCES CONFIGURE_DEPENDS ImageCodes/*.c)
@@ -14,19 +14,18 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ../DataSources
   ../Navigation
   ../../Util
-  /opt/homebrew/opt/libxml2/include
-  /opt/homebrew/opt/zlib/include
-  /opt/homebrew/opt/freetype/include/freetype2
+  /usr/include/libxml2
+  /usr/include/FTGL
+  /usr/include/freetype2
 )
 
 target_link_directories(${PROJECT_NAME} PUBLIC
-  /opt/homebrew/opt/libxml2/lib
-  /opt/homebrew/opt/zlib/lib
-  /opt/homebrew/opt/freetype/lib
+  /usr/lib/x86_64-linux-gnu
 )
 
-target_link_directories(${PROJECT_NAME} PUBLIC
-  freetype
+target_link_libraries(${PROJECT_NAME} PUBLIC
   xml2
+  ftgl
+  freetype
   z
 )

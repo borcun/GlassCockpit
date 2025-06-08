@@ -23,7 +23,7 @@
 #ifndef CalcManager_h
 #define CalcManager_h
 
-#include "DataSource.h"
+#include "data_source.h"
 #include "XMLNode.h"
 
 namespace OpenGC {

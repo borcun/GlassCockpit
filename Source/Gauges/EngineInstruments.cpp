@@ -26,7 +26,7 @@
 
 #include "Globals.h"
 #include "Constants.h"
-#include "DataSource.h"
+#include "data_source.h"
 #include "EngineInstruments.h"
 #include "PieDial.h"
 #include "MarkedDial.h"

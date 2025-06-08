@@ -23,7 +23,7 @@
 
 #include "PFD.h"
 
-#include "AlbatrossAnnunciator.h"
+// #include "AlbatrossAnnunciator.h"
 #include "ArtificialHorizon.h"
 #include "AltitudeTape.h"
 #include "AltitudeTicker.h"
@@ -88,11 +88,13 @@ PFD::PFD()
 	pSpeedTicker->SetPosition(7,90);
 	this->AddGaugeComponent(pSpeedTicker);
 
+	/*
 	// Create a Albatross Annunciator Panel
 	AlbatrossAnnunciator* pAnnun = new AlbatrossAnnunciator();
 	pAnnun->SetParentRenderObject(this);
 	pAnnun->SetPosition(40,160);
 	this->AddGaugeComponent(pAnnun);
+	*/
 
 	// Create the overlaid Flight Director
 	FlightDirector* pFlightDir = new FlightDirector();

@@ -26,7 +26,7 @@
 
 #include "Globals.h"
 #include "FontManager.h"
-#include "DataSource.h"
+#include "data_source.h"
 #include "GaugeComponent.h"
 #include "RenderObject.h"
 #include "Gauge.h"

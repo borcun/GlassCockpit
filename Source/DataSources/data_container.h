@@ -25,13 +25,12 @@
 #define DATA_CONTAINER_H
 
 namespace OpenGC {
-    class DataContainer {
-    public:
-	DataContainer(void) = default;
-	virtual ~DataContainer() = default;
-	void initialize(void);
-    };
-
+  class DataContainer {
+  public:
+    DataContainer(void) {}
+    virtual ~DataContainer() {}
+    void initialize(void) { return; }
+  };
 }
 
 #endif

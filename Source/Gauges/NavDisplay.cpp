@@ -28,7 +28,7 @@
 #include "Globals.h"
 #include "Constants.h"
 #include "CircleEvaluator.h"
-#include "DataSource.h"
+#include "data_source.h"
 #include "NavDisplay.h"
 #include "GeographicObject.h"
 #include "WaypointGeoObj.h"

@@ -1,23 +1,30 @@
 cmake_minimum_required(VERSION 3.5)
 project(opengc)
 
-set(SOURCE Main.cpp AppObject.cpp FLTKRendererWindow.cpp)
+set(CMAKE_CXX_STANDARD 11)
 
-add_executable(${PROJECT_NAME} STATIC ${SOURCE})
+add_subdirectory(Source/Base)
+add_subdirectory(Source/DataSources)
+add_subdirectory(Source/Gauges)
+add_subdirectory(Source/Navigation)
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+include_directories(
+  /usr/include/libxml2
+  /usr/include/FTGL
+  /usr/include/freetype2
   Source/Base
-  Source/Base/ImageCodecs
   Source/DataSources
   Source/Gauges
   Source/Navigation
-  Source/Navigation/ShapeLib
-  /opt/homebrew/opt/fltk/include
-  /opt/homebrew/opt/freetype2/include
+  Util
 )
 
-target_link_directories(${PROJECT_NAME} PUBLIC
-  
-  fltk
-  freetype2
+link_directories(
+  /usr/lib/x86_64-linux-gnu
+)
+
+link_libraries(
+  xml2
+  ftgl
+  freetype
 )

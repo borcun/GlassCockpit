@@ -30,7 +30,7 @@
 // generator for property for any type of class
 #define GENPROP(pname, ptype, initial)		\
     public:					\
-    ptype Get##pname(void) const			\
+    ptype Get##pname(void)			\
     {						\
 	return m_##pname;			\
     }						\

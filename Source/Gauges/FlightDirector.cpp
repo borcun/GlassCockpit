@@ -87,11 +87,11 @@ void FlightDirector::Render()
 		// Is the altitude on screen?
 		double deltaAlt = alt - fdAlt;
 		if (deltaAlt < 400.0 && deltaAlt > -400.0) {
-			double markerOffset = 61.0 - (deltaAlt / 100.0 * 17.0);
+		  float markerOffset = 61.0 - (deltaAlt / 100.0 * 17.0);
 			const float vertices[] = {
-				ALT_X - 1, ALT_Y + markerOffset + 7.0,
-				ALT_X - 4, ALT_Y + markerOffset + 4.0,
-				ALT_X - 4, ALT_Y + markerOffset + 10.0
+				ALT_X - 1, ALT_Y + markerOffset + 7.0f,
+				ALT_X - 4, ALT_Y + markerOffset + 4.0f,
+				ALT_X - 4, ALT_Y + markerOffset + 10.0f
 			};
 			glVertexPointer(2, GL_FLOAT, 0, &vertices);
 			glDrawArrays(GL_LINE_LOOP, 0, 3);
@@ -132,11 +132,11 @@ void FlightDirector::Render()
 
 		// Is the airspeed on screen?
 		if (deltaAirspeed < 55.0 && deltaAirspeed > -55.0) {
-			double markerOffset = 62.0 - (deltaAirspeed / 10.0 * 11.3);
+			float markerOffset = 62.0 - (deltaAirspeed / 10.0 * 11.3);
 			const float vertices[] = {
-				AIRSPEED_X - 7, AIRSPEED_Y + markerOffset + 7.0,
-				AIRSPEED_X - 4, AIRSPEED_Y + markerOffset + 4.0,
-				AIRSPEED_X - 4, AIRSPEED_Y + markerOffset + 10.0
+				AIRSPEED_X - 7, AIRSPEED_Y + markerOffset + 7.0f,
+				AIRSPEED_X - 4, AIRSPEED_Y + markerOffset + 4.0f,
+				AIRSPEED_X - 4, AIRSPEED_Y + markerOffset + 10.0f
 			};
 			glVertexPointer(2, GL_FLOAT, 0, &vertices);
 			glDrawArrays(GL_LINE_LOOP, 0, 3);
