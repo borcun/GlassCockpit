@@ -31,8 +31,8 @@
 #include "Messageable.h"
 #include "XMLParser.h"
 
-#define DEFAULT_XML_FILE		(char*) "../Data/Default.xml"
-#define PREFERENCES_XML_FILE	(char*) "../Data/Preferences.xml"
+#define DEFAULT_XML_FILE		(char*) "../resource/Default.xml"
+#define PREFERENCES_XML_FILE	(char*) "../resource/Preferences.xml"
 
 using namespace OpenGC;
 
