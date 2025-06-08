@@ -32,9 +32,9 @@
 namespace OpenGC
 {
 	
-const double PieDial::R;
-const double PieDial::minDegrees;
-const double PieDial::maxDegrees;
+//const double PieDial::R;
+//const double PieDial::minDegrees;
+//const double PieDial::maxDegrees;
 
 PieDial::PieDial()
 {

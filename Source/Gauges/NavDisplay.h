@@ -75,8 +75,8 @@ class NavDisplay : public Gauge
 		double mercatorNorthing, mercatorEasting;
 		
 		/** Compile-time layout options */
-		static const double CENTER_X = 90.0, CENTER_Y = 95.0, OVERLAY_Y = 45.0;
-		static const int compass_interval = 20; // interval in degrees between compass markings
+		const double CENTER_X = 90.0, CENTER_Y = 95.0, OVERLAY_Y = 45.0;
+		const int compass_interval = 20; // interval in degrees between compass markings
 	
 		/** Raster map tile texture handles */
 		static GLuint m_TileTextures[49];

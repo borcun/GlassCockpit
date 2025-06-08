@@ -38,8 +38,8 @@
 namespace OpenGC
 {
 
-const double NavDisplay::CENTER_X, NavDisplay::CENTER_Y, NavDisplay::OVERLAY_Y;
-const int NavDisplay::compass_interval;
+//const double NavDisplay::CENTER_X, NavDisplay::CENTER_Y, NavDisplay::OVERLAY_Y;
+//const int NavDisplay::compass_interval;
 	
 GLuint NavDisplay::m_TileTextures[49];
 bool NavDisplay::m_TilesInitted;

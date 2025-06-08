@@ -108,7 +108,7 @@ void PrefManager::PrintAll() const
 void PrefManager::InitPreferences(const char* xmlFileName)
 {
 	XMLParser parser;
-	Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
+	Assert(parser.ReadFile(xmlFileName), xmlFileName /*"unable to read XML file"*/);
 	Check(parser.HasNode("/"));
 	XMLNode rootNode = parser.GetNode("/");
 	Check(rootNode.IsValid() && rootNode.GetName() == "Preferences");
