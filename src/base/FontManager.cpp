@@ -62,7 +62,7 @@ int FontManager::LoadFont(const string& name)
 {
 	if (m_FontPath == "") {
 		
-		m_FontPath = globals->m_PrefManager->GetPrefS("PathToData") + "Fonts/";
+		m_FontPath = Globals::pref_manager->GetPrefS("PathToData") + "Fonts/";
 	}
 	
 	// Concatenate the font name onto the font path

@@ -32,7 +32,7 @@ namespace OpenGC
 
   AltitudeTicker::AltitudeTicker()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -81,10 +81,10 @@ namespace OpenGC
     const double littleFontHeight = 6.5;
     double texty = m_PhysicalSize.second / 2 - bigFontHeight / 2;
 
-    globals->m_FontManager->SetSize(m_Font, 6.0, bigFontHeight);
+    Globals::font_manager->SetSize(m_Font, 6.0, bigFontHeight);
 
     // Get the data
-    float alt_f = globals->m_DataSource->GetAirframe()->GetAltitude_MSL_Feet();
+    float alt_f = Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
     long int alt = (long int)alt_f;
 
     // Draw text in white
@@ -95,7 +95,7 @@ namespace OpenGC
     if(alt >= 10000)
       {
 	sprintf(buffer, "%li", alt/10000);
-	globals->m_FontManager->Print(5.0, texty, buffer, m_Font);
+	Globals::font_manager->Print(5.0, texty, buffer, m_Font);
 	alt_f = alt_f - 10000*(int)(alt/10000);
 	alt = alt-10000*(int)(alt/10000);
       }
@@ -113,17 +113,17 @@ namespace OpenGC
 
     // 1000's
     sprintf(buffer, "%li", alt/1000);
-    globals->m_FontManager->Print(9.5, texty, &buffer[0], m_Font);
+    Globals::font_manager->Print(9.5, texty, &buffer[0], m_Font);
     alt_f = alt_f - 1000*(int)(alt/1000);
     alt = alt-1000*(int)(alt/1000);
 
     // The 100's, 10's, and 1's are drawn in a smaller size
-    globals->m_FontManager->SetSize(m_Font, 5.0, littleFontHeight);
+    Globals::font_manager->SetSize(m_Font, 5.0, littleFontHeight);
     texty = m_PhysicalSize.second / 2 - littleFontHeight / 2;
 
     // 100's
     sprintf(buffer, "%li", alt/100);
-    globals->m_FontManager->Print(15.0, texty, &buffer[0], m_Font);
+    Globals::font_manager->Print(15.0, texty, &buffer[0], m_Font);
     alt_f = alt_f - 100*(int)(alt/100);
     alt = alt-100*(int)(alt/100);
 
@@ -169,24 +169,24 @@ namespace OpenGC
 
     // Display all of the digits
     sprintf(buffer, "%i", top2_ten);
-    globals->m_FontManager->Print(19.0, texty + 2 * (littleFontHeight + littleFontHeight/10), &buffer[0], m_Font);
-    globals->m_FontManager->Print(23.0, texty + 2 * (littleFontHeight + littleFontHeight/10), "0", m_Font);
+    Globals::font_manager->Print(19.0, texty + 2 * (littleFontHeight + littleFontHeight/10), &buffer[0], m_Font);
+    Globals::font_manager->Print(23.0, texty + 2 * (littleFontHeight + littleFontHeight/10), "0", m_Font);
 	
     sprintf(buffer, "%i", top_ten);
-    globals->m_FontManager->Print(19.0, texty + littleFontHeight + littleFontHeight/10, &buffer[0], m_Font);
-    globals->m_FontManager->Print(23.0, texty + littleFontHeight + littleFontHeight/10, "0", m_Font);
+    Globals::font_manager->Print(19.0, texty + littleFontHeight + littleFontHeight/10, &buffer[0], m_Font);
+    Globals::font_manager->Print(23.0, texty + littleFontHeight + littleFontHeight/10, "0", m_Font);
 
     sprintf(buffer, "%i", middle_ten);
-    globals->m_FontManager->Print(19.0, texty, &buffer[0], m_Font);
-    globals->m_FontManager->Print(23.0, texty, "0", m_Font);
+    Globals::font_manager->Print(19.0, texty, &buffer[0], m_Font);
+    Globals::font_manager->Print(23.0, texty, "0", m_Font);
 
     sprintf(buffer, "%i", bottom_ten);
-    globals->m_FontManager->Print(19.0, texty - littleFontHeight - littleFontHeight/10, &buffer[0], m_Font);
-    globals->m_FontManager->Print(23.0, texty - littleFontHeight - littleFontHeight/10, "0", m_Font);
+    Globals::font_manager->Print(19.0, texty - littleFontHeight - littleFontHeight/10, &buffer[0], m_Font);
+    Globals::font_manager->Print(23.0, texty - littleFontHeight - littleFontHeight/10, "0", m_Font);
 	
     sprintf(buffer, "%i", bottom2_ten);
-    globals->m_FontManager->Print(19.0, texty - 2 * (littleFontHeight + littleFontHeight/10), &buffer[0], m_Font);
-    globals->m_FontManager->Print(23.0, texty - 2 * (littleFontHeight + littleFontHeight/10), "0", m_Font);
+    Globals::font_manager->Print(19.0, texty - 2 * (littleFontHeight + littleFontHeight/10), &buffer[0], m_Font);
+    Globals::font_manager->Print(23.0, texty - 2 * (littleFontHeight + littleFontHeight/10), "0", m_Font);
   }
 
 } // end namespace OpenGC

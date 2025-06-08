@@ -35,7 +35,7 @@ namespace OpenGC
 
   HeadingIndicator::HeadingIndicator()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -87,7 +87,7 @@ namespace OpenGC
     glLineWidth( 1.5 );
 
     // Set up the circle
-    CircleEvaluator *aCircle = globals->m_CircleEvaluator;
+    CircleEvaluator *aCircle = Globals::circle_evaluator;
     aCircle->SetRadius(radius);
     aCircle->SetArcStartEnd(300,60);
     aCircle->SetDegreesPerPoint(2.5);
@@ -107,7 +107,7 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_LINE_LOOP, 0, 3);
 
-    double heading = globals->m_DataSource->GetAirframe()->GetTrue_Heading();
+    double heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
 
     // -----------Draw the detents around the circle-----------------------------
     // Figure out the nearest heading that's a multiple of 10
@@ -147,8 +147,8 @@ namespace OpenGC
 		else
 		  fontx = -bigFontSize/2;
 
-		globals->m_FontManager->SetSize(m_Font, bigFontSize, bigFontSize);
-		globals->m_FontManager->Print(fontx, radius-tickLength-bigFontSize, &buffer[0], m_Font );
+		Globals::font_manager->SetSize(m_Font, bigFontSize, bigFontSize);
+		Globals::font_manager->Print(fontx, radius-tickLength-bigFontSize, &buffer[0], m_Font );
 	      }
 	    else
 	      {
@@ -157,8 +157,8 @@ namespace OpenGC
 		else
 		  fontx = -littleFontSize/2;
 
-		globals->m_FontManager->SetSize(m_Font, littleFontSize, littleFontSize);
-		globals->m_FontManager->Print(fontx, radius-tickLength-littleFontSize, &buffer[0], m_Font );
+		Globals::font_manager->SetSize(m_Font, littleFontSize, littleFontSize);
+		Globals::font_manager->Print(fontx, radius-tickLength-littleFontSize, &buffer[0], m_Font );
 	      }
 
 	  }

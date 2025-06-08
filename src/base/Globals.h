@@ -32,24 +32,25 @@
 #include "MessageableList.h"
 
 namespace OpenGC {
-
-  class Globals 
-  {
+  class Globals {
   public:
+    static Globals *getInstance(void);
+    virtual ~Globals();
+
+    static DataSource *data_source;
+    static NavDatabase *nav_database;
+    static PrefManager *pref_manager;
+    static FontManager *font_manager;
+    static RasterMapManager *raster_map_manager;
+    static CircleEvaluator *circle_evaluator;
+    static MessageableList *messageable_list;
+
+  private:
+    static Globals *m_instance;
+
+    // singleton class
     Globals();
-    ~Globals();
-
-    DataSource		*m_DataSource;
-    NavDatabase		*m_NavDatabase;
-    PrefManager		*m_PrefManager;
-    FontManager		*m_FontManager;
-    RasterMapManager	*m_RasterMapManager;
-    CircleEvaluator	*m_CircleEvaluator;
-    MessageableList	*m_MessageableList;
   };
-
-  extern Globals *globals;
-
 } // end namespace OpenGC
 
 #endif

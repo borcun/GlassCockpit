@@ -31,7 +31,7 @@ namespace OpenGC
 
   GenericBargraph::GenericBargraph()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -56,7 +56,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(globals->m_DataSource->GetAirframe(), m_DataFn)();
+    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;
@@ -119,11 +119,11 @@ namespace OpenGC
     glDrawArrays(GL_LINE_LOOP, 0, 4);
 
     // text above the bar
-    globals->m_FontManager->SetSize(m_Font, 4, 4);
+    Globals::font_manager->SetSize(m_Font, 4, 4);
     glColor3ub(255, 255, 255);
     char buf[10];
     sprintf(buf, "%.1f", value);
-    globals->m_FontManager->Print(1.9, boxY + 2.1, buf, m_Font);
+    Globals::font_manager->Print(1.9, boxY + 2.1, buf, m_Font);
 
     glPopMatrix();
   }

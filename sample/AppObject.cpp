@@ -63,7 +63,7 @@ namespace OpenGC
     bool AppObject::Go(XMLNode rootNode)
     {	
 	// Navigation Database (global)
-	globals->m_NavDatabase->InitDatabase();
+	Globals::nav_database->InitDatabase();
 
 	// Create the data source
 	XMLNode dsNode = rootNode.GetChild("DataSource");
@@ -75,17 +75,17 @@ namespace OpenGC
 		// Get host/port settings
 		if (dsNode.HasChild("Host"))
 		    {
-			globals->m_PrefManager->SetPrefS("FlightGearHost", 
+			Globals::pref_manager->SetPrefS("FlightGearHost", 
 							 dsNode.GetChild("Host").GetText());
 		    }
 		if (dsNode.HasChild("Port"))
 		    {
-			globals->m_PrefManager->SetPrefI("FlightGearPort", 
+			Globals::pref_manager->SetPrefI("FlightGearPort", 
 							 dsNode.GetChild("Port").GetTextAsInt());
 		    }
 
-		globals->m_DataSource = new FGDataSource();
-		if (!globals->m_DataSource->Open())
+		Globals::data_source = new FGDataSource();
+		if (!Globals::data_source->Open())
 		    {
 			return false;
 		    }
@@ -93,12 +93,12 @@ namespace OpenGC
 	    }
 	else if (dsName == "Albatross")
 	    {
-		globals->m_DataSource = new AlbatrossDataSource();
+		Globals::data_source = new AlbatrossDataSource();
 		titleSuffix = (char *)" (Flight Mode)";
 	    }
 	else if (dsName == "Test")
 	    {
-		globals->m_DataSource = new TestDataSource();
+		Globals::data_source = new TestDataSource();
 		titleSuffix = (char *)" (Test)";
 	    }
 	else
@@ -130,7 +130,7 @@ namespace OpenGC
 			geoNode.GetChild("Size").GetTextAsCoord(xSize, ySize);
 		    }
 	    }
-	double zoom = globals->m_PrefManager->GetPrefD("Zoom");
+	double zoom = Globals::pref_manager->GetPrefD("Zoom");
 	int windowX = (int)(xSize * zoom), windowY = (int)(ySize * zoom);
 	LogPrintf("Application: Window Size = %ix%ipx\n", windowX, windowY);
 
@@ -138,7 +138,7 @@ namespace OpenGC
 	m_pRenderWindow = new FLTKRenderWindow(4, 0, windowX, windowY, 
 					       windowTitle.c_str());
 	m_pRenderWindow->mode(FL_RGB | FL_DOUBLE);
-	globals->m_PrefManager->SetPrefD("UnitsPerPixel", 
+	Globals::pref_manager->SetPrefD("UnitsPerPixel", 
 					 m_pRenderWindow->GetUnitsPerPixel());	
 
 	// We need to go ahead and show the window so that an OpenGL device
@@ -188,7 +188,7 @@ namespace OpenGC
     void AppObject::IdleFunction()
     {
 	// Every time we loop we grab some new data...
-	bool changed1 = globals->m_DataSource->OnIdle();
+	bool changed1 = Globals::data_source->OnIdle();
 
 	// ...calculate extra data from the incoming data...
 	bool changed2 = m_CalcManager->Calculate();

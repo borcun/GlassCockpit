@@ -7,78 +7,82 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 #include "Globals.h"
 
-namespace OpenGC {
+OpenGC::Globals *OpenGC::Globals::m_instance = nullptr;
+OpenGC::DataSource *OpenGC::Globals::data_source = nullptr;
+OpenGC::NavDatabase *OpenGC::Globals::nav_database = nullptr;
+OpenGC::PrefManager *OpenGC::Globals::pref_manager = nullptr;
+OpenGC::FontManager *OpenGC::Globals::font_manager = nullptr;
+OpenGC::RasterMapManager *OpenGC::Globals::raster_map_manager = nullptr;
+OpenGC::CircleEvaluator *OpenGC::Globals::circle_evaluator = nullptr;
+OpenGC::MessageableList *OpenGC::Globals::messageable_list = nullptr;
 
-Globals::Globals()
-{
-	m_PrefManager = new PrefManager();
-	m_NavDatabase = new NavDatabase();
-	m_FontManager = new FontManager();
-	m_CircleEvaluator = new CircleEvaluator();
-	m_RasterMapManager = new RasterMapManager();
-	m_MessageableList = new MessageableList();
-	m_DataSource = 0;
+OpenGC::Globals::Globals() {
+  pref_manager = new PrefManager();
+  nav_database = new NavDatabase();
+  font_manager = new FontManager();
+  circle_evaluator = new CircleEvaluator();
+  raster_map_manager = new RasterMapManager();
+  messageable_list = new MessageableList();
+  data_source = nullptr;
 }
 
-Globals::~Globals()
-{
-	if(m_FontManager != 0)
-	{
-		delete m_FontManager;
-		m_FontManager = 0;
-	}
+OpenGC::Globals::~Globals() {
+  if(nullptr != font_manager) {
+    delete font_manager;
+    font_manager = nullptr;
+  }
 
-	if (m_DataSource != 0)
-	{
-		delete m_DataSource;
-		m_DataSource = 0;
-	}
+  if (nullptr != data_source) {
+    delete data_source;
+    data_source = nullptr;
+  }
 
-	if (m_PrefManager != 0)
-	{
-		delete m_PrefManager;
-		m_PrefManager = 0;
-	}
+  if (nullptr != pref_manager) {
+    delete pref_manager;
+    pref_manager = nullptr;
+  }
 	
-	if (m_NavDatabase != 0)
-	{
-		delete m_NavDatabase;
-		m_NavDatabase = 0;
-	}
+  if (nullptr != nav_database) {
+    delete nav_database;
+    nav_database = nullptr;
+  }
 
-	if (m_RasterMapManager != 0)
-	{
-		delete m_RasterMapManager;
-		m_RasterMapManager = 0;
-	}
+  if (nullptr != raster_map_manager) {
+    delete raster_map_manager;
+    raster_map_manager = nullptr;
+  }
 
-	if (m_CircleEvaluator != 0)
-	{
-		delete m_CircleEvaluator;
-		m_CircleEvaluator = 0;
-	}
+  if (nullptr != circle_evaluator) {
+    delete circle_evaluator;
+    circle_evaluator = nullptr;
+  }
 
-	if (m_MessageableList != 0)
-	{
-		delete m_MessageableList;
-		m_MessageableList = 0;
-	}
+  if (nullptr != messageable_list) {
+    delete messageable_list;
+    messageable_list = nullptr;
+  }
 }
-	
-} // end namespace OpenGC
+
+OpenGC::Globals *OpenGC::Globals::getInstance(void) {
+  if (nullptr == m_instance) {
+    m_instance = new Globals();
+  }
+
+  return m_instance;
+}

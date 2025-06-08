@@ -42,13 +42,13 @@ void CalcManager::InitFromXMLNode(XMLNode calcNode)
 	
 bool CalcManager::Calculate()
 {
-	AirframeDataContainer* data = globals->m_DataSource->GetAirframe();
+	AirframeDataContainer* data = Globals::data_source->GetAirframe();
 	
 	// FIXME this isn't really the right place for this...
 	double lat = data->GetLatitude();
 	double lon = data->GetLongitude();
 	CoursePoint p = CoursePoint(lat, lon);
-	globals->m_NavDatabase->GetFlightCourse()->push_back(p);
+	Globals::nav_database->GetFlightCourse()->push_back(p);
 	
 	return false;
 }

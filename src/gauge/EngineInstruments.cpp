@@ -45,7 +45,7 @@ namespace OpenGC
     m_Scale.second = 1.0;
 
     // We need a font to draw the text
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     // Tachometer
     Tachometer* pTacho = new Tachometer();
@@ -147,16 +147,16 @@ namespace OpenGC
     glDrawArrays(GL_LINES, 0, 2);
 
     // Draw the text labels
-    globals->m_FontManager->SetSize(m_Font, 5, 6);
-    globals->m_FontManager->Print(15, 70, "RPM", m_Font);
-    globals->m_FontManager->Print(66, 70, "EGT", m_Font);
-    globals->m_FontManager->Print(111, 70, "CHT", m_Font);
+    Globals::font_manager->SetSize(m_Font, 5, 6);
+    Globals::font_manager->Print(15, 70, "RPM", m_Font);
+    Globals::font_manager->Print(66, 70, "EGT", m_Font);
+    Globals::font_manager->Print(111, 70, "CHT", m_Font);
 
     // Draw frames per second
     char buffer[16];
     snprintf(buffer, sizeof(buffer), "FPS  %2.1f", GetFPS());
-    globals->m_FontManager->SetSize(m_Font, 3, 3);
-    globals->m_FontManager->Print(169, 2, buffer, m_Font);
+    Globals::font_manager->SetSize(m_Font, 3, 3);
+    Globals::font_manager->Print(169, 2, buffer, m_Font);
   }
 
   /** Called once per frame, returns estimated frames per second. */
@@ -164,7 +164,7 @@ namespace OpenGC
   {
     static double rate, last;
     static int count;
-    static int updateRate = (int)(1.0 / globals->m_PrefManager->GetPrefD(
+    static int updateRate = (int)(1.0 / Globals::pref_manager->GetPrefD(
 									 "AppUpdateRate"));
 
     double now;

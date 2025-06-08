@@ -33,7 +33,7 @@ namespace OpenGC
 
   AltitudeTape::AltitudeTape()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -56,7 +56,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // Get the altitude
-    long int alt = (long int) globals->m_DataSource->GetAirframe()->GetAltitude_MSL_Feet();
+    long int alt = (long int) Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
 
     // Save matrix
     glMatrixMode(GL_MODELVIEW);
@@ -82,7 +82,7 @@ namespace OpenGC
     const double tickSpacing = 17.0, tickWidth = 3.7, fontHeight = 4, fontWidth = 3.5, fontIndent = 4.5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
-    globals->m_FontManager->SetSize(m_Font, fontHeight, fontWidth);
+    Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
 
     int nextHighestAlt = (alt/100)*100;
     if (nextHighestAlt < alt)
@@ -110,11 +110,11 @@ namespace OpenGC
 			
 	    if ((tickAlt % 200) == 0)
 	      {
-		globals->m_FontManager->SetRightAligned(m_Font, true);
+		Globals::font_manager->SetRightAligned(m_Font, true);
 		static char buffer[16];
 		sprintf( buffer, "%d", tickAlt);
-		globals->m_FontManager->Print(fontIndent + fontWidth * 5, texty, &buffer[0], m_Font);
-		globals->m_FontManager->SetRightAligned(m_Font, false);
+		Globals::font_manager->Print(fontIndent + fontWidth * 5, texty, &buffer[0], m_Font);
+		Globals::font_manager->SetRightAligned(m_Font, false);
 	      }
 	  }
       }

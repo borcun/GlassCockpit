@@ -226,7 +226,7 @@ namespace OpenGC
 	{
 	  if (modifiers & 0x04)
 	    {
-	      globals->m_MessageableList->DispatchMessage(MSG_APP_QUIT, NULL);
+	      Globals::messageable_list->DispatchMessage(MSG_APP_QUIT, NULL);
 	      break;
 	    }
 	}

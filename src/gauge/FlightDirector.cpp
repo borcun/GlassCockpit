@@ -40,7 +40,7 @@ namespace OpenGC
 
   FlightDirector::FlightDirector()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
     this->SetOpaque(false); // this is overlaid so we don't want an opaque background
 	
     m_PhysicalSize.first = 200;
@@ -59,7 +59,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    AirframeDataContainer *data = globals->m_DataSource->GetAirframe();
+    AirframeDataContainer *data = Globals::data_source->GetAirframe();
 
     const int ALT_X = 149;
     const int ALT_Y = 32;
@@ -74,12 +74,12 @@ namespace OpenGC
 	glLineWidth(1.0);
 		
 	// Get the data
-	double fdAlt = globals->m_DataSource->GetAirframe()->GetDirector_Altitude();
-	double alt = globals->m_DataSource->GetAirframe()->GetAltitude_MSL_Feet();
-	double fdAirspeed = globals->m_DataSource->GetAirframe()->GetDirector_Airspeed();
-	double airspeed = globals->m_DataSource->GetAirframe()->GetAirspeed_KT();
-	double heading = globals->m_DataSource->GetAirframe()->GetTrue_Heading();
-	double fdHeading = globals->m_DataSource->GetAirframe()->GetDirector_Heading();
+	double fdAlt = Globals::data_source->GetAirframe()->GetDirector_Altitude();
+	double alt = Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
+	double fdAirspeed = Globals::data_source->GetAirframe()->GetDirector_Airspeed();
+	double airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
+	double heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
+	double fdHeading = Globals::data_source->GetAirframe()->GetDirector_Heading();
 
 	///////////////////////////////////////////////////////////////////////
 	// Altitude marker
@@ -215,17 +215,17 @@ namespace OpenGC
 	char buffer[12];
 
 	sprintf(buffer, "%.0f", fdAlt);
-	globals->m_FontManager->SetSize(m_Font, 4, 4);
-	globals->m_FontManager->Print(150,170, buffer, m_Font);
+	Globals::font_manager->SetSize(m_Font, 4, 4);
+	Globals::font_manager->Print(150,170, buffer, m_Font);
 		
 	sprintf(buffer, "%.1f", fdAirspeed);
-	globals->m_FontManager->SetRightAligned(m_Font, true);
-	globals->m_FontManager->Print(32,170, buffer, m_Font);
+	Globals::font_manager->SetRightAligned(m_Font, true);
+	Globals::font_manager->Print(32,170, buffer, m_Font);
 		
 	sprintf(buffer, "%3d", (int) fdHeading);
-	globals->m_FontManager->Print(100, 13, &buffer[0], m_Font); 
-	globals->m_FontManager->SetRightAligned(m_Font, false);
-	globals->m_FontManager->Print(75, 13, "FD", m_Font); 
+	Globals::font_manager->Print(100, 13, &buffer[0], m_Font); 
+	Globals::font_manager->SetRightAligned(m_Font, false);
+	Globals::font_manager->Print(75, 13, "FD", m_Font); 
       }
   }
 

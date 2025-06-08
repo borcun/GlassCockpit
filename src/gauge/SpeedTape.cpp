@@ -32,7 +32,7 @@ namespace OpenGC
 
   SpeedTape::SpeedTape()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -56,7 +56,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // Speed for floating point calculations
-    double airspeed = globals->m_DataSource->GetAirframe()->GetAirspeed_KT();
+    double airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
 
     // The speed tape doesn't show speeds greater than 1999 knots
     if(airspeed > 1999.0)
@@ -86,7 +86,7 @@ namespace OpenGC
     const double tickSpacing = 11.3, tickWidth = 3.7, fontHeight = 5, fontWidth = 4.1, fontIndent = 5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
-    globals->m_FontManager->SetSize(m_Font, fontHeight, fontWidth);
+    Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
 
     double nextHighestAirspeed = (((int)airspeed) / 10) * 10;
     if (nextHighestAirspeed < airspeed)
@@ -115,11 +115,11 @@ namespace OpenGC
 			
 	    if ((tickSpeed % 20) == 0)
 	      {
-		globals->m_FontManager->SetRightAligned(m_Font, true);
+		Globals::font_manager->SetRightAligned(m_Font, true);
 		static char buffer[16];
 		sprintf( buffer, "%d", tickSpeed);
-		globals->m_FontManager->Print(fontIndent + fontWidth*3, texty, &buffer[0], m_Font);
-		globals->m_FontManager->SetRightAligned(m_Font, false);
+		Globals::font_manager->Print(fontIndent + fontWidth*3, texty, &buffer[0], m_Font);
+		Globals::font_manager->SetRightAligned(m_Font, false);
 	      }
 	  }
       }

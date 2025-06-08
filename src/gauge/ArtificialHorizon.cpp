@@ -33,7 +33,7 @@ namespace OpenGC
 
   ArtificialHorizon::ArtificialHorizon()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -56,14 +56,14 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // For drawing circles
-    CircleEvaluator *aCircle = globals->m_CircleEvaluator;
+    CircleEvaluator *aCircle = Globals::circle_evaluator;
 
     // First, store the "root" position of the gauge component
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
 
-    double Roll = globals->m_DataSource->GetAirframe()->GetRoll();
-    double Pitch = globals->m_DataSource->GetAirframe()->GetPitch();
+    double Roll = Globals::data_source->GetAirframe()->GetRoll();
+    double Pitch = Globals::data_source->GetAirframe()->GetPitch();
 
     // Move to the center of the window
     glTranslated(47,49,0);
@@ -149,15 +149,15 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices2);
     glDrawArrays(GL_LINES, 0, 34);
 
-    globals->m_FontManager->SetSize(m_Font,4.0, 4.0);
-    globals->m_FontManager->Print(-27.5,18.0,"10",m_Font);
-    globals->m_FontManager->Print(21.0,18.0,"10",m_Font);
-    globals->m_FontManager->Print(-27.5,-22.0,"10",m_Font);
-    globals->m_FontManager->Print(21.0,-22.0,"10",m_Font);
-    globals->m_FontManager->Print(-27.5,38.0,"20",m_Font);
-    globals->m_FontManager->Print(21.0,38.0,"20",m_Font);
-    globals->m_FontManager->Print(-27.5,-42.0,"20",m_Font);
-    globals->m_FontManager->Print(21.0,-42.0,"20",m_Font);
+    Globals::font_manager->SetSize(m_Font,4.0, 4.0);
+    Globals::font_manager->Print(-27.5,18.0,"10",m_Font);
+    Globals::font_manager->Print(21.0,18.0,"10",m_Font);
+    Globals::font_manager->Print(-27.5,-22.0,"10",m_Font);
+    Globals::font_manager->Print(21.0,-22.0,"10",m_Font);
+    Globals::font_manager->Print(-27.5,38.0,"20",m_Font);
+    Globals::font_manager->Print(21.0,38.0,"20",m_Font);
+    Globals::font_manager->Print(-27.5,-42.0,"20",m_Font);
+    Globals::font_manager->Print(21.0,-42.0,"20",m_Font);
 
 #if 0 // FIXME this should work in gradient mode too
     //-----The background behind the bank angle markings-------
@@ -308,15 +308,15 @@ namespace OpenGC
     glEnd();
 
     //----------------Flight Director----------------
-    if (globals->m_DataSource->GetAirframe()->GetDirector_Active() == 1)
+    if (Globals::data_source->GetAirframe()->GetDirector_Active() == 1)
       {
 	// Reset the modelview matrix
 	glPopMatrix();
 	glPushMatrix();
 
 	// Get the data
-	double directorPitch = globals->m_DataSource->GetAirframe()->GetDirector_Pitch();
-	double directorRoll = globals->m_DataSource->GetAirframe()->GetDirector_Roll();
+	double directorPitch = Globals::data_source->GetAirframe()->GetDirector_Pitch();
+	double directorRoll = Globals::data_source->GetAirframe()->GetDirector_Roll();
 
 	// Move to the center of the window, move up/down for pitch, and rotate for roll
 	glTranslated(47,49 + directorPitch * 2.0, 0);

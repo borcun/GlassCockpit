@@ -34,7 +34,7 @@ namespace OpenGC
 
   VSI::VSI()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -63,7 +63,7 @@ namespace OpenGC
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
 
-    globals->m_FontManager->SetSize(m_Font,4.0, 4.0);
+    Globals::font_manager->SetSize(m_Font,4.0, 4.0);
 
     // Draw in gray-blue
     glColor3ub(51,51,76);
@@ -91,7 +91,7 @@ namespace OpenGC
 
     glColor3ub( 255, 255, 255 );
 
-    double Vertical_Speed_FPM = globals->m_DataSource->GetAirframe()->GetVertical_Speed_FPM();
+    double Vertical_Speed_FPM = Globals::data_source->GetAirframe()->GetVertical_Speed_FPM();
 
     char buffer[5];
 
@@ -99,23 +99,23 @@ namespace OpenGC
     if ( Vertical_Speed_FPM < -19.0 )
       {
 	sprintf(buffer, "%04d", (int) Vertical_Speed_FPM);
-	globals->m_FontManager->Print( 1.0, 3.5 , &buffer[0], m_Font);
+	Globals::font_manager->Print( 1.0, 3.5 , &buffer[0], m_Font);
       }
     else
       {
 	if ( Vertical_Speed_FPM > 19.0 )
 	  {
 	    sprintf(buffer, " %03d", (int) Vertical_Speed_FPM);
-	    globals->m_FontManager->Print( 1.0, 103.5 , &buffer[0], m_Font);
+	    Globals::font_manager->Print( 1.0, 103.5 , &buffer[0], m_Font);
 	  }
       }
 
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(600.0),"6-",m_Font);
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(300.0),"3-",m_Font);
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(100.0),"1-",m_Font);
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(-100.0),"1-",m_Font);
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(-300.0),"3-",m_Font);
-    globals->m_FontManager->Print( 2.0, VSpeedToNeedle(-600.0),"6-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(600.0),"6-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(300.0),"3-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(100.0),"1-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(-100.0),"1-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(-300.0),"3-",m_Font);
+    Globals::font_manager->Print( 2.0, VSpeedToNeedle(-600.0),"6-",m_Font);
 
     glLineWidth(3.5);
     const float vertices4[] = {

@@ -32,7 +32,7 @@ namespace OpenGC
 {
   PieDial::PieDial()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -56,7 +56,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(globals->m_DataSource->GetAirframe(), m_DataFn)();
+    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;
@@ -80,7 +80,7 @@ namespace OpenGC
       glColor3ub(255, 20, 20); // red
 
     // Fill of the dial from 0 to the needle
-    CircleEvaluator *aCircle = globals->m_CircleEvaluator;
+    CircleEvaluator *aCircle = Globals::circle_evaluator;
     aCircle->SetDegreesPerPoint(10.0);
     aCircle->SetRadius(R);
     aCircle->SetOrigin(0.0, 0.0);
@@ -112,10 +112,10 @@ namespace OpenGC
     glDrawArrays(GL_LINE_STRIP, 0, 4);
 
     // text
-    globals->m_FontManager->SetSize(m_Font, 5, 5);
+    Globals::font_manager->SetSize(m_Font, 5, 5);
     glColor3ub(255, 255, 255);
     sprintf(buf, "%.0f", value);
-    globals->m_FontManager->Print( 21.9, 22.7, buf, m_Font);
+    Globals::font_manager->Print( 21.9, 22.7, buf, m_Font);
 
     glPopMatrix();
   }

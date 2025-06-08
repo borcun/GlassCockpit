@@ -60,8 +60,8 @@ namespace OpenGC
   void Gauge::InitFromXMLNode(XMLNode gaugeNode) {
     Check(gaugeNode.IsValid() && gaugeNode.GetName() == "Gauge");
 
-    double scale = globals->m_PrefManager->GetPrefD("DefaultGaugeScale");
-    double zoom = globals->m_PrefManager->GetPrefD("Zoom");
+    double scale = Globals::pref_manager->GetPrefD("DefaultGaugeScale");
+    double zoom = Globals::pref_manager->GetPrefD("Zoom");
     double x, y; // temp variables
 	
     // Set the units per pixel
@@ -71,7 +71,7 @@ namespace OpenGC
       }
     else
       {
-	SetUnitsPerPixel(globals->m_PrefManager->GetPrefD("UnitsPerPixel"));
+	SetUnitsPerPixel(Globals::pref_manager->GetPrefD("UnitsPerPixel"));
       }
 
     // Set the position

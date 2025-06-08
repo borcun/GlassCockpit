@@ -70,8 +70,8 @@ bool fileExists(const string& filename)
 
 void NavDatabase::InitDatabase()
 {	
-	const string& pathToNav = globals->m_PrefManager->GetPrefS("PathToData") + "Navigation/";
-	const string& pathToWritableNav = globals->m_PrefManager->GetPrefS("PathToCaches") + "Navigation/";
+	const string& pathToNav = Globals::pref_manager->GetPrefS("PathToData") + "Navigation/";
+	const string& pathToWritableNav = Globals::pref_manager->GetPrefS("PathToCaches") + "Navigation/";
 	
 	// Check for cached binary copies of nav data otherwise convert and cache
 	if (!fileExists(pathToWritableNav + "nav_dat.bin"))

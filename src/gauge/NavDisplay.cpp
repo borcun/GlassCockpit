@@ -47,7 +47,7 @@ namespace OpenGC
   {
     //this->SetGaugeOutline(true);
 
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -78,11 +78,11 @@ namespace OpenGC
     ///////////////////////////////////////////////////////////////////////////
 	
     // Get the heading
-    aircraftHeading = globals->m_DataSource->GetAirframe()->GetTrue_Heading();
+    aircraftHeading = Globals::data_source->GetAirframe()->GetTrue_Heading();
 
     // Where is the aircraft?
-    aircraftLat = globals->m_DataSource->GetAirframe()->GetLatitude();
-    aircraftLon = globals->m_DataSource->GetAirframe()->GetLongitude();
+    aircraftLat = Globals::data_source->GetAirframe()->GetLatitude();
+    aircraftLon = Globals::data_source->GetAirframe()->GetLongitude();
 
     // FIXME what was this all about??
     //	bool isInSouthernHemisphere = false;
@@ -122,7 +122,7 @@ namespace OpenGC
     glLineWidth(1.5);
 	
     // Range circles
-    CircleEvaluator *aCircle = globals->m_CircleEvaluator;
+    CircleEvaluator *aCircle = Globals::circle_evaluator;
     aCircle->SetDegreesPerPoint(5.0);
     aCircle->SetRadius(40.0);
     aCircle->SetOrigin(CENTER_X, CENTER_Y);
@@ -187,11 +187,11 @@ namespace OpenGC
 		
     // Naviads (blue)
     glColor3f(0.0, 0.0, 1.0);
-    PlotGeoObjs(globals->m_NavDatabase->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+    PlotGeoObjs(Globals::nav_database->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
     // Airports (red)
     glColor3f(1.0, 0.0, 0.0);
-    PlotGeoObjs(globals->m_NavDatabase->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+    PlotGeoObjs(Globals::nav_database->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
     PlotWaypoints();
     glPopMatrix();
@@ -255,16 +255,16 @@ namespace OpenGC
 
     // Ground speed and track text
     char buffer[20];
-    globals->m_FontManager->SetSize(m_Font, 5.0, 5.0);
-    sprintf(buffer, "TRACK %.0f", globals->m_DataSource->GetAirframe()->GetTrue_Heading() );
-    globals->m_FontManager->Print(2.0, 12.5, &buffer[0], m_Font);
-    sprintf(buffer, "GS %.0f", globals->m_DataSource->GetAirframe()->GetGround_Speed_MS() );
-    globals->m_FontManager->Print(2.0, 2.5, &buffer[0], m_Font);
+    Globals::font_manager->SetSize(m_Font, 5.0, 5.0);
+    sprintf(buffer, "TRACK %.0f", Globals::data_source->GetAirframe()->GetTrue_Heading() );
+    Globals::font_manager->Print(2.0, 12.5, &buffer[0], m_Font);
+    sprintf(buffer, "GS %.0f", Globals::data_source->GetAirframe()->GetGround_Speed_MS() );
+    Globals::font_manager->Print(2.0, 2.5, &buffer[0], m_Font);
 
     // Scale text
     sprintf(buffer, "Scale: %.1f nm", m_SizeNM / (180.0 / 40.0));
-    globals->m_FontManager->SetSize(m_Font, 3.0, 3.0);
-    globals->m_FontManager->Print(5.0, OVERLAY_Y+175.0, &buffer[0], m_Font);
+    Globals::font_manager->SetSize(m_Font, 3.0, 3.0);
+    Globals::font_manager->Print(5.0, OVERLAY_Y+175.0, &buffer[0], m_Font);
 
     // Wind speed/direction indicator
     PlotWindSpeedDirection();
@@ -314,8 +314,8 @@ namespace OpenGC
   void NavDisplay::PlotWindSpeedDirection()
   {
     // Get the data
-    //	double windSpeed = globals->m_DataSource->GetAirframe()->GetWind_Speed();
-    double windDirection = globals->m_DataSource->GetAirframe()->GetWind_Direction();
+    //	double windSpeed = Globals::data_source->GetAirframe()->GetWind_Speed();
+    double windDirection = Globals::data_source->GetAirframe()->GetWind_Direction();
 	
     glPushMatrix();
     glTranslatef(170.0, OVERLAY_Y+10.0, 0.0);
@@ -336,7 +336,7 @@ namespace OpenGC
   void NavDisplay::PlotWaypoints()
   {
     // Get the waypoint list
-    WaypointList *waypointList = globals->m_NavDatabase->GetWaypointList();
+    WaypointList *waypointList = Globals::nav_database->GetWaypointList();
 
     WaypointList::iterator iter;
     for (iter = waypointList->begin(); iter != waypointList->end(); ++iter)
@@ -349,7 +349,7 @@ namespace OpenGC
   {
 #if 0
     // Get the vector of CoursePoints
-    FlightCourse *course = globals->m_NavDatabase->GetFlightCourse();
+    FlightCourse *course = Globals::nav_database->GetFlightCourse();
     FlightCourse::iterator iter;
 	
     double xPos, yPos, lat, lon, northing, easting;
@@ -396,8 +396,8 @@ namespace OpenGC
 	    glVertexPointer(2, GL_FLOAT, 0, &vertices);
 	    glDrawArrays(GL_POLYGON, 0, 4);
 
-	    globals->m_FontManager->SetSize(m_Font, 4.0, 4.0);
-	    globals->m_FontManager->Print(1.5, -2.0, (*iter)->GetIdentification().c_str(), m_Font);
+	    Globals::font_manager->SetSize(m_Font, 4.0, 4.0);
+	    Globals::font_manager->Print(1.5, -2.0, (*iter)->GetIdentification().c_str(), m_Font);
 	    glPopMatrix();
 	  }
       }
@@ -409,8 +409,8 @@ namespace OpenGC
     unsigned int x, y; float fx, fy;
     unsigned int z = 13;
 	
-    globals->m_RasterMapManager->GetTileCoordsForLatLon(x, y, fx, fy, 
-							globals->m_DataSource->GetAirframe()->GetLatitude(), globals->m_DataSource->GetAirframe()->GetLongitude(), z);
+    Globals::raster_map_manager->GetTileCoordsForLatLon(x, y, fx, fy, 
+							Globals::data_source->GetAirframe()->GetLatitude(), Globals::data_source->GetAirframe()->GetLongitude(), z);
 	
     //----------------------------------
     // This is a Demo Mode hack...
@@ -426,7 +426,7 @@ namespace OpenGC
 	  {
 	    for (int dy = -3; dy <= 3; dy++)
 	      {
-		RasterMapTile *tile = globals->m_RasterMapManager->GetTile(z, x+dx, y+dy);
+		RasterMapTile *tile = Globals::raster_map_manager->GetTile(z, x+dx, y+dy);
 		if (tile != NULL)
 		  {
 		    glBindTexture(GL_TEXTURE_2D, m_TileTextures[ident]);

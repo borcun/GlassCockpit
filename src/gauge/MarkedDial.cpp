@@ -34,7 +34,7 @@ namespace OpenGC
 
   MarkedDial::MarkedDial()
   {
-    m_Font = globals->m_FontManager->LoadDefaultFont();
+    m_Font = Globals::font_manager->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -59,7 +59,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(globals->m_DataSource->GetAirframe(), m_DataFn)();
+    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;
@@ -88,7 +88,7 @@ namespace OpenGC
 
     // gauge
     glColor3ub(51, 51, 76);
-    CircleEvaluator *aCircle = globals->m_CircleEvaluator;
+    CircleEvaluator *aCircle = Globals::circle_evaluator;
     aCircle->SetDegreesPerPoint(10.0);
     aCircle->SetRadius(R);
     aCircle->SetOrigin(0.0, 0.0);
@@ -125,7 +125,7 @@ namespace OpenGC
       gluDeleteQuadric(qobj);*/
 
     // unit markers
-    globals->m_FontManager->SetSize(m_Font, 4.0, 3.5);
+    Globals::font_manager->SetSize(m_Font, 4.0, 3.5);
     double percentagev, degreev;
     for(double xs = m_Min; xs <= m_Max; xs += m_TickSpacing)
       {
@@ -142,7 +142,7 @@ namespace OpenGC
 	else
 	  sprintf(buf, "%.0f",xs / m_TickDivisor);
 	glTranslatef(-1.5, -2, 0);
-	globals->m_FontManager->Print((R-4.5) * sin(radians) , (R-4.5) * cos(radians), buf, m_Font);			
+	Globals::font_manager->Print((R-4.5) * sin(radians) , (R-4.5) * cos(radians), buf, m_Font);			
 	glTranslatef(1.5, 2, 0);
       }
   }

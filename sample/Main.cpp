@@ -36,9 +36,6 @@
 
 using namespace OpenGC;
 
-/// Create the Globals object
-Globals *OpenGC::globals;
-
 /// Construct the one and only App Object
 AppObject *theApp;
 
@@ -53,8 +50,7 @@ void usage()
 void GlobalIdle(void *)
 {
   theApp->IdleFunction();
-  Fl::repeat_timeout(globals->m_PrefManager->GetPrefD(
-						      "AppUpdateRate"), GlobalIdle);
+  Fl::repeat_timeout(Globals::pref_manager->GetPrefD("AppUpdateRate"), GlobalIdle);
 }
 
 /** Main entry point for the application */
@@ -82,11 +78,11 @@ int main(int argc, char* argv[])
   }
 	
   // Construct the application
-  OpenGC::globals = new Globals();
-  theApp= new AppObject();
+  OpenGC::Globals::getInstance();
+  theApp = new AppObject();
 	
   // Initialise preferences manager
-  globals->m_PrefManager->InitPreferences(PREFERENCES_XML_FILE);
+  Globals::pref_manager->InitPreferences(PREFERENCES_XML_FILE);
 	
   // Read the XML file and do some basic checks about its contents
   XMLParser parser;
@@ -98,19 +94,19 @@ int main(int argc, char* argv[])
   // Set the user-defined (in XML file) application preferences
   if (parser.HasNode("/Preferences"))
     {
-      globals->m_PrefManager->SetPrefsFromXML(parser.GetNode("/Preferences"));
+      Globals::pref_manager->SetPrefsFromXML(parser.GetNode("/Preferences"));
     }
 
   // Set RasterMaps path
-  globals->m_RasterMapManager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-					    globals->m_PrefManager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+  Globals::raster_map_manager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
+					  Globals::pref_manager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
 
   // FIXME debug:
-  globals->m_PrefManager->PrintAll();
+  Globals::pref_manager->PrintAll();
 
   // Set the update rate in nominal seconds per frame
-  Fl::add_timeout(globals->m_PrefManager->GetPrefD(
-						   "AppUpdateRate"), GlobalIdle);
+  Fl::add_timeout(Globals::pref_manager->GetPrefD(
+						 "AppUpdateRate"), GlobalIdle);
 
   // Run up the application
   int retval;
@@ -126,7 +122,6 @@ int main(int argc, char* argv[])
 
   // Clean up
   delete theApp;
-  delete globals;
 
   return retval;
 }
