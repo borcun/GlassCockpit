@@ -36,16 +36,9 @@
 #include "NavaidGeoObj.h"
 
 namespace OpenGC
-<<<<<<< HEAD:Source/Gauges/NavDisplay.cpp
-{
-
-//const double NavDisplay::CENTER_X, NavDisplay::CENTER_Y, NavDisplay::OVERLAY_Y;
-//const int NavDisplay::compass_interval;
-=======
 {    
     double NavDisplay::CENTER_X = 90.0, NavDisplay::CENTER_Y = 95.0, NavDisplay::OVERLAY_Y = 45.0;
     int NavDisplay::compass_interval = 20;
->>>>>>> origin/cmake-version:src/gauge/NavDisplay.cpp
 	
     GLuint NavDisplay::m_TileTextures[49];
     bool NavDisplay::m_TilesInitted;
