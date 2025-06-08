@@ -8,7 +8,20 @@ add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   .
+  /usr/include/libxml2
+  /usr/include/FTGL
+  /usr/include/freetype2
   ../Base
   ../Navigation
   ../../Util
+)
+
+target_link_directories(${PROJECT_NAME} PUBLIC
+  /usr/lib/x86_64-linux-gnu
+)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC
+  xml2
+  ftgl
+  freetype
 )
