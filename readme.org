@@ -43,13 +43,13 @@ Version 3 <http://www.gnu.org/licenses/gpl.html>.
 
 _______________________________________________________________________________
 
-	2. How To - Linux
+	2. How to build
 _______________________________________________________________________________
 
 0) Dependencies: On Ubuntu 10.10, these dependencies were needed:
-		$ sudo apt-get install libfltk1.1-dev libxml2-dev libftgl2-dev
-1) Compile with Scons:
-		$ scons -C PlatformSupport/Linux
+		$ sudo apt-get install libfltk-dev libxml2-dev libftgl2-dev libz-dev
+1) Compile:
+		$ <use cmake build system>
 2) Modify default paths in Data/Preferences.xml and Data/Default.xml
 3) Now run it in test mode:
 		$ ./PlatformSupport/Linux/build/GlassCockpit -t
@@ -57,12 +57,4 @@ _______________________________________________________________________________
 		$ ./PlatformSupport/Linux/build/GlassCockpit
    or attach it to a running FlightGear simulator:
 		$ ./PlatformSupport/Linux/build/GlassCockpit -slocalhost:5800 # format is host:port
-
-_______________________________________________________________________________
-
-	2. How To - Mac OS X
-_______________________________________________________________________________
-
-1) Open the Xcode project (in PlatformSupport/MacOSX), build and run.
-2) That's it :-)
 
