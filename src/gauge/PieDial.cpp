@@ -32,7 +32,7 @@ namespace OpenGC
 {
   PieDial::PieDial()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -112,10 +112,10 @@ namespace OpenGC
     glDrawArrays(GL_LINE_STRIP, 0, 4);
 
     // text
-    Globals::font_manager->SetSize(m_Font, 5, 5);
+    FontManager::getInstance()->SetSize(m_Font, 5, 5);
     glColor3ub(255, 255, 255);
     sprintf(buf, "%.0f", value);
-    Globals::font_manager->Print( 21.9, 22.7, buf, m_Font);
+    FontManager::getInstance()->Print( 21.9, 22.7, buf, m_Font);
 
     glPopMatrix();
   }

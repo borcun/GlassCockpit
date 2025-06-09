@@ -29,7 +29,7 @@ namespace OpenGC
 
   PFDOverlay::PFDOverlay()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
     this->SetOpaque(false); // this is overlaid so we don't want an opaque background
 	
     m_PhysicalSize.first = 200;
@@ -55,11 +55,11 @@ namespace OpenGC
     // Draw heading indicator track as text
     glColor3d(255, 255, 255); // white
     sprintf(buffer, "%3d", (int) data->GetTrue_Heading());
-    Globals::font_manager->SetSize(m_Font, 4.0, 4.0 );
-    Globals::font_manager->Print(75, 7, "GPS", m_Font); 
-    Globals::font_manager->SetRightAligned(m_Font, true);
-    Globals::font_manager->Print(100, 7, &buffer[0], m_Font); 
-    Globals::font_manager->SetRightAligned(m_Font, false);
+    FontManager::getInstance()->SetSize(m_Font, 4.0, 4.0 );
+    FontManager::getInstance()->Print(75, 7, "GPS", m_Font); 
+    FontManager::getInstance()->SetRightAligned(m_Font, true);
+    FontManager::getInstance()->Print(100, 7, &buffer[0], m_Font); 
+    FontManager::getInstance()->SetRightAligned(m_Font, false);
   }
 
 } // end namespace OpenGC

@@ -35,7 +35,7 @@ namespace OpenGC
 
   HeadingIndicator::HeadingIndicator()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -147,8 +147,8 @@ namespace OpenGC
 		else
 		  fontx = -bigFontSize/2;
 
-		Globals::font_manager->SetSize(m_Font, bigFontSize, bigFontSize);
-		Globals::font_manager->Print(fontx, radius-tickLength-bigFontSize, &buffer[0], m_Font );
+		FontManager::getInstance()->SetSize(m_Font, bigFontSize, bigFontSize);
+		FontManager::getInstance()->Print(fontx, radius-tickLength-bigFontSize, &buffer[0], m_Font );
 	      }
 	    else
 	      {
@@ -157,8 +157,8 @@ namespace OpenGC
 		else
 		  fontx = -littleFontSize/2;
 
-		Globals::font_manager->SetSize(m_Font, littleFontSize, littleFontSize);
-		Globals::font_manager->Print(fontx, radius-tickLength-littleFontSize, &buffer[0], m_Font );
+		FontManager::getInstance()->SetSize(m_Font, littleFontSize, littleFontSize);
+		FontManager::getInstance()->Print(fontx, radius-tickLength-littleFontSize, &buffer[0], m_Font );
 	      }
 
 	  }

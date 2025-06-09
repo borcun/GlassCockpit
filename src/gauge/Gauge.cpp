@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include "Globals.h"
+#include "PrefManager.h"
 #include "data_source.h"
 #include "Gauge.h"
 #include "Debug.h"
@@ -60,8 +61,8 @@ namespace OpenGC
   void Gauge::InitFromXMLNode(XMLNode gaugeNode) {
     Check(gaugeNode.IsValid() && gaugeNode.GetName() == "Gauge");
 
-    double scale = Globals::pref_manager->GetPrefD("DefaultGaugeScale");
-    double zoom = Globals::pref_manager->GetPrefD("Zoom");
+    double scale = PrefManager::getInstance()->GetPrefD("DefaultGaugeScale");
+    double zoom = PrefManager::getInstance()->GetPrefD("Zoom");
     double x, y; // temp variables
 	
     // Set the units per pixel
@@ -71,7 +72,7 @@ namespace OpenGC
       }
     else
       {
-	SetUnitsPerPixel(Globals::pref_manager->GetPrefD("UnitsPerPixel"));
+	SetUnitsPerPixel(PrefManager::getInstance()->GetPrefD("UnitsPerPixel"));
       }
 
     // Set the position

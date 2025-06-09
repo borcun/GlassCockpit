@@ -25,8 +25,6 @@
 
 #include "data_source.h"
 #include "NavDatabase.h"
-#include "PrefManager.h"
-#include "FontManager.h"
 #include "RasterMapManager.h"
 #include "CircleEvaluator.h"
 #include "MessageableList.h"
@@ -39,8 +37,6 @@ namespace OpenGC {
 
     static DataSource *data_source;
     static NavDatabase *nav_database;
-    static PrefManager *pref_manager;
-    static FontManager *font_manager;
     static RasterMapManager *raster_map_manager;
     static CircleEvaluator *circle_evaluator;
     static MessageableList *messageable_list;

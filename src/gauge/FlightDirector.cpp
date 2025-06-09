@@ -40,7 +40,7 @@ namespace OpenGC
 
   FlightDirector::FlightDirector()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
     this->SetOpaque(false); // this is overlaid so we don't want an opaque background
 	
     m_PhysicalSize.first = 200;
@@ -215,17 +215,17 @@ namespace OpenGC
 	char buffer[12];
 
 	sprintf(buffer, "%.0f", fdAlt);
-	Globals::font_manager->SetSize(m_Font, 4, 4);
-	Globals::font_manager->Print(150,170, buffer, m_Font);
+	FontManager::getInstance()->SetSize(m_Font, 4, 4);
+	FontManager::getInstance()->Print(150,170, buffer, m_Font);
 		
 	sprintf(buffer, "%.1f", fdAirspeed);
-	Globals::font_manager->SetRightAligned(m_Font, true);
-	Globals::font_manager->Print(32,170, buffer, m_Font);
+	FontManager::getInstance()->SetRightAligned(m_Font, true);
+	FontManager::getInstance()->Print(32,170, buffer, m_Font);
 		
 	sprintf(buffer, "%3d", (int) fdHeading);
-	Globals::font_manager->Print(100, 13, &buffer[0], m_Font); 
-	Globals::font_manager->SetRightAligned(m_Font, false);
-	Globals::font_manager->Print(75, 13, "FD", m_Font); 
+	FontManager::getInstance()->Print(100, 13, &buffer[0], m_Font); 
+	FontManager::getInstance()->SetRightAligned(m_Font, false);
+	FontManager::getInstance()->Print(75, 13, "FD", m_Font); 
       }
   }
 

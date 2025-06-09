@@ -45,7 +45,7 @@ namespace OpenGC {
   class PrefManager
   {
   public:
-    PrefManager();
+    static PrefManager *getInstance(void);
     ~PrefManager();
 
     /** Initialise the Preferences map from an XML file */
@@ -70,7 +70,13 @@ namespace OpenGC {
     void PrintAll() const;
 
   private:
+    /// single instance of the class
+    static PrefManager *m_instance;
+
     std::map<std::string, Preference *> m_PrefMap;
+
+    /// default constructor
+    PrefManager();
   };
 
 } // end namespace OpenGC

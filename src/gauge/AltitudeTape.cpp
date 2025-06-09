@@ -33,7 +33,7 @@ namespace OpenGC
 
   AltitudeTape::AltitudeTape()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -83,7 +83,7 @@ namespace OpenGC
     const float tickSpacing = 17.0, tickWidth = 3.7, fontHeight = 4, fontWidth = 3.5, fontIndent = 4.5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
-    Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
+    FontManager::getInstance()->SetSize(m_Font, fontHeight, fontWidth);
 
     int nextHighestAlt = (alt/100)*100;
 
@@ -112,11 +112,11 @@ namespace OpenGC
 			
 	    if ((tickAlt % 200) == 0)
 	      {
-		Globals::font_manager->SetRightAligned(m_Font, true);
+		FontManager::getInstance()->SetRightAligned(m_Font, true);
 		static char buffer[16];
 		sprintf( buffer, "%d", tickAlt);
-		Globals::font_manager->Print(fontIndent + fontWidth * 5, texty, &buffer[0], m_Font);
-		Globals::font_manager->SetRightAligned(m_Font, false);
+		FontManager::getInstance()->Print(fontIndent + fontWidth * 5, texty, &buffer[0], m_Font);
+		FontManager::getInstance()->SetRightAligned(m_Font, false);
 	      }
 	  }
       }

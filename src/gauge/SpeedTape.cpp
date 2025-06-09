@@ -32,7 +32,7 @@ namespace OpenGC
 
   SpeedTape::SpeedTape()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -86,7 +86,7 @@ namespace OpenGC
     const float tickSpacing = 11.3, tickWidth = 3.7, fontHeight = 5, fontWidth = 4.1, fontIndent = 5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
-    Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
+    FontManager::getInstance()->SetSize(m_Font, fontHeight, fontWidth);
 
     float nextHighestAirspeed = (((int)airspeed) / 10) * 10;
     if (nextHighestAirspeed < airspeed)
@@ -115,11 +115,11 @@ namespace OpenGC
 			
 	    if ((tickSpeed % 20) == 0)
 	      {
-		Globals::font_manager->SetRightAligned(m_Font, true);
+		FontManager::getInstance()->SetRightAligned(m_Font, true);
 		static char buffer[16];
 		sprintf( buffer, "%d", tickSpeed);
-		Globals::font_manager->Print(fontIndent + fontWidth*3, texty, &buffer[0], m_Font);
-		Globals::font_manager->SetRightAligned(m_Font, false);
+		FontManager::getInstance()->Print(fontIndent + fontWidth*3, texty, &buffer[0], m_Font);
+		FontManager::getInstance()->SetRightAligned(m_Font, false);
 	      }
 	  }
       }

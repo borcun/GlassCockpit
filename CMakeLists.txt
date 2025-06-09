@@ -10,6 +10,7 @@ add_subdirectory(ext/libshape)
 # glass-cockpit modules
 add_subdirectory(src/base)
 add_subdirectory(src/data)
+add_subdirectory(src/font)
 add_subdirectory(src/gauge)
 add_subdirectory(src/navigation)
 
@@ -21,6 +22,7 @@ include_directories(
   ext/libshape
   src/base
   src/data
+  src/font
   src/gauge
   src/navigation
   src/util
@@ -32,6 +34,7 @@ link_directories(
   ext/libshape
   src/base
   src/data
+  src/font
   src/gauge
   src/navigation
 )
@@ -45,6 +48,7 @@ link_libraries(
   z
   opengc-base
   opengc-data
+  opengc-font
   opengc-gauge
   opengc-navigation
 )

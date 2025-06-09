@@ -33,6 +33,7 @@
 #include "fg_data_source.h"
 #include "Constants.h"
 #include "Globals.h"
+#include "PrefManager.h"
 #include "Debug.h"
 
 OpenGC::FGDataSource::FGDataSource(void)
@@ -54,8 +55,8 @@ OpenGC::FGDataSource::~FGDataSource() {
 
 bool OpenGC::FGDataSource::Open(void) {
   // Get the host:port string from the Config system and parse it
-  m_Host = Globals::pref_manager->GetPrefS("FlightGearHost");
-  m_ReceivePort = Globals::pref_manager->GetPrefI("FlightGearPort");
+  m_Host = PrefManager::getInstance()->GetPrefS("FlightGearHost");
+  m_ReceivePort = PrefManager::getInstance()->GetPrefI("FlightGearPort");
     
   if (true) {
     printf("FGDataSourse: host \"%s\", port %d\n", 

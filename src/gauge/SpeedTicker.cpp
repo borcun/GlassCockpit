@@ -32,7 +32,7 @@ namespace OpenGC
 
   SpeedTicker::SpeedTicker()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -89,7 +89,7 @@ namespace OpenGC
     const double fontHeight = 7.0;
     double texty = m_PhysicalSize.second / 2 - fontHeight / 2;
 
-    Globals::font_manager->SetSize(m_Font, 6.0, fontHeight);
+    FontManager::getInstance()->SetSize(m_Font, 6.0, fontHeight);
 
     // Draw text in white
     glColor3ub(255,255,255);
@@ -98,7 +98,7 @@ namespace OpenGC
       {
 	// 100's
 	sprintf(buffer, "%li", spd/100);
-	Globals::font_manager->Print(2.0, texty, &buffer[0], m_Font);
+	FontManager::getInstance()->Print(2.0, texty, &buffer[0], m_Font);
 	spd = spd-100*(int)(spd/100);
       }
 
@@ -106,7 +106,7 @@ namespace OpenGC
       {
 	// 10's
 	sprintf(buffer, "%li", spd/10);
-	Globals::font_manager->Print(6.5, texty, &buffer[0], m_Font);
+	FontManager::getInstance()->Print(6.5, texty, &buffer[0], m_Font);
 	spd = spd-10*(int)(spd/10);
       }
 
@@ -124,19 +124,19 @@ namespace OpenGC
 
     // Display all of the digits
     sprintf(buffer, "%i", five_one);
-    Globals::font_manager->Print(11.0, texty+fontHeight*2+fontHeight/5, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(11.0, texty+fontHeight*2+fontHeight/5, &buffer[0], m_Font);
 
     sprintf(buffer, "%i", four_one);
-    Globals::font_manager->Print(11.0, texty+fontHeight+fontHeight/10, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(11.0, texty+fontHeight+fontHeight/10, &buffer[0], m_Font);
 
     sprintf(buffer, "%i", three_one);
-    Globals::font_manager->Print(11.0, texty, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(11.0, texty, &buffer[0], m_Font);
 
     sprintf(buffer, "%i", two_one);
-    Globals::font_manager->Print(11.0, texty-fontHeight-fontHeight/10, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(11.0, texty-fontHeight-fontHeight/10, &buffer[0], m_Font);
 
     sprintf(buffer, "%i", one_one);
-    Globals::font_manager->Print(11.0, texty-fontHeight*2-fontHeight/5, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(11.0, texty-fontHeight*2-fontHeight/5, &buffer[0], m_Font);
   }
 
 } // end namespace OpenGC

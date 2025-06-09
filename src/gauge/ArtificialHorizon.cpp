@@ -33,7 +33,7 @@ namespace OpenGC
 
   ArtificialHorizon::ArtificialHorizon()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -149,15 +149,15 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices2);
     glDrawArrays(GL_LINES, 0, 34);
 
-    Globals::font_manager->SetSize(m_Font,4.0, 4.0);
-    Globals::font_manager->Print(-27.5,18.0,"10",m_Font);
-    Globals::font_manager->Print(21.0,18.0,"10",m_Font);
-    Globals::font_manager->Print(-27.5,-22.0,"10",m_Font);
-    Globals::font_manager->Print(21.0,-22.0,"10",m_Font);
-    Globals::font_manager->Print(-27.5,38.0,"20",m_Font);
-    Globals::font_manager->Print(21.0,38.0,"20",m_Font);
-    Globals::font_manager->Print(-27.5,-42.0,"20",m_Font);
-    Globals::font_manager->Print(21.0,-42.0,"20",m_Font);
+    FontManager::getInstance()->SetSize(m_Font,4.0, 4.0);
+    FontManager::getInstance()->Print(-27.5,18.0,"10",m_Font);
+    FontManager::getInstance()->Print(21.0,18.0,"10",m_Font);
+    FontManager::getInstance()->Print(-27.5,-22.0,"10",m_Font);
+    FontManager::getInstance()->Print(21.0,-22.0,"10",m_Font);
+    FontManager::getInstance()->Print(-27.5,38.0,"20",m_Font);
+    FontManager::getInstance()->Print(21.0,38.0,"20",m_Font);
+    FontManager::getInstance()->Print(-27.5,-42.0,"20",m_Font);
+    FontManager::getInstance()->Print(21.0,-42.0,"20",m_Font);
 
 #if 0 // FIXME this should work in gradient mode too
     //-----The background behind the bank angle markings-------

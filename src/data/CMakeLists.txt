@@ -11,6 +11,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ./
   ../util
   ../base
+  ../font
   ../navigation
   /usr/include/libxml2
   /usr/include/FTGL

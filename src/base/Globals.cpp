@@ -26,16 +26,12 @@
 OpenGC::Globals *OpenGC::Globals::m_instance = nullptr;
 OpenGC::DataSource *OpenGC::Globals::data_source = nullptr;
 OpenGC::NavDatabase *OpenGC::Globals::nav_database = nullptr;
-OpenGC::PrefManager *OpenGC::Globals::pref_manager = nullptr;
-OpenGC::FontManager *OpenGC::Globals::font_manager = nullptr;
 OpenGC::RasterMapManager *OpenGC::Globals::raster_map_manager = nullptr;
 OpenGC::CircleEvaluator *OpenGC::Globals::circle_evaluator = nullptr;
 OpenGC::MessageableList *OpenGC::Globals::messageable_list = nullptr;
 
-OpenGC::Globals::Globals() {
-  pref_manager = new PrefManager();
+OpenGC::Globals::Globals(void) {
   nav_database = new NavDatabase();
-  font_manager = new FontManager();
   circle_evaluator = new CircleEvaluator();
   raster_map_manager = new RasterMapManager();
   messageable_list = new MessageableList();
@@ -43,19 +39,9 @@ OpenGC::Globals::Globals() {
 }
 
 OpenGC::Globals::~Globals() {
-  if(nullptr != font_manager) {
-    delete font_manager;
-    font_manager = nullptr;
-  }
-
   if (nullptr != data_source) {
     delete data_source;
     data_source = nullptr;
-  }
-
-  if (nullptr != pref_manager) {
-    delete pref_manager;
-    pref_manager = nullptr;
   }
 	
   if (nullptr != nav_database) {

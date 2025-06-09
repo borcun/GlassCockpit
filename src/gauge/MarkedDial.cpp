@@ -34,7 +34,7 @@ namespace OpenGC
 
   MarkedDial::MarkedDial()
   {
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -125,7 +125,7 @@ namespace OpenGC
       gluDeleteQuadric(qobj);*/
 
     // unit markers
-    Globals::font_manager->SetSize(m_Font, 4.0, 3.5);
+    FontManager::getInstance()->SetSize(m_Font, 4.0, 3.5);
     float percentagev, degreev;
 
     for (float xs = m_Min; xs <= m_Max; xs += m_TickSpacing)
@@ -143,7 +143,7 @@ namespace OpenGC
 	else
 	  sprintf(buf, "%.0f",xs / m_TickDivisor);
 	glTranslatef(-1.5, -2, 0);
-	Globals::font_manager->Print((R-4.5) * sin(radians) , (R-4.5) * cos(radians), buf, m_Font);			
+	FontManager::getInstance()->Print((R-4.5) * sin(radians) , (R-4.5) * cos(radians), buf, m_Font);			
 	glTranslatef(1.5, 2, 0);
       }
   }

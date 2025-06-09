@@ -47,7 +47,7 @@ namespace OpenGC
   {
     //this->SetGaugeOutline(true);
 
-    m_Font = Globals::font_manager->LoadDefaultFont();
+    m_Font = FontManager::getInstance()->LoadDefaultFont();
 
     m_PhysicalPosition.first = 0;
     m_PhysicalPosition.second = 0;
@@ -255,16 +255,16 @@ namespace OpenGC
 
     // Ground speed and track text
     char buffer[20];
-    Globals::font_manager->SetSize(m_Font, 5.0, 5.0);
+    FontManager::getInstance()->SetSize(m_Font, 5.0, 5.0);
     sprintf(buffer, "TRACK %.0f", Globals::data_source->GetAirframe()->GetTrue_Heading() );
-    Globals::font_manager->Print(2.0, 12.5, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(2.0, 12.5, &buffer[0], m_Font);
     sprintf(buffer, "GS %.0f", Globals::data_source->GetAirframe()->GetGround_Speed_MS() );
-    Globals::font_manager->Print(2.0, 2.5, &buffer[0], m_Font);
+    FontManager::getInstance()->Print(2.0, 2.5, &buffer[0], m_Font);
 
     // Scale text
     sprintf(buffer, "Scale: %.1f nm", m_SizeNM / (180.0 / 40.0));
-    Globals::font_manager->SetSize(m_Font, 3.0, 3.0);
-    Globals::font_manager->Print(5.0, OVERLAY_Y+175.0, &buffer[0], m_Font);
+    FontManager::getInstance()->SetSize(m_Font, 3.0, 3.0);
+    FontManager::getInstance()->Print(5.0, OVERLAY_Y+175.0, &buffer[0], m_Font);
 
     // Wind speed/direction indicator
     PlotWindSpeedDirection();
@@ -396,8 +396,8 @@ namespace OpenGC
 	    glVertexPointer(2, GL_FLOAT, 0, &vertices);
 	    glDrawArrays(GL_POLYGON, 0, 4);
 
-	    Globals::font_manager->SetSize(m_Font, 4.0, 4.0);
-	    Globals::font_manager->Print(1.5, -2.0, (*iter)->GetIdentification().c_str(), m_Font);
+	    FontManager::getInstance()->SetSize(m_Font, 4.0, 4.0);
+	    FontManager::getInstance()->Print(1.5, -2.0, (*iter)->GetIdentification().c_str(), m_Font);
 	    glPopMatrix();
 	  }
       }
