@@ -28,6 +28,7 @@
 #include "Debug.h"
 #include "AppObject.h"
 #include "Globals.h"
+#include "PrefManager.h"
 #include "Messageable.h"
 #include "XMLParser.h"
 
@@ -50,7 +51,7 @@ void usage()
 void GlobalIdle(void *)
 {
   theApp->IdleFunction();
-  Fl::repeat_timeout(Globals::pref_manager->GetPrefD("AppUpdateRate"), GlobalIdle);
+  Fl::repeat_timeout(PrefManager::getInstance()->GetPrefD("AppUpdateRate"), GlobalIdle);
 }
 
 /** Main entry point for the application */
@@ -82,7 +83,7 @@ int main(int argc, char* argv[])
   theApp = new AppObject();
 	
   // Initialise preferences manager
-  Globals::pref_manager->InitPreferences(PREFERENCES_XML_FILE);
+  PrefManager::getInstance()->InitPreferences(PREFERENCES_XML_FILE);
 	
   // Read the XML file and do some basic checks about its contents
   XMLParser parser;
@@ -94,19 +95,18 @@ int main(int argc, char* argv[])
   // Set the user-defined (in XML file) application preferences
   if (parser.HasNode("/Preferences"))
     {
-      Globals::pref_manager->SetPrefsFromXML(parser.GetNode("/Preferences"));
+      PrefManager::getInstance()->SetPrefsFromXML(parser.GetNode("/Preferences"));
     }
 
   // Set RasterMaps path
   Globals::raster_map_manager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-					  Globals::pref_manager->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+					  PrefManager::getInstance()->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
 
   // FIXME debug:
-  Globals::pref_manager->PrintAll();
+  PrefManager::getInstance()->PrintAll();
 
   // Set the update rate in nominal seconds per frame
-  Fl::add_timeout(Globals::pref_manager->GetPrefD(
-						 "AppUpdateRate"), GlobalIdle);
+  Fl::add_timeout(PrefManager::getInstance()->GetPrefD("AppUpdateRate"), GlobalIdle);
 
   // Run up the application
   int retval;

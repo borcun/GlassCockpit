@@ -6,19 +6,19 @@
   This project is distributed under the terms of the GNU General Public License
   Version 3 <http://www.gnu.org/licenses/gpl.html>.
   
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, specifically version 3 of the License.
   
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=========================================================================*/
+  =========================================================================*/
 
 /**
  * NavDatabase is the container that stores all other nav information
@@ -35,50 +35,51 @@
 #include "FlightCourse.h"
 #include "GeographicHash.h"
 
-namespace OpenGC
-{
+namespace OpenGC {
+  class NavDatabase {
+  public:
+    static NavDatabase *getInstance(void);
+    virtual ~NavDatabase();
 
-class NavDatabase  
-{
-	public:
+    /** Load the nav data */
+    void InitDatabase();
 
-		NavDatabase();
-		virtual ~NavDatabase();
+    /** Get the hashed navaid list */
+    GeographicHash* GetNavaidHash() {return m_NavaidHash;}
 
-		/** Load the nav data */
-		void InitDatabase();
+    /** Get the hashed airport list */
+    GeographicHash* GetAirportHash() {return m_AirportHash;}
 
-		/** Get the hashed navaid list */
-		GeographicHash* GetNavaidHash() {return m_NavaidHash;}
+    /** Get the waypoint list */
+    WaypointList* GetWaypointList() {return m_WaypointList;}
 
-		/** Get the hashed airport list */
-		GeographicHash* GetAirportHash() {return m_AirportHash;}
+    /** Get the flight path */
+    FlightCourse* GetFlightCourse() {return m_FlightCourse;}
 
-		/** Get the waypoint list */
-		WaypointList* GetWaypointList() {return m_WaypointList;}
-
-		/** Get the flight path */
-		FlightCourse* GetFlightCourse() {return m_FlightCourse;}
-
-	private:
-		/** The flight path/course */
-		FlightCourse *m_FlightCourse;
+  private:
+    static NavDatabase *m_instance;
+    
+    /** The flight path/course */
+    FlightCourse *m_FlightCourse;
 		
-		/** A list of all waypoints */
-		WaypointList *m_WaypointList;
+    /** A list of all waypoints */
+    WaypointList *m_WaypointList;
 
-		/** Airport list */
-		AirportList *m_AirportList;
+    /** Airport list */
+    AirportList *m_AirportList;
 
-		/** Airport list hashed by lat/lon */
-		GeographicHash *m_AirportHash;
+    /** Airport list hashed by lat/lon */
+    GeographicHash *m_AirportHash;
 
-		/** Navaid list */
-		NavaidList *m_NavaidList;
+    /** Navaid list */
+    NavaidList *m_NavaidList;
 		
-		/** Navaid list hashed by lat/lon */
-		GeographicHash *m_NavaidHash;
-};
+    /** Navaid list hashed by lat/lon */
+    GeographicHash *m_NavaidHash;
+
+    /// default constructor
+    NavDatabase();
+  };
 
 } // end namespace OpenGC
 

@@ -24,7 +24,6 @@
 #define GLOBALS_H
 
 #include "data_source.h"
-#include "NavDatabase.h"
 #include "RasterMapManager.h"
 #include "CircleEvaluator.h"
 #include "MessageableList.h"
@@ -36,7 +35,6 @@ namespace OpenGC {
     virtual ~Globals();
 
     static DataSource *data_source;
-    static NavDatabase *nav_database;
     static RasterMapManager *raster_map_manager;
     static CircleEvaluator *circle_evaluator;
     static MessageableList *messageable_list;

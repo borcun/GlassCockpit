@@ -23,6 +23,8 @@
 #include "AppObject.h"
 #include "RenderObject.h"
 #include "Globals.h"
+#include "PrefManager.h"
+#include "NavDatabase.h"
 #include "Debug.h"
 
 //--------Data Sources---------
@@ -63,7 +65,7 @@ namespace OpenGC
     bool AppObject::Go(XMLNode rootNode)
     {	
 	// Navigation Database (global)
-	Globals::nav_database->InitDatabase();
+	NavDatabase::getInstance()->InitDatabase();
 
 	// Create the data source
 	XMLNode dsNode = rootNode.GetChild("DataSource");
@@ -75,12 +77,12 @@ namespace OpenGC
 		// Get host/port settings
 		if (dsNode.HasChild("Host"))
 		    {
-			Globals::pref_manager->SetPrefS("FlightGearHost", 
+			PrefManager::getInstance()->SetPrefS("FlightGearHost", 
 							 dsNode.GetChild("Host").GetText());
 		    }
 		if (dsNode.HasChild("Port"))
 		    {
-			Globals::pref_manager->SetPrefI("FlightGearPort", 
+			PrefManager::getInstance()->SetPrefI("FlightGearPort", 
 							 dsNode.GetChild("Port").GetTextAsInt());
 		    }
 
@@ -130,7 +132,7 @@ namespace OpenGC
 			geoNode.GetChild("Size").GetTextAsCoord(xSize, ySize);
 		    }
 	    }
-	double zoom = Globals::pref_manager->GetPrefD("Zoom");
+	double zoom = PrefManager::getInstance()->GetPrefD("Zoom");
 	int windowX = (int)(xSize * zoom), windowY = (int)(ySize * zoom);
 	LogPrintf("Application: Window Size = %ix%ipx\n", windowX, windowY);
 
@@ -138,7 +140,7 @@ namespace OpenGC
 	m_pRenderWindow = new FLTKRenderWindow(4, 0, windowX, windowY, 
 					       windowTitle.c_str());
 	m_pRenderWindow->mode(FL_RGB | FL_DOUBLE);
-	Globals::pref_manager->SetPrefD("UnitsPerPixel", 
+	PrefManager::getInstance()->SetPrefD("UnitsPerPixel", 
 					 m_pRenderWindow->GetUnitsPerPixel());	
 
 	// We need to go ahead and show the window so that an OpenGL device

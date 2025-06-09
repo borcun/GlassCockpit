@@ -28,9 +28,9 @@
 #include <stdio.h>
 #include <sys/stat.h> 
 
-namespace OpenGC
-{
-
+namespace OpenGC {
+  NavDatabase *NavDatabase::m_instance = nullptr;
+  
   NavDatabase::NavDatabase()
   {
     m_NavaidList = 0, m_NavaidHash = 0;
@@ -59,7 +59,15 @@ namespace OpenGC
     if(m_FlightCourse != 0)
       delete m_FlightCourse;
   }
-	
+
+  NavDatabase *NavDatabase::getInstance(void) {
+    if (nullptr == m_instance) {
+      m_instance = new NavDatabase();
+    }
+
+    return m_instance;
+  }
+  
   bool fileExists(const string& filename)
   {
     struct stat stFileInfo;

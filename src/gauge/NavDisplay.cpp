@@ -26,6 +26,7 @@
 #include <string>
 
 #include "Globals.h"
+#include "NavDatabase.h"
 #include "Constants.h"
 #include "CircleEvaluator.h"
 #include "data_source.h"
@@ -187,11 +188,11 @@ namespace OpenGC
 		
     // Naviads (blue)
     glColor3f(0.0, 0.0, 1.0);
-    PlotGeoObjs(Globals::nav_database->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+    PlotGeoObjs(NavDatabase::getInstance()->GetNavaidHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
     // Airports (red)
     glColor3f(1.0, 0.0, 0.0);
-    PlotGeoObjs(Globals::nav_database->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
+    PlotGeoObjs(NavDatabase::getInstance()->GetAirportHash()->GetListAtLatLon(aircraftLat, aircraftLon));
 		
     PlotWaypoints();
     glPopMatrix();
@@ -336,7 +337,7 @@ namespace OpenGC
   void NavDisplay::PlotWaypoints()
   {
     // Get the waypoint list
-    WaypointList *waypointList = Globals::nav_database->GetWaypointList();
+    WaypointList *waypointList = NavDatabase::getInstance()->GetWaypointList();
 
     WaypointList::iterator iter;
     for (iter = waypointList->begin(); iter != waypointList->end(); ++iter)
@@ -349,20 +350,21 @@ namespace OpenGC
   {
 #if 0
     // Get the vector of CoursePoints
-    FlightCourse *course = Globals::nav_database->GetFlightCourse();
-    FlightCourse::iterator iter;
-	
+    FlightCourse *course = NavDatabase::getInstance()->GetFlightCourse();
+    FlightCourse::iterator iter;	
     float xPos, yPos, lat, lon, northing, easting;
+
     glColor3f(0.5, 0.0, 0.0); // 50% red
     glLineWidth(1.0);
     glBegin(GL_LINE_STRIP);
-    for (iter = course->begin(); iter != course->end(); ++iter)
-      {
-	(*iter).GetCoords(lat, lon);
-	GeographicObject::LatLonToMercator(lat, lon, northing, easting);
-	PointToPixelCoord(northing, easting, xPos, yPos);
-	glVertex2f(xPos, yPos);
-      }
+
+    for (iter = course->begin(); iter != course->end(); ++iter) {
+      (*iter).GetCoords(lat, lon);
+      GeographicObject::LatLonToMercator(lat, lon, northing, easting);
+      PointToPixelCoord(northing, easting, xPos, yPos);
+      glVertex2f(xPos, yPos);
+    }
+    
     glEnd();
 #endif
   }
