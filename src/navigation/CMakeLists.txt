@@ -10,8 +10,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 # referring own directory is due to circular dependency, will be solved
 target_include_directories(${PROJECT_NAME} PUBLIC
   ./
-  ../tinyjpeg
-  ../libshape
+  ../../ext/tinyjpeg
+  ../../ext/libshape
   ../util
   ../base
   ../data
@@ -22,7 +22,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 target_link_directories(${PROJECT_NAME} PUBLIC
   /usr/lib/x86_64-linux-gnu
-  libshape
+  ../../ext/libshape
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

@@ -7,8 +7,8 @@ file(GLOB SOURCES *.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-  ../tinyjpeg
-  ../libshape
+  ../../ext/tinyjpeg
+  ../../ext/libshape
   ../util
   ../base
   ../data

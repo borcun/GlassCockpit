@@ -1,3 +1,0 @@
-[submodule "ext/tinyjpeg"]
-	path = ext/tinyjpeg
-	url = http://github.com/borcun/tinyjpeg.git

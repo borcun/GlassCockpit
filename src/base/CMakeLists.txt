@@ -10,7 +10,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 target_compile_definitions(${PROJECT_NAME} PRIVATE USE_FREETYPE2 TARGET_RT_LITTLE_ENDIAN)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-  ../tinyjpeg
+  ../../ext/tinyjpeg
   ../util
   ../data
   ../navigation
@@ -21,7 +21,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 target_link_directories(${PROJECT_NAME} PUBLIC
   /usr/lib/x86_64-linux-gnu
-  tinyjpeg
+  ../../ext/tinyjpeg
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
