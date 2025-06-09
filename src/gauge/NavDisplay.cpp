@@ -28,6 +28,7 @@
 #include "Globals.h"
 #include "NavDatabase.h"
 #include "RasterMapManager.h"
+#include "CircleEvaluator.h"
 #include "Constants.h"
 #include "CircleEvaluator.h"
 #include "data_source.h"
@@ -124,7 +125,7 @@ namespace OpenGC
     glLineWidth(1.5);
 	
     // Range circles
-    CircleEvaluator *aCircle = Globals::circle_evaluator;
+    CircleEvaluator *aCircle = CircleEvaluator::getInstance();
     aCircle->SetDegreesPerPoint(5.0);
     aCircle->SetRadius(40.0);
     aCircle->SetOrigin(CENTER_X, CENTER_Y);

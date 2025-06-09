@@ -22,7 +22,6 @@
   =========================================================================*/
 
 #include <stdio.h>
-
 #include "Globals.h"
 #include "GaugeComponent.h"
 #include "CircleEvaluator.h"
@@ -56,7 +55,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // For drawing circles
-    CircleEvaluator *aCircle = Globals::circle_evaluator;
+    CircleEvaluator *aCircle = CircleEvaluator::getInstance();
 
     // First, store the "root" position of the gauge component
     glMatrixMode(GL_MODELVIEW);

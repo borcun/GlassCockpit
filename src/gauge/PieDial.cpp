@@ -22,6 +22,7 @@
 
 #include <math.h>
 #include "Globals.h"
+#include "CircleEvaluator.h"
 #include "GLHeaders.h"
 #include "PieDial.h"
 #include "Constants.h"
@@ -80,7 +81,7 @@ namespace OpenGC
       glColor3ub(255, 20, 20); // red
 
     // Fill of the dial from 0 to the needle
-    CircleEvaluator *aCircle = Globals::circle_evaluator;
+    CircleEvaluator *aCircle = CircleEvaluator::getInstance();
     aCircle->SetDegreesPerPoint(10.0);
     aCircle->SetRadius(R);
     aCircle->SetOrigin(0.0, 0.0);

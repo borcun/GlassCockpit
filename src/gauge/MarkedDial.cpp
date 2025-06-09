@@ -21,7 +21,6 @@
   =========================================================================*/
 
 #include <math.h>
-
 #include "Globals.h"
 #include "MarkedDial.h"
 #include "CircleEvaluator.h"
@@ -88,7 +87,7 @@ namespace OpenGC
 
     // gauge
     glColor3ub(51, 51, 76);
-    CircleEvaluator *aCircle = Globals::circle_evaluator;
+    CircleEvaluator *aCircle = CircleEvaluator::getInstance();
     aCircle->SetDegreesPerPoint(10.0);
     aCircle->SetRadius(R);
     aCircle->SetOrigin(0.0, 0.0);

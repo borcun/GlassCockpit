@@ -25,11 +25,9 @@
 
 OpenGC::Globals *OpenGC::Globals::m_instance = nullptr;
 OpenGC::DataSource *OpenGC::Globals::data_source = nullptr;
-OpenGC::CircleEvaluator *OpenGC::Globals::circle_evaluator = nullptr;
 OpenGC::MessageableList *OpenGC::Globals::messageable_list = nullptr;
 
 OpenGC::Globals::Globals(void) {
-  circle_evaluator = new CircleEvaluator();
   messageable_list = new MessageableList();
   data_source = nullptr;
 }
@@ -40,11 +38,6 @@ OpenGC::Globals::~Globals() {
     data_source = nullptr;
   }
   
-  if (nullptr != circle_evaluator) {
-    delete circle_evaluator;
-    circle_evaluator = nullptr;
-  }
-
   if (nullptr != messageable_list) {
     delete messageable_list;
     messageable_list = nullptr;

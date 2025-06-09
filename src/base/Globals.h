@@ -24,7 +24,6 @@
 #define GLOBALS_H
 
 #include "data_source.h"
-#include "CircleEvaluator.h"
 #include "MessageableList.h"
 
 namespace OpenGC {
@@ -34,7 +33,6 @@ namespace OpenGC {
     virtual ~Globals();
 
     static DataSource *data_source;
-    static CircleEvaluator *circle_evaluator;
     static MessageableList *messageable_list;
 
   private:

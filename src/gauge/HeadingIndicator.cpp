@@ -25,7 +25,6 @@
 #include "GLHeaders.h"
 #include <stdio.h>
 #include <math.h>
-
 #include "GaugeComponent.h"
 #include "CircleEvaluator.h"
 #include "HeadingIndicator.h"
@@ -87,7 +86,7 @@ namespace OpenGC
     glLineWidth( 1.5 );
 
     // Set up the circle
-    CircleEvaluator *aCircle = Globals::circle_evaluator;
+    CircleEvaluator *aCircle = CircleEvaluator::getInstance();
     aCircle->SetRadius(radius);
     aCircle->SetArcStartEnd(300,60);
     aCircle->SetDegreesPerPoint(2.5);
