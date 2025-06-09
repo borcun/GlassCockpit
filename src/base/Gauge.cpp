@@ -162,7 +162,7 @@ namespace OpenGC
     m_PixelSize.second = (int) (m_PhysicalSize.second / m_UnitsPerPixel * m_Scale.second);
   }
 
-  void Gauge::SetUnitsPerPixel(const double unitsPerPixel) {
+  void Gauge::SetUnitsPerPixel(const float unitsPerPixel) {
     m_UnitsPerPixel = unitsPerPixel;
 
     if (m_NumGaugeComponents > 0) {
@@ -176,7 +176,7 @@ namespace OpenGC
     return;
   }
 
-  void Gauge::SetScale(const double xScale, const double yScale) {
+  void Gauge::SetScale(const float xScale, const float yScale) {
     // Set gauge scaling factors, must be greater than 0
     if ((xScale > 0) && (yScale > 0)) {
       m_Scale.first = xScale;

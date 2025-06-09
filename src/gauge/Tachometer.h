@@ -41,7 +41,7 @@ namespace OpenGC
     virtual void RenderArc(CircleEvaluator *circ);
     virtual void RenderTicks(CircleEvaluator *circ);
 		
-    double m_MaxYellow, m_MaxRed;
+    float m_MaxYellow, m_MaxRed;
   };
 
 } // end namespace OpenGC

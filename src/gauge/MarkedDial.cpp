@@ -59,26 +59,26 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
+    float value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;
     else if (value > m_Max)
       value = m_Max;
 
-    double R = 11.0;
-    double minDegrees = 220.0;
-    double maxDegrees = 100.0;
+    float R = 11.0;
+    float minDegrees = 220.0;
+    float maxDegrees = 100.0;
 
-    double maxDegreesUse360 = maxDegrees;
+    float maxDegreesUse360 = maxDegrees;
     if (maxDegrees < minDegrees)
       maxDegreesUse360 += 360;
 
-    double negativeoffset = 0;
+    float negativeoffset = 0;
     if (m_Min < 0)
       negativeoffset = m_Min*-1.0;
 
-    double radians;
+    float radians;
     char buf[10];
     //GLUquadric *qobj;
 
@@ -103,8 +103,8 @@ namespace OpenGC
       gluPartialDisk(qobj, 0, R+1, 50, 1, minDegrees, value / m_Max * (maxDegreesUse360-minDegrees));
       gluDeleteQuadric(qobj);*/
 
-    double percentage = value / (m_Max-m_Min) ;
-    double degree = minDegrees + ((maxDegreesUse360 - minDegrees) * percentage);
+    float percentage = value / (m_Max-m_Min) ;
+    float degree = minDegrees + ((maxDegreesUse360 - minDegrees) * percentage);
     radians = degree * DEG_TO_RAD;
     glColor3ub(255, 255, 255);
     const float vertices[] = {0,0,   R*sin(radians),R*cos(radians)};
@@ -126,8 +126,9 @@ namespace OpenGC
 
     // unit markers
     Globals::font_manager->SetSize(m_Font, 4.0, 3.5);
-    double percentagev, degreev;
-    for(double xs = m_Min; xs <= m_Max; xs += m_TickSpacing)
+    float percentagev, degreev;
+
+    for (float xs = m_Min; xs <= m_Max; xs += m_TickSpacing)
       {
 	percentagev = (xs+negativeoffset) / (m_Max-m_Min) ;
 	degreev =  minDegrees+ ((maxDegreesUse360- minDegrees)*percentagev);

@@ -37,7 +37,7 @@
 
 namespace OpenGC
 {    
-  double NavDisplay::CENTER_X = 90.0, NavDisplay::CENTER_Y = 95.0, NavDisplay::OVERLAY_Y = 45.0;
+  float NavDisplay::CENTER_X = 90.0, NavDisplay::CENTER_Y = 95.0, NavDisplay::OVERLAY_Y = 45.0;
   int NavDisplay::compass_interval = 20;
 	
   GLuint NavDisplay::m_TileTextures[49];
@@ -93,8 +93,8 @@ namespace OpenGC
     //	}
 	
     // Northing and Easting in nautical miles (Mercator Coordinates)
-    GeographicObject::LatLonToMercator(aircraftLat, aircraftLon, 
-				       mercatorNorthing, mercatorEasting);
+    GeographicObject::LatLonToMercator(aircraftLat, aircraftLon, mercatorNorthing, mercatorEasting);
+    
     mercatorNorthing /= METER_PER_NM;
     mercatorEasting /= METER_PER_NM;
 
@@ -159,7 +159,7 @@ namespace OpenGC
 
     glColor3ub(255, 255, 255);
     glLineWidth(1.5);
-    double heading_offset = fmod(aircraftHeading, compass_interval);
+    float heading_offset = fmod(aircraftHeading, compass_interval);
 
     static float vertices1[2*10];
     unsigned int vertexIdx = 0;
@@ -205,8 +205,8 @@ namespace OpenGC
     static const float vertices2[] = {
       // behind zoom buttons
       0.0, OVERLAY_Y,
-      0.0, OVERLAY_Y+20,
-      10.5, OVERLAY_Y+20,
+      0.0, OVERLAY_Y + 20,
+      10.5, OVERLAY_Y + 20,
       10.5, OVERLAY_Y,
       // behind bottom part
       0.0, 0.0,
@@ -222,14 +222,14 @@ namespace OpenGC
     glLineWidth(1.0);
     static const float vertices3[] = {
       // lines around the zoom buttons
-      0.0,  OVERLAY_Y+10,
-      10.5, OVERLAY_Y+10,
+      0.0,  OVERLAY_Y + 10,
+      10.5, OVERLAY_Y + 10,
       10.5, OVERLAY_Y,
-      10.5, OVERLAY_Y+20.1,
-      0.0,  OVERLAY_Y+20.1,
-      10.5, OVERLAY_Y+20.1,
+      10.5, OVERLAY_Y + 20.1f,
+      0.0,  OVERLAY_Y + 20.1f,
+      10.5, OVERLAY_Y + 20.1f,
       10.5, OVERLAY_Y,
-      10.5, OVERLAY_Y+20,
+      10.5, OVERLAY_Y + 20,
       // line along top edge of overlay
       0.0, OVERLAY_Y,
       m_PhysicalSize.first, OVERLAY_Y
@@ -242,13 +242,13 @@ namespace OpenGC
     glColor3f(1.0, 1.0, 1.0);
     static float vertices4[] = {
       // Plus symbol
-      2.5, OVERLAY_Y+15.0,
-      7.5, OVERLAY_Y+15.0,
-      5.0, OVERLAY_Y+12.5,
-      5.0, OVERLAY_Y+17.5,
+      2.5, OVERLAY_Y+15.0f,
+      7.5, OVERLAY_Y+15.0f,
+      5.0, OVERLAY_Y+12.5f,
+      5.0, OVERLAY_Y+17.5f,
       // Minus symbol
-      2.5, OVERLAY_Y+5.0,
-      7.5, OVERLAY_Y+5.0
+      2.5, OVERLAY_Y+5.0f,
+      7.5, OVERLAY_Y+5.0f
     };
     glVertexPointer(2, GL_FLOAT, 0, &vertices4);
     glDrawArrays(GL_LINES, 0, 6);
@@ -299,7 +299,7 @@ namespace OpenGC
   }
 
   /** Mouse event handler for zoom in/out buttons. */
-  void NavDisplay::OnMouseDown(int button, double physicalX, double physicalY)
+  void NavDisplay::OnMouseDown(int button, float physicalX, float physicalY)
   {
     if ((physicalX <= 10.0)&&(physicalY>OVERLAY_Y)&&(physicalY<(OVERLAY_Y+10.0)))
       {
@@ -314,8 +314,8 @@ namespace OpenGC
   void NavDisplay::PlotWindSpeedDirection()
   {
     // Get the data
-    //	double windSpeed = Globals::data_source->GetAirframe()->GetWind_Speed();
-    double windDirection = Globals::data_source->GetAirframe()->GetWind_Direction();
+    //	float windSpeed = Globals::data_source->GetAirframe()->GetWind_Speed();
+    float windDirection = Globals::data_source->GetAirframe()->GetWind_Direction();
 	
     glPushMatrix();
     glTranslatef(170.0, OVERLAY_Y+10.0, 0.0);
@@ -352,7 +352,7 @@ namespace OpenGC
     FlightCourse *course = Globals::nav_database->GetFlightCourse();
     FlightCourse::iterator iter;
 	
-    double xPos, yPos, lat, lon, northing, easting;
+    float xPos, yPos, lat, lon, northing, easting;
     glColor3f(0.5, 0.0, 0.0); // 50% red
     glLineWidth(1.0);
     glBegin(GL_LINE_STRIP);
@@ -370,7 +370,7 @@ namespace OpenGC
   void NavDisplay::PlotGeoObjs(std::list<GeographicObject*>& geoList)
   {
     std::list<GeographicObject*>::iterator iter;
-    double objNorthing, objEasting;
+    float objNorthing, objEasting;
 
     for (iter = geoList.begin(); iter != geoList.end(); ++iter)
       {
@@ -378,7 +378,7 @@ namespace OpenGC
 	(*iter)->GetMercatorMeters(objNorthing, objEasting);
 
 	// Compute position relative to gauge center
-	double xPos, yPos;
+	float xPos, yPos;
 	PointToPixelCoord(objNorthing, objEasting, xPos, yPos);
 
 	// Only draw the navaid if it's visible within the rendering area
@@ -481,14 +481,14 @@ namespace OpenGC
       }
   }
 
-  void NavDisplay::PointToPixelCoord(double objNorthing, double objEasting, double &xPos, double &yPos)
+  void NavDisplay::PointToPixelCoord(float objNorthing, float objEasting, float &xPos, float &yPos)
   {
     // Compute position relative to gauge center
     yPos = (objNorthing / METER_PER_NM - mercatorNorthing) * 180.0 / m_SizeNM;
     xPos = (objEasting / METER_PER_NM - mercatorEasting) * 180.0 / m_SizeNM;
   }
 
-  bool NavDisplay::PixelCoordIsVisible(double xPos, double yPos)
+  bool NavDisplay::PixelCoordIsVisible(float xPos, float yPos)
   {
     return (
 	    (fabs(xPos) < 90.0) && (yPos < (m_PhysicalSize.second - CENTER_Y)) 

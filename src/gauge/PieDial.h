@@ -44,10 +44,10 @@ namespace OpenGC
     void SetDataSource(AirframeMemFn fn) {m_DataFn = fn; }
 
     /** Set the range of values displayed on this gauge */
-    void SetMinMax(double min, double max) {m_Min = min; m_Max = max; }
+    void SetMinMax(float min, float max) {m_Min = min; m_Max = max; }
 
     /** Set the thresholds which if the value exceeds, the colour will change */
-    void SetColourRanges(double minYellow, double minRed) {m_MinYellow = minYellow; m_MinRed = minRed; }
+    void SetColourRanges(float minYellow, float minRed) {m_MinYellow = minYellow; m_MinRed = minRed; }
 
   protected:
 
@@ -63,13 +63,13 @@ namespace OpenGC
 
     int m_Font;
     AirframeMemFn m_DataFn;
-    double m_Min, m_Max;
-    double m_MinYellow, m_MinRed;
+    float m_Min, m_Max;
+    float m_MinYellow, m_MinRed;
 	
     /** Drawing options */
-    const double R = 16.0;
-    const double minDegrees = 90.0;
-    const double maxDegrees = 300.0;	
+    const float R = 16.0;
+    const float minDegrees = 90.0;
+    const float maxDegrees = 300.0;	
   };
 
 } // end namespace OpenGC

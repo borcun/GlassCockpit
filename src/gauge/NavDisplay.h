@@ -39,7 +39,7 @@ namespace OpenGC
 	void Render();
 
 	/** Called if the down mouse click applies to this object */
-	void OnMouseDown(int button, double physicalX, double physicalY);
+	void OnMouseDown(int button, float physicalX, float physicalY);
 
     protected:
 
@@ -57,25 +57,25 @@ namespace OpenGC
 		
 	/** Convert mercator coordinates in meters into pixels relative to
 	 *  gauge center (where the aircraft is) */
-	void PointToPixelCoord(double objNorthing, double objEasting, double &xPos, double &yPos);
+	void PointToPixelCoord(float objNorthing, float objEasting, float &xPos, float &yPos);
 
 	/** Check if an object is visible */
-	bool PixelCoordIsVisible(double xPos, double yPos);
+	bool PixelCoordIsVisible(float xPos, float yPos);
 		
 	//////////// Variables ////////////////////////////////////////////////
 		
 	/** The height (and width) of the component in nautical miles */
-	double m_SizeNM;
+	float m_SizeNM;
 
 	/** The font number provided to us by the font manager */
 	int m_Font;
 
 	/** Coordinates etc. used in graphics functions */
-	double aircraftLat, aircraftLon, aircraftHeading;
-	double mercatorNorthing, mercatorEasting;
+	float aircraftLat, aircraftLon, aircraftHeading;
+	float mercatorNorthing, mercatorEasting;
 		
 	/** Compile-time layout options */
-	static double CENTER_X, CENTER_Y, OVERLAY_Y;
+	static float CENTER_X, CENTER_Y, OVERLAY_Y;
 	static int compass_interval; // interval in degrees between compass markings
 	
 	/** Raster map tile texture handles */

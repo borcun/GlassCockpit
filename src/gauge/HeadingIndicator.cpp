@@ -70,13 +70,13 @@ namespace OpenGC
      * factor between "gauge" degrees and "display" degrees.
      */
 
-    const double centerX = 60;
-    const double centerY = -35;
-    const double radius = 70.0;
-    const double indicatorDegreesPerTrueDegrees = 1.5;
+    const float centerX = 60;
+    const float centerY = -35;
+    const float radius = 70.0;
+    const float indicatorDegreesPerTrueDegrees = 1.5;
 
-    const double bigFontSize = 5.0;
-    const double littleFontSize = 3.5;
+    const float bigFontSize = 5.0;
+    const float littleFontSize = 3.5;
 
     char buffer[32];
 
@@ -107,11 +107,11 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_LINE_LOOP, 0, 3);
 
-    double heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
+    float heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
 
     // -----------Draw the detents around the circle-----------------------------
     // Figure out the nearest heading that's a multiple of 10
-    double nearestTen = (double)( (int)heading - (int)heading % 10);
+    float nearestTen = (float)( (int)heading - (int)heading % 10);
 
     // Derotate by this offset
     glRotated((heading - nearestTen) * indicatorDegreesPerTrueDegrees,0,0,1);
@@ -124,7 +124,7 @@ namespace OpenGC
     for(int i = (int)nearestTen - 40; i<=nearestTen+40; i+=5)
       {
 	// The length of the tickmarks on the compass rose
-	double tickLength;
+	float tickLength;
 
 	// Make sure the display heading is between 0 and 360
 	int displayHeading = (i+720)%360;
@@ -135,7 +135,7 @@ namespace OpenGC
 	    tickLength = 4;
 
 	    // The x-position of the font (depends on the number of characters in the heading)
-	    double fontx;
+	    float fontx;
 
 	    // Convert the display heading to a string
 	    //_itoa( displayHeading/10, buffer, 10);

@@ -56,7 +56,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
+    float value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;
@@ -92,8 +92,8 @@ namespace OpenGC
     aCircle->Render(GL_TRIANGLE_FAN);
 
     // White line that is this needle of the dial
-    double degree = minDegrees + ((maxDegrees - minDegrees) * (value / (m_Max-m_Min)));
-    double radians = degree * DEG_TO_RAD;
+    float degree = minDegrees + ((maxDegrees - minDegrees) * (value / (m_Max-m_Min)));
+    float radians = degree * DEG_TO_RAD;
     glColor3ub(255, 255, 255);
     glLineWidth(2.0);
     const float vertices[] = {0, 0, R * sin(radians), R * cos(radians)};
@@ -123,10 +123,10 @@ namespace OpenGC
   void PieDial::RenderTicks(CircleEvaluator *circ)
   {
     // yellow stripe
-    double percentagey = m_MinYellow / (m_Max - m_Min) ;
-    double degreeyellow = minDegrees + ((maxDegrees - minDegrees) * percentagey);
+    float percentagey = m_MinYellow / (m_Max - m_Min) ;
+    float degreeyellow = minDegrees + ((maxDegrees - minDegrees) * percentagey);
     glColor3ub(247, 231, 8);
-    double radians = degreeyellow * DEG_TO_RAD;
+    float radians = degreeyellow * DEG_TO_RAD;
     const float vertices[] = {
       R * sin(radians), R * cos(radians),
       (R + 4) * sin(radians), (R + 4) * cos(radians)
@@ -135,8 +135,8 @@ namespace OpenGC
     glDrawArrays(GL_LINE_STRIP, 0, 2);
 
     // red stripe
-    double percentager = m_MinRed / (m_Max - m_Min) ;
-    double degreered =  minDegrees + ((maxDegrees - minDegrees) * percentager);
+    float percentager = m_MinRed / (m_Max - m_Min) ;
+    float degreered =  minDegrees + ((maxDegrees - minDegrees) * percentager);
     radians = degreered * DEG_TO_RAD;
     glColor3ub(255, 0, 0);
     const float vertices2[] = {

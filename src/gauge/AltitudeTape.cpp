@@ -73,24 +73,26 @@ namespace OpenGC
       m_PhysicalSize.first, 0.0,
       0.0, 0.0
     };
+
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_POLYGON, 0, 5);	
 	
     // Tick marks are spaced every 100 ft. vertically
     // The tick spacing represents how far apart they are in physical
     // units
-    const double tickSpacing = 17.0, tickWidth = 3.7, fontHeight = 4, fontWidth = 3.5, fontIndent = 4.5;
+    const float tickSpacing = 17.0, tickWidth = 3.7, fontHeight = 4, fontWidth = 3.5, fontIndent = 4.5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
     Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
 
     int nextHighestAlt = (alt/100)*100;
+
     if (nextHighestAlt < alt)
       nextHighestAlt += 100;
 
     // The vertical offset is how high in physical units the next highest 100's
     // altitude is above the arrow
-    double vertOffset = ( (double)nextHighestAlt - (double)alt)/100*tickSpacing;
+    float vertOffset = ((float) nextHighestAlt - (float) alt) / 100 * tickSpacing;
 
     glColor3ub(255,255,255);
     glLineWidth(2.0);
@@ -99,8 +101,8 @@ namespace OpenGC
     for (int i = -numTicks/2; i <= numTicks/2; i++)
       {
 	int tickAlt = nextHighestAlt + i * 100;
-	double tickLocation = (m_PhysicalSize.second/2) + i * tickSpacing + vertOffset;
-	double texty = tickLocation - fontHeight / 2;
+	float tickLocation = (m_PhysicalSize.second/2) + i * tickSpacing + vertOffset;
+	float texty = tickLocation - fontHeight / 2;
 		
 	if (tickAlt >= 0)
 	  {

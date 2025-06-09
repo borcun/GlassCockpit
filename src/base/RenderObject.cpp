@@ -38,19 +38,19 @@ OpenGC::RenderObject::~RenderObject() {
   
 }
 
-void OpenGC::RenderObject::SetUnitsPerPixel(const double unitsPerPixel) {
+void OpenGC::RenderObject::SetUnitsPerPixel(const float unitsPerPixel) {
   m_UnitsPerPixel = unitsPerPixel;
   return;
 }
 
-void OpenGC::RenderObject::SetScale(const double xScale, const double yScale) {
+void OpenGC::RenderObject::SetScale(const float xScale, const float yScale) {
   if(xScale > 0.0) { m_Scale.first = xScale; }
   if(yScale > 0.0) { m_Scale.second = yScale; }
 
   return;
 }
 
-void OpenGC::RenderObject::SetPosition(const double xPos, const double yPos) {
+void OpenGC::RenderObject::SetPosition(const float xPos, const float yPos) {
   m_PhysicalPosition.first = xPos;
   m_PhysicalPosition.second = yPos;
 
@@ -62,7 +62,7 @@ void OpenGC::RenderObject::SetParentRenderObject(RenderObject* pObject) {
   return;
 }
 
-std::pair<double, double> OpenGC::RenderObject::GetPhysicalPosition(void) {
+std::pair<float, float> OpenGC::RenderObject::GetPhysicalPosition(void) {
   return m_PhysicalPosition;
 }
 
@@ -70,10 +70,10 @@ std::pair<double, double> OpenGC::RenderObject::GetPhysicalPosition(void) {
 void OpenGC::RenderObject::HandleMouseButton(const int button, const int state, const int x, const int y) {
   if (ClickTest(button, state, x, y)) {
     // Convert the click to an x/y position in render object physical coordinates
-    double physX, physY;
+    float physX, physY;
 	
-    physX = (((double) x - (double) m_PixelPosition.first) / (double) m_PixelSize.first) * m_PhysicalSize.first;
-    physY = (((double) y - (double) m_PixelPosition.second) / (double) m_PixelSize.second) * m_PhysicalSize.second;
+    physX = ((x - m_PixelPosition.first) / m_PixelSize.first) * m_PhysicalSize.first;
+    physY = ((y - m_PixelPosition.second) / m_PixelSize.second) * m_PhysicalSize.second;
 
     if(0 == state) {
       this->OnMouseDown(button, physX, physY);
@@ -87,13 +87,13 @@ void OpenGC::RenderObject::HandleMouseButton(const int button, const int state, 
 }
 
 // Called when a mouse "down" event occurs
-void OpenGC::RenderObject::OnMouseDown(const int button, const double physicalX, const double physicalY) {
+void OpenGC::RenderObject::OnMouseDown(const int button, const float physicalX, const float physicalY) {
   // The default version of this doesn't do anything
   // Overload to provide specific functionality
 }
 
 // Called when a mouse "up" event occurs
-void OpenGC::RenderObject::OnMouseUp(const int button, const double physicalX, const double physicalY) {
+void OpenGC::RenderObject::OnMouseUp(const int button, const float physicalX, const float physicalY) {
   // The default version of this doesn't do anything
   // Overload to provide specific functionality
 }

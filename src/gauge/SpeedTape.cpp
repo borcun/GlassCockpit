@@ -56,7 +56,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // Speed for floating point calculations
-    double airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
+    float airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
 
     // The speed tape doesn't show speeds greater than 1999 knots
     if(airspeed > 1999.0)
@@ -83,19 +83,19 @@ namespace OpenGC
     // Tick marks are space every 10 kph vertically
     // The tick spacing represents how far apart they are in physical
     // units
-    const double tickSpacing = 11.3, tickWidth = 3.7, fontHeight = 5, fontWidth = 4.1, fontIndent = 5;
+    const float tickSpacing = 11.3, tickWidth = 3.7, fontHeight = 5, fontWidth = 4.1, fontIndent = 5;
     const int numTicks = m_PhysicalSize.second / tickSpacing;
 
     Globals::font_manager->SetSize(m_Font, fontHeight, fontWidth);
 
-    double nextHighestAirspeed = (((int)airspeed) / 10) * 10;
+    float nextHighestAirspeed = (((int)airspeed) / 10) * 10;
     if (nextHighestAirspeed < airspeed)
       nextHighestAirspeed += 10;
 
     // The vertical offset is how high in physical units the next highest 10's
     // airspeed is above the arrow. For airspeeds divisible by 10, this is 0. I.e. 120, 130
     // etc. are all aligned with the arrow
-    double vertOffset = (nextHighestAirspeed - airspeed) * tickSpacing / 10.f;
+    float vertOffset = (nextHighestAirspeed - airspeed) * tickSpacing / 10.f;
 
     glColor3ub(255,255,255);
     glLineWidth(2.0);
@@ -104,8 +104,8 @@ namespace OpenGC
     for (int i = -numTicks/2; i <= numTicks/2; i++)
       {
 	int tickSpeed = nextHighestAirspeed + i * 10;
-	double tickLocation = (m_PhysicalSize.second/2) + i * tickSpacing + vertOffset;
-	double texty = tickLocation - fontHeight / 2;
+	float tickLocation = (m_PhysicalSize.second/2) + i * tickSpacing + vertOffset;
+	float texty = tickLocation - fontHeight / 2;
 		
 	if (tickSpeed >= 0)
 	  {

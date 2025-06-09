@@ -67,9 +67,9 @@ namespace OpenGC
     /** Add a gauge component */
     void AddGaugeComponent(GaugeComponent* pComponent);
     /** Overloaded method for setting the monitor calibration */
-    void SetUnitsPerPixel(const double unitsPerPixel) override;
+    void SetUnitsPerPixel(const float unitsPerPixel) override;
     /** Set the x and y scale of the gauge (and member components) */
-    void SetScale(const double xScale, const double yScale) override;
+    void SetScale(const float xScale, const float yScale) override;
     /** Overloaded render method */
     void Render() override;
     /** Return true if the click is inside the gauge

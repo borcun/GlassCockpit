@@ -91,7 +91,7 @@ namespace OpenGC
 
     glColor3ub( 255, 255, 255 );
 
-    double Vertical_Speed_FPM = Globals::data_source->GetAirframe()->GetVertical_Speed_FPM();
+    float Vertical_Speed_FPM = Globals::data_source->GetAirframe()->GetVertical_Speed_FPM();
 
     char buffer[5];
 
@@ -120,14 +120,14 @@ namespace OpenGC
     glLineWidth(3.5);
     const float vertices4[] = {
       // Horizontal center detent
-      5.0, VSpeedToNeedle(0.0) + 1.75,
-      10.0, VSpeedToNeedle(0.0) + 1.75,
+      5.0, VSpeedToNeedle(0.0) + 1.75f,
+      10.0, VSpeedToNeedle(0.0) + 1.75f,
 
       // Next draw the angled line that indicates climb rate
       // We need to add 1.75 to the calculated needle position because of how
       // GL interprets the line width
-      5.0, VSpeedToNeedle(Vertical_Speed_FPM) + 1.75,
-      30.0, m_NeedleCenter + 1.75
+      5.0, VSpeedToNeedle(Vertical_Speed_FPM) + 1.75f,
+      30.0, m_NeedleCenter + 1.75f
     };
     glVertexPointer(2, GL_FLOAT, 0, &vertices4);
     glDrawArrays(GL_LINES, 0, 4);
@@ -135,9 +135,9 @@ namespace OpenGC
     glPopMatrix();
   }
 
-  double VSI::VSpeedToNeedle(double vspd)
+  float VSI::VSpeedToNeedle(float vspd)
   {
-    double needle;
+    float needle;
 
     if(vspd>=0)
       {

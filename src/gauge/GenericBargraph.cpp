@@ -63,7 +63,7 @@ namespace OpenGC
     if (value > m_Max)
       value = m_Max;
 
-    const double boxY = 25.0, boxX = 6.0, stripeX = 3.0, boxOffsetX = 2.0, gapY = 1.5;
+    const float boxY = 25.0, boxX = 6.0, stripeX = 3.0, boxOffsetX = 2.0, gapY = 1.5;
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
@@ -78,13 +78,13 @@ namespace OpenGC
       glColor3ub(255, 20, 20); // red
 
     // draw the filled box
-    double fillY = (value - m_Min) / m_Max * boxY;
+    float fillY = (value - m_Min) / m_Max * boxY;
     const float vertices[] = {stripeX,0.0,   boxX+stripeX,0.0,   boxX+stripeX,fillY,   stripeX,fillY};
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_POLYGON, 0, 4);
 
     // yellow stripe
-    double yellowStripeY = (m_MaxYellow - m_Min) / m_Max * boxY;
+    float yellowStripeY = (m_MaxYellow - m_Min) / m_Max * boxY;
     glColor3ub(247, 231, 8);
     glLineWidth(2.0);
     const float vertices2[] = {0.0,yellowStripeY,   stripeX,yellowStripeY};
@@ -92,7 +92,7 @@ namespace OpenGC
     glDrawArrays(GL_LINES, 0, 2);
 
     // red stripe
-    double redStripeY = (m_MaxRed - m_Min) / m_Max * boxY;
+    float redStripeY = (m_MaxRed - m_Min) / m_Max * boxY;
     glColor3ub(255, 0, 0);
     const float vertices3[] = {0.0,redStripeY,   stripeX,redStripeY};
     glVertexPointer(2, GL_FLOAT, 0, &vertices3);
