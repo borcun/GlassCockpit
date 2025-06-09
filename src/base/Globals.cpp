@@ -25,13 +25,11 @@
 
 OpenGC::Globals *OpenGC::Globals::m_instance = nullptr;
 OpenGC::DataSource *OpenGC::Globals::data_source = nullptr;
-OpenGC::RasterMapManager *OpenGC::Globals::raster_map_manager = nullptr;
 OpenGC::CircleEvaluator *OpenGC::Globals::circle_evaluator = nullptr;
 OpenGC::MessageableList *OpenGC::Globals::messageable_list = nullptr;
 
 OpenGC::Globals::Globals(void) {
   circle_evaluator = new CircleEvaluator();
-  raster_map_manager = new RasterMapManager();
   messageable_list = new MessageableList();
   data_source = nullptr;
 }
@@ -42,11 +40,6 @@ OpenGC::Globals::~Globals() {
     data_source = nullptr;
   }
   
-  if (nullptr != raster_map_manager) {
-    delete raster_map_manager;
-    raster_map_manager = nullptr;
-  }
-
   if (nullptr != circle_evaluator) {
     delete circle_evaluator;
     circle_evaluator = nullptr;

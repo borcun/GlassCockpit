@@ -29,6 +29,7 @@
 #include "AppObject.h"
 #include "Globals.h"
 #include "PrefManager.h"
+#include "RasterMapManager.h"
 #include "Messageable.h"
 #include "XMLParser.h"
 
@@ -99,8 +100,8 @@ int main(int argc, char* argv[])
     }
 
   // Set RasterMaps path
-  Globals::raster_map_manager->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-					  PrefManager::getInstance()->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+  RasterMapManager::getInstance()->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
+						PrefManager::getInstance()->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
 
   // FIXME debug:
   PrefManager::getInstance()->PrintAll();

@@ -27,6 +27,7 @@
 
 #include "Globals.h"
 #include "NavDatabase.h"
+#include "RasterMapManager.h"
 #include "Constants.h"
 #include "CircleEvaluator.h"
 #include "data_source.h"
@@ -411,8 +412,10 @@ namespace OpenGC
     unsigned int x, y; float fx, fy;
     unsigned int z = 13;
 	
-    Globals::raster_map_manager->GetTileCoordsForLatLon(x, y, fx, fy, 
-							Globals::data_source->GetAirframe()->GetLatitude(), Globals::data_source->GetAirframe()->GetLongitude(), z);
+    RasterMapManager::getInstance()->GetTileCoordsForLatLon(x, y, fx, fy, 
+							    Globals::data_source->GetAirframe()->GetLatitude(),
+							    Globals::data_source->GetAirframe()->GetLongitude(),
+							    z);
 	
     //----------------------------------
     // This is a Demo Mode hack...
@@ -428,7 +431,7 @@ namespace OpenGC
 	  {
 	    for (int dy = -3; dy <= 3; dy++)
 	      {
-		RasterMapTile *tile = Globals::raster_map_manager->GetTile(z, x+dx, y+dy);
+		RasterMapTile *tile = RasterMapManager::getInstance()->GetTile(z, x+dx, y+dy);
 		if (tile != NULL)
 		  {
 		    glBindTexture(GL_TEXTURE_2D, m_TileTextures[ident]);

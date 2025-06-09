@@ -40,13 +40,26 @@ typedef struct {
 
 
 namespace OpenGC {
-
+  RasterMapManager *RasterMapManager::m_instance = nullptr;
+  
   RasterMapManager::RasterMapManager()
     : m_Ready(false)
   {
 
   }
 
+  RasterMapManager::~RasterMapManager() {
+
+  }
+  
+  RasterMapManager *RasterMapManager::getInstance(void) {
+    if (nullptr == m_instance) {
+      m_instance = new RasterMapManager();
+    }
+
+    return m_instance;
+  }
+  
   void RasterMapManager::SetCachePath(CacheFormat format, const std::string& path, const std::string& mapType)
   {
     if (format == RMM_CACHE_MGMAPS)
