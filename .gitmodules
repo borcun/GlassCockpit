@@ -1,6 +1,0 @@
-[submodule "ext/tinyjpeg"]
-	path = ext/tinyjpeg
-	url = https://github.com/borcun/tinyjpeg.git
-[submodule "ext/libshape"]
-	path = ext/libshape
-	url = https://github.com/borcun/libshape.git
