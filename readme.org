@@ -33,5 +33,5 @@ Version 3 <http://www.gnu.org/licenses/gpl.html>.
  - libfltk-dev libxml2-dev libftgl2-dev libz-dev
 
 #+CAPTION: Screenshot
-[[.output.png]]
+[[output.png]]
 
