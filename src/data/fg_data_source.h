@@ -34,9 +34,9 @@ namespace OpenGC {
     FGDataSource(void);
     virtual ~FGDataSource();
     // Open the network connection
-    bool Open(void) override;
+    bool open(void) override;
     // The "money" function
-    bool OnIdle(void) override; 
+    bool onIdle(void) override; 
 
   protected:
     // Flight model data received from FlightGear

@@ -6,7 +6,7 @@ namespace OpenGC {
   class AirframeDataContainer {
   public:
     AirframeDataContainer() {}
-    ~AirframeDataContainer()  {}
+    ~AirframeDataContainer() {}
     
     // Heading and Location
     GENPROP(Roll, float, 0.0f); // Roll in degrees around the axis of flight, right roll +

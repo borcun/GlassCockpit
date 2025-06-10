@@ -1,5 +1,4 @@
 #include "RenderObject.h"
-#include "Debug.h"
 
 OpenGC::RenderObject::RenderObject(void) {
   m_UnitsPerPixel = 1.0;

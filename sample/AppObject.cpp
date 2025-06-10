@@ -75,7 +75,7 @@ namespace OpenGC {
 
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_FG);
 	
-      if (!DataSourceManager::getInstance()->getDataSource()->Open()) {
+      if (!DataSourceManager::getInstance()->getDataSource()->open()) {
 	return false;
       }
 	
@@ -83,10 +83,20 @@ namespace OpenGC {
     }
     else if (dsName == "Albatross") {
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_ALBATROSS);
+
+      if (!DataSourceManager::getInstance()->getDataSource()->open()) {
+	return false;
+      }
+
       titleSuffix = (char *)" (Flight Mode)";
     }
     else if (dsName == "Test") {
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_TEST);
+
+      if (!DataSourceManager::getInstance()->getDataSource()->open()) {
+	return false;
+      }
+
       titleSuffix = (char *)" (Test)";
     }
     else {
@@ -173,7 +183,7 @@ namespace OpenGC {
   void AppObject::IdleFunction()
   {
     // Every time we loop we grab some new data...
-    bool changed1 = DataSourceManager::getInstance()->getDataSource()->OnIdle();
+    bool changed1 = DataSourceManager::getInstance()->getDataSource()->onIdle();
 
     // ...calculate extra data from the incoming data...
     AirframeDataContainer* data = DataSourceManager::getInstance()->getDataSource()->GetAirframe();

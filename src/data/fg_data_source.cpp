@@ -1,26 +1,3 @@
-/*=========================================================================
-
-  Copyright (c) 2001-2004 Damion Shelton
-  Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
-  All rights reserved.
-  
-  This project is distributed under the terms of the GNU General Public License
-  Version 3 <http://www.gnu.org/licenses/gpl.html>.
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, specifically version 3 of the License.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  =========================================================================*/
-
 /**
  * Sets up the data class structure and methods for receiving a UDP data
  * packet transmitted by the simulation program.
@@ -52,7 +29,7 @@ OpenGC::FGDataSource::~FGDataSource() {
   delete[] m_TempMsg;
 }
 
-bool OpenGC::FGDataSource::Open(void) {
+bool OpenGC::FGDataSource::open(void) {
   // Get the host:port string from the Config system and parse it
   m_Host = PrefManager::getInstance()->GetPrefS("FlightGearHost");
   m_ReceivePort = PrefManager::getInstance()->GetPrefI("FlightGearPort");
@@ -135,7 +112,7 @@ bool OpenGC::FGDataSource::GetData() {
   return false;
 }
 
-bool OpenGC::FGDataSource::OnIdle() {
+bool OpenGC::FGDataSource::onIdle(void) {
   // Abort if the connection isn't valid
   if (!m_ValidConnection) {
     return false;
