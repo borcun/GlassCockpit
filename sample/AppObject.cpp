@@ -37,29 +37,17 @@
 #include "NavDisplay.h"
 #include "EngineInstruments.h"
 
-namespace OpenGC
-{
-
-  AppObject::AppObject()
-  {
+namespace OpenGC {
+  AppObject::AppObject() {
     // Make sure all the pointers are nulled out
     m_pRenderWindow = 0;
-    m_CalcManager = 0;
   }
 
-  AppObject::~AppObject()
-  {
-    if(m_pRenderWindow != 0)
-      {
-	delete m_pRenderWindow;
-	m_pRenderWindow = 0;
-      }
-
-    if (m_CalcManager != 0)
-      {
-	delete m_CalcManager;
-	m_CalcManager = 0;
-      }
+  AppObject::~AppObject() {
+    if(m_pRenderWindow != 0) {
+      delete m_pRenderWindow;
+      m_pRenderWindow = 0;
+    }
   }
 
   bool AppObject::Go(XMLNode rootNode)
@@ -105,10 +93,6 @@ namespace OpenGC
       printf("Invalid data source \"%s\".\n", dsName.c_str());
       return false;
     }
-
-    // Create the data calculations manager (CalcManager)
-    m_CalcManager = new CalcManager();
-    m_CalcManager->InitFromXMLNode(XMLNode() /*FIXME*/);
 
     // Set up the window title
     XMLNode windowNode = rootNode.GetChild("Window");
@@ -192,10 +176,16 @@ namespace OpenGC
     bool changed1 = DataSourceManager::getInstance()->getDataSource()->OnIdle();
 
     // ...calculate extra data from the incoming data...
-    bool changed2 = m_CalcManager->Calculate();
+    AirframeDataContainer* data = DataSourceManager::getInstance()->getDataSource()->GetAirframe();
+    // FIXME this isn't really the right place for this...
+    double lat = data->GetLatitude();
+    double lon = data->GetLongitude();
+    CoursePoint p = CoursePoint(lat, lon);
+
+    NavDatabase::getInstance()->GetFlightCourse()->push_back(p);
 
     // and re-render the window if there is new data.
-    if(changed1 || changed2) {
+    if(changed1) {
       m_pRenderWindow->redraw();
       Fl::flush();
     }

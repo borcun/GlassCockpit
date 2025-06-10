@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include "CalcManager.h"
 #include "FLTKRenderWindow.h"
 #include "XMLNode.h"
 
@@ -23,7 +22,5 @@ namespace OpenGC {
   private:
     /** Main pieces of the application */
     FLTKRenderWindow* m_pRenderWindow;
-    /** Object to manage AirframeData variables calculated from other variables */
-    CalcManager* m_CalcManager;
   };
 }
