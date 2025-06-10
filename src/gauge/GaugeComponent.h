@@ -35,7 +35,6 @@
 #define GAUGE_COMPONENT_H
 
 #include "FontManager.h"
-#include "data_source.h"
 #include "RenderObject.h"
 
 namespace OpenGC {

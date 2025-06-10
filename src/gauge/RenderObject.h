@@ -27,8 +27,7 @@
  * this includes Gauges and GaugeComponents.
  */
 
-#ifndef RenderObject_h
-#define RenderObject_h
+#pragma once
 
 #include <utility>
 #include "GLHeaders.h"
@@ -76,5 +75,3 @@ namespace OpenGC {
     std::pair<unsigned int, unsigned int> m_PixelSize;
   };
 }
-
-#endif
