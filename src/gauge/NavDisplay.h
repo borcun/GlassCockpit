@@ -1,26 +1,3 @@
-/*=========================================================================
-
-  Copyright (c) 2001-2004 Damion Shelton
-  Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
-  All rights reserved.
-  
-  This project is distributed under the terms of the GNU General Public License
-  Version 3 <http://www.gnu.org/licenses/gpl.html>.
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, specifically version 3 of the License.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  =========================================================================*/
-
 #ifndef NavDisplay_h
 #define NavDisplay_h
 
@@ -29,60 +6,60 @@
 namespace OpenGC
 {
 
-    class NavDisplay : public Gauge
-    {
-    public:
+  class NavDisplay : public Gauge
+  {
+  public:
 
-	NavDisplay();
-	virtual ~NavDisplay();
+    NavDisplay();
+    virtual ~NavDisplay();
 
-	void Render();
+    void Render();
 
-	/** Called if the down mouse click applies to this object */
-	void OnMouseDown(int button, float physicalX, float physicalY);
+    /** Called if the down mouse click applies to this object */
+    void OnMouseDown(int button, float physicalX, float physicalY);
 
-    protected:
+  protected:
 
-	//////////// Graphics Functions ///////////////////////////////////////
+    //////////// Graphics Functions ///////////////////////////////////////
 
-	void PlotCourse();
-	void PlotWaypoints();
-	void PlotWindSpeedDirection();
-	void PlotMap();
+    void PlotCourse();
+    void PlotWaypoints();
+    void PlotWindSpeedDirection();
+    void PlotMap();
 
-	/** Display geographic objects such as airports or navaids on the map */
-	void PlotGeoObjs(std::list<GeographicObject*>& geoList);
+    /** Display geographic objects such as airports or navaids on the map */
+    void PlotGeoObjs(std::list<GeographicObject*>& geoList);
 
-	//////////// Helper functions /////////////////////////////////////////
+    //////////// Helper functions /////////////////////////////////////////
 		
-	/** Convert mercator coordinates in meters into pixels relative to
-	 *  gauge center (where the aircraft is) */
-	void PointToPixelCoord(float objNorthing, float objEasting, float &xPos, float &yPos);
+    /** Convert mercator coordinates in meters into pixels relative to
+     *  gauge center (where the aircraft is) */
+    void PointToPixelCoord(float objNorthing, float objEasting, float &xPos, float &yPos);
 
-	/** Check if an object is visible */
-	bool PixelCoordIsVisible(float xPos, float yPos);
+    /** Check if an object is visible */
+    bool PixelCoordIsVisible(float xPos, float yPos);
 		
-	//////////// Variables ////////////////////////////////////////////////
+    //////////// Variables ////////////////////////////////////////////////
 		
-	/** The height (and width) of the component in nautical miles */
-	float m_SizeNM;
+    /** The height (and width) of the component in nautical miles */
+    float m_SizeNM;
 
-	/** The font number provided to us by the font manager */
-	int m_Font;
+    /** The font number provided to us by the font manager */
+    int m_Font;
 
-	/** Coordinates etc. used in graphics functions */
-	float aircraftLat, aircraftLon, aircraftHeading;
-	float mercatorNorthing, mercatorEasting;
+    /** Coordinates etc. used in graphics functions */
+    float aircraftLat, aircraftLon, aircraftHeading;
+    float mercatorNorthing, mercatorEasting;
 		
-	/** Compile-time layout options */
-	static float CENTER_X, CENTER_Y, OVERLAY_Y;
-	static int compass_interval; // interval in degrees between compass markings
+    /** Compile-time layout options */
+    static float CENTER_X, CENTER_Y, OVERLAY_Y;
+    static int compass_interval; // interval in degrees between compass markings
 	
-	/** Raster map tile texture handles */
-	static GLuint m_TileTextures[49];
-	static bool m_TilesInitted;
+    /** Raster map tile texture handles */
+    static GLuint m_TileTextures[49];
+    static bool m_TilesInitted;
 	
-    };
+  };
 
 } // end namespace OpenGC
 
