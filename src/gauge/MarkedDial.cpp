@@ -21,7 +21,7 @@
   =========================================================================*/
 
 #include <math.h>
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "MarkedDial.h"
 #include "CircleEvaluator.h"
 #include "Constants.h"
@@ -58,7 +58,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    float value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
+    float value = CALL_MEMBER_FN(DataSourceManager::getInstance()->getDataSource()->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;

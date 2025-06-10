@@ -21,7 +21,7 @@
 
   =========================================================================*/
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GLHeaders.h"
 #include <stdio.h>
 #include <math.h>
@@ -91,7 +91,7 @@ namespace OpenGC
 
     glColor3ub( 255, 255, 255 );
 
-    float Vertical_Speed_FPM = Globals::data_source->GetAirframe()->GetVertical_Speed_FPM();
+    float Vertical_Speed_FPM = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetVertical_Speed_FPM();
 
     char buffer[5];
 

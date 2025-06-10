@@ -32,7 +32,6 @@
 #include <iostream>
 #include "fg_data_source.h"
 #include "Constants.h"
-#include "Globals.h"
 #include "PrefManager.h"
 #include "Debug.h"
 
@@ -59,8 +58,7 @@ bool OpenGC::FGDataSource::Open(void) {
   m_ReceivePort = PrefManager::getInstance()->GetPrefI("FlightGearPort");
     
   if (true) {
-    printf("FGDataSourse: host \"%s\", port %d\n", 
-	   m_Host.c_str(), m_ReceivePort);
+    printf("FGDataSourse: host \"%s\", port %d\n", m_Host.c_str(), m_ReceivePort);
   }
   else {
     std::cerr << "FGDataSource: invalid configuration.\n";

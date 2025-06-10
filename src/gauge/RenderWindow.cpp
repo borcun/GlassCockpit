@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "MessageableList.h"
 #include "GLHeaders.h"
 #include "Gauge.h"

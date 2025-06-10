@@ -21,7 +21,7 @@
   =========================================================================*/
 
 #include <math.h>
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "NavDatabase.h"
 #include "CalcManager.h"
 
@@ -40,7 +40,7 @@ namespace OpenGC {
 	
   bool CalcManager::Calculate()
   {
-    AirframeDataContainer* data = Globals::data_source->GetAirframe();
+    AirframeDataContainer* data = DataSourceManager::getInstance()->getDataSource()->GetAirframe();
 	
     // FIXME this isn't really the right place for this...
     double lat = data->GetLatitude();

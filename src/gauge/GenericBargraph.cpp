@@ -20,7 +20,7 @@
 
   =========================================================================*/
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GLHeaders.h"
 #include "GenericBargraph.h"
 
@@ -56,7 +56,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    double value = CALL_MEMBER_FN(Globals::data_source->GetAirframe(), m_DataFn)();
+    double value = CALL_MEMBER_FN(DataSourceManager::getInstance()->getDataSource()->GetAirframe(), m_DataFn)();
 
     if (value < m_Min)
       value = m_Min;

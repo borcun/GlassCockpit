@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GaugeComponent.h"
 #include "AltitudeTicker.h"
 
@@ -84,7 +84,7 @@ namespace OpenGC
     FontManager::getInstance()->SetSize(m_Font, 6.0, bigFontHeight);
 
     // Get the data
-    float alt_f = Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
+    float alt_f = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAltitude_MSL_Feet();
     long int alt = (long int)alt_f;
 
     // Draw text in white

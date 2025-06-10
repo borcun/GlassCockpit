@@ -22,7 +22,7 @@
   =========================================================================*/
 
 #include <stdio.h>
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GaugeComponent.h"
 #include "CircleEvaluator.h"
 #include "ArtificialHorizon.h"
@@ -61,8 +61,8 @@ namespace OpenGC
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
 
-    double Roll = Globals::data_source->GetAirframe()->GetRoll();
-    double Pitch = Globals::data_source->GetAirframe()->GetPitch();
+    double Roll = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetRoll();
+    double Pitch = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetPitch();
 
     // Move to the center of the window
     glTranslated(47,49,0);
@@ -307,15 +307,15 @@ namespace OpenGC
     glEnd();
 
     //----------------Flight Director----------------
-    if (Globals::data_source->GetAirframe()->GetDirector_Active() == 1)
+    if (DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Active() == 1)
       {
 	// Reset the modelview matrix
 	glPopMatrix();
 	glPushMatrix();
 
 	// Get the data
-	double directorPitch = Globals::data_source->GetAirframe()->GetDirector_Pitch();
-	double directorRoll = Globals::data_source->GetAirframe()->GetDirector_Roll();
+	double directorPitch = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Pitch();
+	double directorRoll = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Roll();
 
 	// Move to the center of the window, move up/down for pitch, and rotate for roll
 	glTranslated(47,49 + directorPitch * 2.0, 0);

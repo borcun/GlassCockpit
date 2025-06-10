@@ -26,14 +26,14 @@
 #include "data_source.h"
 
 namespace OpenGC {
-    class AlbatrossDataSource : public DataSource {
-    public:
-	AlbatrossDataSource(void);
-	virtual ~AlbatrossDataSource();
+  class AlbatrossDataSource : public DataSource {
+  public:
+    AlbatrossDataSource(void);
+    virtual ~AlbatrossDataSource();
 
-	// The money function
-	bool OnIdle();
-    };
+    // The money function
+    bool OnIdle();
+  };
 }
 
 #endif

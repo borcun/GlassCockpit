@@ -20,7 +20,7 @@
 
   =========================================================================*/
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "FlightDirector.h"
 
 /** 
@@ -59,7 +59,7 @@ namespace OpenGC
   {
     GaugeComponent::Render();
 
-    AirframeDataContainer *data = Globals::data_source->GetAirframe();
+    AirframeDataContainer *data = DataSourceManager::getInstance()->getDataSource()->GetAirframe();
 
     const int ALT_X = 149;
     const int ALT_Y = 32;
@@ -74,12 +74,12 @@ namespace OpenGC
 	glLineWidth(1.0);
 		
 	// Get the data
-	double fdAlt = Globals::data_source->GetAirframe()->GetDirector_Altitude();
-	double alt = Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
-	double fdAirspeed = Globals::data_source->GetAirframe()->GetDirector_Airspeed();
-	double airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
-	double heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
-	double fdHeading = Globals::data_source->GetAirframe()->GetDirector_Heading();
+	double fdAlt = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Altitude();
+	double alt = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAltitude_MSL_Feet();
+	double fdAirspeed = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Airspeed();
+	double airspeed = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAirspeed_KT();
+	double heading = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetTrue_Heading();
+	double fdHeading = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetDirector_Heading();
 
 	///////////////////////////////////////////////////////////////////////
 	// Altitude marker

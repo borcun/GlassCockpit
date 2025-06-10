@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GaugeComponent.h"
 #include "SpeedTape.h"
 
@@ -56,7 +56,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // Speed for floating point calculations
-    float airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
+    float airspeed = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAirspeed_KT();
 
     // The speed tape doesn't show speeds greater than 1999 knots
     if(airspeed > 1999.0)

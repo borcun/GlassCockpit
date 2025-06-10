@@ -21,7 +21,7 @@
 
   =========================================================================*/
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GLHeaders.h"
 #include <stdio.h>
 #include <math.h>
@@ -106,7 +106,7 @@ namespace OpenGC
     glVertexPointer(2, GL_FLOAT, 0, &vertices);
     glDrawArrays(GL_LINE_LOOP, 0, 3);
 
-    float heading = Globals::data_source->GetAirframe()->GetTrue_Heading();
+    float heading = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetTrue_Heading();
 
     // -----------Draw the detents around the circle-----------------------------
     // Figure out the nearest heading that's a multiple of 10

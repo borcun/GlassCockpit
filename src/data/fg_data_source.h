@@ -29,34 +29,34 @@
 //#include <plib/netSocket.h>
 
 namespace OpenGC {
-    class FGDataSource : public DataSource {
-    public:
-	FGDataSource(void);
-	virtual ~FGDataSource();
-	// Open the network connection
-	bool Open(void) override;
-	// The "money" function
-	bool OnIdle(void) override; 
+  class FGDataSource : public DataSource {
+  public:
+    FGDataSource(void);
+    virtual ~FGDataSource();
+    // Open the network connection
+    bool Open(void) override;
+    // The "money" function
+    bool OnIdle(void) override; 
 
-    protected:
-	// Flight model data received from FlightGear
-	FGData *m_FDM;
-	// netSocket m_Socket;
-	// The host and port we're receiving on
-	std::string m_Host;
-	int m_ReceivePort;
-	// Are we connected to Flightgear?
-	bool m_ValidConnection;
-	// The message received from Flightgear
-	char *m_Buffer;
-	// A temporary buffer used in the receive process
-	char *m_TempMsg;
-	// Maximum length of the buffer
-	int m_BufferLength;
+  protected:
+    // Flight model data received from FlightGear
+    FGData *m_FDM;
+    // netSocket m_Socket;
+    // The host and port we're receiving on
+    std::string m_Host;
+    int m_ReceivePort;
+    // Are we connected to Flightgear?
+    bool m_ValidConnection;
+    // The message received from Flightgear
+    char *m_Buffer;
+    // A temporary buffer used in the receive process
+    char *m_TempMsg;
+    // Maximum length of the buffer
+    int m_BufferLength;
 
-	// Get data from FlightGear
-	bool GetData();
-    };
+    // Get data from FlightGear
+    bool GetData();
+  };
 }
 
 #endif

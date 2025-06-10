@@ -23,7 +23,7 @@
 #include "NavDatabase.h"
 #include "BinaryNavData.h"
 #include "Debug.h"
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "PrefManager.h"
 #include <stdio.h>
 #include <sys/stat.h> 

@@ -25,7 +25,7 @@
 #include <math.h>
 #include <string>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "NavDatabase.h"
 #include "RasterMapManager.h"
 #include "CircleEvaluator.h"
@@ -81,11 +81,11 @@ namespace OpenGC
     ///////////////////////////////////////////////////////////////////////////
 	
     // Get the heading
-    aircraftHeading = Globals::data_source->GetAirframe()->GetTrue_Heading();
+    aircraftHeading = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetTrue_Heading();
 
     // Where is the aircraft?
-    aircraftLat = Globals::data_source->GetAirframe()->GetLatitude();
-    aircraftLon = Globals::data_source->GetAirframe()->GetLongitude();
+    aircraftLat = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetLatitude();
+    aircraftLon = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetLongitude();
 
     // FIXME what was this all about??
     //	bool isInSouthernHemisphere = false;
@@ -259,9 +259,9 @@ namespace OpenGC
     // Ground speed and track text
     char buffer[20];
     FontManager::getInstance()->SetSize(m_Font, 5.0, 5.0);
-    sprintf(buffer, "TRACK %.0f", Globals::data_source->GetAirframe()->GetTrue_Heading() );
+    sprintf(buffer, "TRACK %.0f", DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetTrue_Heading() );
     FontManager::getInstance()->Print(2.0, 12.5, &buffer[0], m_Font);
-    sprintf(buffer, "GS %.0f", Globals::data_source->GetAirframe()->GetGround_Speed_MS() );
+    sprintf(buffer, "GS %.0f", DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetGround_Speed_MS() );
     FontManager::getInstance()->Print(2.0, 2.5, &buffer[0], m_Font);
 
     // Scale text
@@ -317,8 +317,8 @@ namespace OpenGC
   void NavDisplay::PlotWindSpeedDirection()
   {
     // Get the data
-    //	float windSpeed = Globals::data_source->GetAirframe()->GetWind_Speed();
-    float windDirection = Globals::data_source->GetAirframe()->GetWind_Direction();
+    //	float windSpeed = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetWind_Speed();
+    float windDirection = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetWind_Direction();
 	
     glPushMatrix();
     glTranslatef(170.0, OVERLAY_Y+10.0, 0.0);
@@ -414,8 +414,8 @@ namespace OpenGC
     unsigned int z = 13;
 	
     RasterMapManager::getInstance()->GetTileCoordsForLatLon(x, y, fx, fy, 
-							    Globals::data_source->GetAirframe()->GetLatitude(),
-							    Globals::data_source->GetAirframe()->GetLongitude(),
+							    DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetLatitude(),
+							    DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetLongitude(),
 							    z);
 	
     //----------------------------------

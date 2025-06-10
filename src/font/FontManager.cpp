@@ -26,7 +26,6 @@
 #include "Font.h"
 #include "FontManager.h"
 #include "PrefManager.h"
-#include "Globals.h"
 
 namespace OpenGC
 {

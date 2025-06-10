@@ -22,7 +22,7 @@
   =========================================================================*/
 
 #include <stdio.h>
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "PrefManager.h"
 #include "data_source.h"
 #include "Gauge.h"

@@ -27,31 +27,31 @@
 #include "airframe_data_container.h"
 
 namespace OpenGC {
-    class DataSource {
-    public:		
-	DataSource(void);
-	virtual ~DataSource();
+  class DataSource {
+  public:		
+    DataSource(void);
+    virtual ~DataSource();
 
-	/** Get access to airframe data */
-	AirframeDataContainer *GetAirframe(void) const;
+    /** Get access to airframe data */
+    AirframeDataContainer *GetAirframe(void) const;
 
-	/**
-	 * Called by the base AppObject after all the init parameters
-	 * have been complete. This should open the connection to the sim
-	 */
-	virtual bool Open();
+    /**
+     * Called by the base AppObject after all the init parameters
+     * have been complete. This should open the connection to the sim
+     */
+    virtual bool Open();
 
-	/**
-	 * Called by the render window during idle processing
-	 * This function is the one and only place where OpenGC
-	 * should acquire data from the sim
-	 */
-	virtual bool OnIdle();
+    /**
+     * Called by the render window during idle processing
+     * This function is the one and only place where OpenGC
+     * should acquire data from the sim
+     */
+    virtual bool OnIdle();
 
-    protected:
-	// Data that describes the airframe (alt, heading, control surfaces, etc.) 
-	AirframeDataContainer *m_airframe = nullptr;
-    };
+  protected:
+    // Data that describes the airframe (alt, heading, control surfaces, etc.) 
+    AirframeDataContainer *m_airframe = nullptr;
+  };
 
 } // end namespace OpenGC
 

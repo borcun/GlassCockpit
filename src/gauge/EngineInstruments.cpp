@@ -24,7 +24,7 @@
 #include <time.h>
 #include <sys/time.h>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "PrefManager.h"
 #include "Constants.h"
 #include "data_source.h"

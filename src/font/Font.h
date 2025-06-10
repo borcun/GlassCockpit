@@ -24,7 +24,6 @@
 /**
  * Wraps the FTGL font toolkit to make its interface fit well into the
  * OpenGC environment. Font's are accessed via the FontManager singleton,
- * which is accessible Globals.h: globals->m_FontManager
  */
 
 #ifndef Font_h

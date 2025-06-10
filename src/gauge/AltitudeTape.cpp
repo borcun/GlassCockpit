@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GaugeComponent.h"
 #include "AltitudeTape.h"
 
@@ -56,7 +56,7 @@ namespace OpenGC
     GaugeComponent::Render();
 
     // Get the altitude
-    long int alt = (long int) Globals::data_source->GetAirframe()->GetAltitude_MSL_Feet();
+    long int alt = (long int) DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAltitude_MSL_Feet();
 
     // Save matrix
     glMatrixMode(GL_MODELVIEW);

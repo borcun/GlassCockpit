@@ -26,24 +26,24 @@
 #include "data_source.h"
 
 namespace OpenGC {
-    enum TestState {
-	STATE_WAITING,
-	STATE_CONNECTING,
-	STATE_FD,
-	STATE_RUNNING
-    }; 
+  enum TestState {
+    STATE_WAITING,
+    STATE_CONNECTING,
+    STATE_FD,
+    STATE_RUNNING
+  }; 
 
-    class TestDataSource : public DataSource {
-    public:
-	TestDataSource(void);
-	virtual ~TestDataSource();
+  class TestDataSource : public DataSource {
+  public:
+    TestDataSource(void);
+    virtual ~TestDataSource();
 
-	// The money function
-	bool OnIdle();
+    // The money function
+    bool OnIdle();
 
-    private:
-	TestState m_state;
-    };
+  private:
+    TestState m_state;
+  };
 }
 
 #endif

@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 
-#include "Globals.h"
+#include "data_source_manager.h"
 #include "GaugeComponent.h"
 #include "SpeedTicker.h"
 
@@ -77,7 +77,7 @@ namespace OpenGC
     glDrawArrays(GL_LINE_STRIP, 0, 5);
 
     char buffer[4];
-    double airspeed = Globals::data_source->GetAirframe()->GetAirspeed_KT();
+    double airspeed = DataSourceManager::getInstance()->getDataSource()->GetAirframe()->GetAirspeed_KT();
 	
     if (airspeed > 999.0)
       airspeed = 999.0; 

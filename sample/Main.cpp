@@ -27,7 +27,6 @@
 
 #include "Debug.h"
 #include "AppObject.h"
-#include "Globals.h"
 #include "PrefManager.h"
 #include "RasterMapManager.h"
 #include "Messageable.h"
@@ -80,7 +79,6 @@ int main(int argc, char* argv[])
   }
 	
   // Construct the application
-  OpenGC::Globals::getInstance();
   theApp = new AppObject();
 	
   // Initialise preferences manager
