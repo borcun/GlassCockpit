@@ -1,4 +1,4 @@
-1. Description
+*Description*
 OpenGC is part of the groundstation software for the Albatross UAV project.
 OpenGC was originally authored by Damion Shelton for use by flight simulator
 enthusiasts in 2001-2004, and subsequently has been modified and improved to
@@ -7,7 +7,7 @@ the ground), or perhaps for use in the cockpit of piloted aircraft.
 
 To get an idea for what does not yet work, or work correctly, see the TODO file.
 
-2. Copyright
+*Copyright*
 Copyright (c) 2001-2004 Damion Shelton
 Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
 Copyright (c) 2025-present boo
@@ -29,8 +29,11 @@ Version 3 <http://www.gnu.org/licenses/gpl.html>.
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-3. Dependencies: 
- - libfltk-dev libxml2-dev libftgl2-dev libz-dev
+*Dependencies*
+ - libxml2-dev
+ - libftgl2-dev
+ - libz-dev
+ - libfltk-dev
 
 #+CAPTION: Screenshot
 [[output.png]]
