@@ -33,7 +33,6 @@ namespace OpenGC {
     virtual ~Globals();
 
     static DataSource *data_source;
-    static MessageableList *messageable_list;
 
   private:
     static Globals *m_instance;

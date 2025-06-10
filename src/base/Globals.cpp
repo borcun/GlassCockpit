@@ -25,10 +25,8 @@
 
 OpenGC::Globals *OpenGC::Globals::m_instance = nullptr;
 OpenGC::DataSource *OpenGC::Globals::data_source = nullptr;
-OpenGC::MessageableList *OpenGC::Globals::messageable_list = nullptr;
 
 OpenGC::Globals::Globals(void) {
-  messageable_list = new MessageableList();
   data_source = nullptr;
 }
 
@@ -36,11 +34,6 @@ OpenGC::Globals::~Globals() {
   if (nullptr != data_source) {
     delete data_source;
     data_source = nullptr;
-  }
-  
-  if (nullptr != messageable_list) {
-    delete messageable_list;
-    messageable_list = nullptr;
   }
 }
 

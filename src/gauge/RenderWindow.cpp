@@ -24,8 +24,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
-
 #include "Globals.h"
+#include "MessageableList.h"
 #include "GLHeaders.h"
 #include "Gauge.h"
 #include "RenderWindow.h"
@@ -226,7 +226,7 @@ namespace OpenGC
 	{
 	  if (modifiers & 0x04)
 	    {
-	      Globals::messageable_list->DispatchMessage(MSG_APP_QUIT, NULL);
+	      MessageableList::getInstance()->DispatchMessage(MSG_APP_QUIT, NULL);
 	      break;
 	    }
 	}
