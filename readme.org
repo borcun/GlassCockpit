@@ -1,14 +1,4 @@
-
-	OpenGC Glass Cockpit and Groundstation for the Albatross UAV
-	
-							Hugo Vincent
-							12 July 2010
-
-_______________________________________________________________________________
-
-	1.	Description
-_______________________________________________________________________________
-
+1. Description
 OpenGC is part of the groundstation software for the Albatross UAV project.
 OpenGC was originally authored by Damion Shelton for use by flight simulator
 enthusiasts in 2001-2004, and subsequently has been modified and improved to
@@ -17,13 +7,11 @@ the ground), or perhaps for use in the cockpit of piloted aircraft.
 
 To get an idea for what does not yet work, or work correctly, see the TODO file.
 
-_______________________________________________________________________________
-
-	2.	Copyright
-_______________________________________________________________________________
-
+2. Copyright
 Copyright (c) 2001-2004 Damion Shelton
 Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
+Copyright (c) 2025-present boo
+
 All rights reserved.
 
 This project is distributed under the terms of the GNU General Public License
@@ -41,20 +29,9 @@ Version 3 <http://www.gnu.org/licenses/gpl.html>.
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-_______________________________________________________________________________
+3. Dependencies: 
+ - libfltk-dev libxml2-dev libftgl2-dev libz-dev
 
-	2. How to build
-_______________________________________________________________________________
-
-0) Dependencies: On Ubuntu 10.10, these dependencies were needed:
-		$ sudo apt-get install libfltk-dev libxml2-dev libftgl2-dev libz-dev
-1) Compile:
-		$ <use cmake build system>
-2) Modify default paths in Data/Preferences.xml and Data/Default.xml
-3) Now run it in test mode:
-		$ ./PlatformSupport/Linux/build/GlassCockpit -t
-   or in flight mode:
-		$ ./PlatformSupport/Linux/build/GlassCockpit
-   or attach it to a running FlightGear simulator:
-		$ ./PlatformSupport/Linux/build/GlassCockpit -slocalhost:5800 # format is host:port
+#+CAPTION: Screenshot
+[[.output.png]]
 
