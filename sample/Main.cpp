@@ -29,10 +29,9 @@
 #include "AppObject.h"
 #include "PrefManager.h"
 #include "RasterMapManager.h"
-#include "Messageable.h"
 #include "XMLParser.h"
 
-#define DEFAULT_XML_FILE		(char*) "../resource/Default.xml"
+#define DEFAULT_XML_FILE	(char*) "../resource/Default.xml"
 #define PREFERENCES_XML_FILE	(char*) "../resource/Preferences.xml"
 
 using namespace OpenGC;
@@ -92,10 +91,9 @@ int main(int argc, char* argv[])
   Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
 	
   // Set the user-defined (in XML file) application preferences
-  if (parser.HasNode("/Preferences"))
-    {
-      PrefManager::getInstance()->SetPrefsFromXML(parser.GetNode("/Preferences"));
-    }
+  if (parser.HasNode("/Preferences")) {
+    PrefManager::getInstance()->SetPrefsFromXML(parser.GetNode("/Preferences"));
+  }
 
   // Set RasterMaps path
   RasterMapManager::getInstance()->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
@@ -110,6 +108,7 @@ int main(int argc, char* argv[])
   // Run up the application
   int retval;
   XMLNode rootNode = parser.GetNode("/");
+
   if (theApp->Go(rootNode)) {
     LogPrintf("Done, exiting cleanly.\n");
     retval = 0;

@@ -195,17 +195,12 @@ namespace OpenGC
     bool changed2 = m_CalcManager->Calculate();
 
     // and re-render the window if there is new data.
-    if(changed1 || changed2)
-      {
-	m_pRenderWindow->redraw();
-	Fl::flush();
-      }
+    if(changed1 || changed2) {
+      m_pRenderWindow->redraw();
+      Fl::flush();
+    }
+
+    return;
   }
-
-  void AppObject::OnMessage(Message message, void *data)
-  {
-
-  }
-
 } // end namespace OpenGC
 
