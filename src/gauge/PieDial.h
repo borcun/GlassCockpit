@@ -25,10 +25,10 @@
 
 #include "MarkedDial.h"
 #include "CircleEvaluator.h"
+#include "airframe_data_container.h"
 
 namespace OpenGC
 {
-
   typedef float (AirframeDataContainer::*AirframeMemFn)();
 
   class PieDial : public MarkedDial

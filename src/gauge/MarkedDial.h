@@ -25,6 +25,7 @@
 #define MarkedDial_H
 
 #include "GaugeComponent.h"
+#include "airframe_data_container.h"
 
 namespace OpenGC
 {

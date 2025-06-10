@@ -31,20 +31,18 @@
 
 #include <utility>
 #include "GLHeaders.h"
-#include "data_source.h"
 
 namespace OpenGC {
   class RenderObject {
   public:
     RenderObject();
-    virtual ~RenderObject();
-		
+    virtual ~RenderObject();		
     virtual void SetUnitsPerPixel(const float unitsPerPixel);
     virtual void SetScale(const float xScale, const float yScale);
     void SetPosition(const float xPos, const float yPos);
     void SetParentRenderObject(RenderObject* pObject);
     std::pair<float, float> GetPhysicalPosition(void);
-
+    
     /** Called by framework when a mouse click occurs (x/y in pixel coordinates) */
     void HandleMouseButton(const int button, const int state, const int x, const int y);
     /** Called when a mouse "down" event occurs (x/y in physical coordinates) */
@@ -54,9 +52,10 @@ namespace OpenGC {
     /** Called when a key is pressed on the keyboard and OpenGC has focus */
     virtual void OnKeyboard(const int keycode, const int modifiers);
 
-    /** Returns true if the click applies to this object (x/y in pixel coordiantes) */
+    /** Return true if the click is inside the gauge
+	If true, tests gauge components prior to returning */
     virtual bool ClickTest(const int button, const int state, const int x, const int y) = 0;
-    virtual void Render() = 0;
+    virtual void Render(void) = 0;
 
   protected:
     /** Set by the render window to describe pixel-realspace conversions */
