@@ -25,7 +25,7 @@
 #include <sys/time.h>
 
 #include "data_source_manager.h"
-#include "PrefManager.h"
+#include "preference_manager.h"
 #include "Constants.h"
 #include "data_source.h"
 #include "EngineInstruments.h"
@@ -165,7 +165,7 @@ namespace OpenGC
   {
     static double rate, last;
     static int count;
-    static int updateRate = (int)(1.0 / PrefManager::getInstance()->GetPrefD(
+    static int updateRate = (int)(1.0 / PreferenceManager::getInstance()->getDouble(
 									 "AppUpdateRate"));
 
     double now;

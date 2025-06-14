@@ -8,7 +8,7 @@ INC_DIR=-I ../ext/tinyjpeg -I ../ext/libshape -I ../src/base  -I ../src/data -I 
 EXT_INC_DIR=-I /usr/include/FL -I /usr/include/freetype2 -I /usr/include/FTGL -I /usr/include/libxml2
 
 LFLAGS=-Wl,--no-as-needed -lfltk -lfltk_gl -lftgl -lGL -lGLU -lm -lxml2 -lfreetype -lz -ltinyjpeg -lshape -lopengc-base -lopengc-font -lopengc-navigation -lopengc-data -lopengc-gauge
-LINK_DIR=-L ../build/ext/tinyjpeg -L ../build/ext/libshape -L ../build/src/base -L ../build/src/navigation -L ../build/src/data -L ../build/src/font -L ../build/src/gauge
+LINK_DIR=-L ../build/ext/tinyjpeg/Debug -L ../build/ext/libshape/Debug -L ../build/src/base/Debug -L ../build/src/navigation/Debug -L ../build/src/data/Debug -L ../build/src/font/Debug -L ../build/src/gauge/Debug
 EXT_LINK_DIR=-L /usr/lib/x86_64-linux-gnu
 
 all: $(EXEC)

@@ -27,7 +27,7 @@
 
 #include "Debug.h"
 #include "AppObject.h"
-#include "PrefManager.h"
+#include "preference_manager.h"
 #include "RasterMapManager.h"
 #include "XMLParser.h"
 
@@ -50,7 +50,7 @@ void usage()
 void GlobalIdle(void *)
 {
   theApp->IdleFunction();
-  Fl::repeat_timeout(PrefManager::getInstance()->GetPrefD("AppUpdateRate"), GlobalIdle);
+  Fl::repeat_timeout(PreferenceManager::getInstance()->getDouble("AppUpdateRate"), GlobalIdle);
 }
 
 /** Main entry point for the application */
@@ -66,25 +66,21 @@ int main(int argc, char* argv[])
   else if (argc == 2) {
     // Check the file exists
     FILE *f = fopen(argv[1], "r");
-    if (f == NULL) 
-      {
-	usage();
-	return 1;
-      }
-    else
-      {
-	xmlFileName = argv[1];
-      }
+    
+    if (f == NULL) {
+      usage();
+      return 1;
+    }
+    else {
+      xmlFileName = argv[1];
+    }
   }
 	
-  // Construct the application
   theApp = new AppObject();
-	
-  // Initialise preferences manager
-  PrefManager::getInstance()->InitPreferences(PREFERENCES_XML_FILE);
-	
+  PreferenceManager::getInstance()->initialize(PREFERENCES_XML_FILE);
   // Read the XML file and do some basic checks about its contents
   XMLParser parser;
+
   Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
   Check(parser.HasNode("/"));
   Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
@@ -92,18 +88,19 @@ int main(int argc, char* argv[])
 	
   // Set the user-defined (in XML file) application preferences
   if (parser.HasNode("/Preferences")) {
-    PrefManager::getInstance()->SetPrefsFromXML(parser.GetNode("/Preferences"));
+    PreferenceManager::getInstance()->populate(parser.GetNode("/Preferences"));
   }
 
   // Set RasterMaps path
-  RasterMapManager::getInstance()->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, 
-						PrefManager::getInstance()->GetPrefS("PathToData") + "MGMapsCache", "GoogleTer");
+  RasterMapManager::getInstance()->SetCachePath(
+      RasterMapManager::RMM_CACHE_MGMAPS, 
+      PreferenceManager::getInstance()->getString("PathToData") + "MGMapsCache", "GoogleTer");
 
   // FIXME debug:
-  PrefManager::getInstance()->PrintAll();
+  PreferenceManager::getInstance()->display();
 
   // Set the update rate in nominal seconds per frame
-  Fl::add_timeout(PrefManager::getInstance()->GetPrefD("AppUpdateRate"), GlobalIdle);
+  Fl::add_timeout(PreferenceManager::getInstance()->getDouble("AppUpdateRate"), GlobalIdle);
 
   // Run up the application
   int retval;

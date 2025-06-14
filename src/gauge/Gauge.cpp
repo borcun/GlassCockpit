@@ -1,5 +1,5 @@
 #include "data_source_manager.h"
-#include "PrefManager.h"
+#include "preference_manager.h"
 #include "Gauge.h"
 #include "Debug.h"
 
@@ -34,8 +34,8 @@ OpenGC::Gauge::~Gauge() {
 void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
   Check(gaugeNode.IsValid() && gaugeNode.GetName() == "Gauge");
 
-  double scale = PrefManager::getInstance()->GetPrefD("DefaultGaugeScale");
-  double zoom = PrefManager::getInstance()->GetPrefD("Zoom");
+  double scale = PreferenceManager::getInstance()->getDouble("DefaultGaugeScale");
+  double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
   double x, y; // temp variables
 	
   // Set the units per pixel
@@ -43,7 +43,7 @@ void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
     SetUnitsPerPixel(gaugeNode.GetChild("UnitsPerPixel").GetTextAsDouble());
   }
   else {
-    SetUnitsPerPixel(PrefManager::getInstance()->GetPrefD("UnitsPerPixel"));
+    SetUnitsPerPixel(PreferenceManager::getInstance()->getDouble("UnitsPerPixel"));
   }
 
   // Set the position

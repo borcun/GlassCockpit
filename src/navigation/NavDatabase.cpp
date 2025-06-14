@@ -24,7 +24,7 @@
 #include "BinaryNavData.h"
 #include "Debug.h"
 #include "data_source_manager.h"
-#include "PrefManager.h"
+#include "preference_manager.h"
 #include <stdio.h>
 #include <sys/stat.h> 
 
@@ -79,8 +79,8 @@ namespace OpenGC {
 
   void NavDatabase::InitDatabase()
   {	
-    const string& pathToNav = PrefManager::getInstance()->GetPrefS("PathToData") + "Navigation/";
-    const string& pathToWritableNav = PrefManager::getInstance()->GetPrefS("PathToCaches") + "Navigation/";
+    const string& pathToNav = PreferenceManager::getInstance()->getString("PathToData") + "Navigation/";
+    const string& pathToWritableNav = PreferenceManager::getInstance()->getString("PathToCaches") + "Navigation/";
 	
     // Check for cached binary copies of nav data otherwise convert and cache
     if (!fileExists(pathToWritableNav + "nav_dat.bin"))

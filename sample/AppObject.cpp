@@ -22,7 +22,7 @@
 #include <FL/Fl.H>
 #include "AppObject.h"
 #include "RenderObject.h"
-#include "PrefManager.h"
+#include "preference_manager.h"
 #include "NavDatabase.h"
 #include "Debug.h"
 
@@ -59,18 +59,16 @@ namespace OpenGC {
     XMLNode dsNode = rootNode.GetChild("DataSource");
     Assert(dsNode.HasProperty("type"), "DataSource node has no type property");
     string dsName = dsNode.GetProperty("type");
-    char *titleSuffix;
+    char *titleSuffix = nullptr;
     
     if (dsName == "FlightGear") {
       // Get host/port settings
       if (dsNode.HasChild("Host")) {
-	PrefManager::getInstance()->SetPrefS("FlightGearHost", 
-					     dsNode.GetChild("Host").GetText());
+	PreferenceManager::getInstance()->setString("FlightGearHost", dsNode.GetChild("Host").GetText());
       }
       
       if (dsNode.HasChild("Port")) {
-	PrefManager::getInstance()->SetPrefI("FlightGearPort", 
-					     dsNode.GetChild("Port").GetTextAsInt());
+	PreferenceManager::getInstance()->setInteger("FlightGearPort", dsNode.GetChild("Port").GetTextAsInt());
       }
 
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_FG);
@@ -125,16 +123,15 @@ namespace OpenGC {
 	    geoNode.GetChild("Size").GetTextAsCoord(xSize, ySize);
 	  }
       }
-    double zoom = PrefManager::getInstance()->GetPrefD("Zoom");
+    double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
     int windowX = (int)(xSize * zoom), windowY = (int)(ySize * zoom);
+    
     LogPrintf("Application: Window Size = %ix%ipx\n", windowX, windowY);
 
     // Create the render window
-    m_pRenderWindow = new FLTKRenderWindow(4, 0, windowX, windowY, 
-					   windowTitle.c_str());
+    m_pRenderWindow = new FLTKRenderWindow(4, 0, windowX, windowY, windowTitle.c_str());
     m_pRenderWindow->mode(FL_RGB | FL_DOUBLE);
-    PrefManager::getInstance()->SetPrefD("UnitsPerPixel", 
-					 m_pRenderWindow->GetUnitsPerPixel());	
+    PreferenceManager::getInstance()->setDouble("UnitsPerPixel",  m_pRenderWindow->GetUnitsPerPixel());	
 
     // We need to go ahead and show the window so that an OpenGL device
     // context exists once we start loading fonts
