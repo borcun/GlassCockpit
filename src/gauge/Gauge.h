@@ -16,9 +16,8 @@
 
 #pragma once
 
-#include <list>
 #include "GaugeComponent.h"
-#include "XMLNode.h"
+#include "xml_node.h"
 
 namespace OpenGC {
   class Gauge: public RenderObject {

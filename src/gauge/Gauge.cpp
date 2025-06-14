@@ -32,23 +32,23 @@ OpenGC::Gauge::~Gauge() {
 }
 
 void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
-  Check(gaugeNode.IsValid() && gaugeNode.GetName() == "Gauge");
+  Check(gaugeNode.isValid() && gaugeNode.getName() == "Gauge");
 
   double scale = PreferenceManager::getInstance()->getDouble("DefaultGaugeScale");
   double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
   double x, y; // temp variables
 	
   // Set the units per pixel
-  if (gaugeNode.HasChild("UnitsPerPixel")) {
-    SetUnitsPerPixel(gaugeNode.GetChild("UnitsPerPixel").GetTextAsDouble());
+  if (gaugeNode.hasChild("UnitsPerPixel")) {
+    SetUnitsPerPixel(gaugeNode.getChild("UnitsPerPixel").getTextAsDouble());
   }
   else {
     SetUnitsPerPixel(PreferenceManager::getInstance()->getDouble("UnitsPerPixel"));
   }
 
   // Set the position
-  if (gaugeNode.HasChild("Position")) {
-    gaugeNode.GetChild("Position").GetTextAsCoord(x, y);
+  if (gaugeNode.hasChild("Position")) {
+    gaugeNode.getChild("Position").getTextAsCoord(x, y);
     SetPosition(x * zoom, y * zoom);
   }
   else {
@@ -56,8 +56,8 @@ void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
   }
 
   // Set the scale
-  if (gaugeNode.HasChild("Scale")) {
-    gaugeNode.GetChild("Scale").GetTextAsCoord(x, y);
+  if (gaugeNode.hasChild("Scale")) {
+    gaugeNode.getChild("Scale").getTextAsCoord(x, y);
     SetScale(x * zoom * scale, y * zoom * scale);
   }
   else {
@@ -65,8 +65,8 @@ void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
   }
 
   // Set the gauge outline
-  if (gaugeNode.HasChild("Outline")) {
-    SetGaugeOutline(gaugeNode.GetChild("Outline").GetTextAsBool());
+  if (gaugeNode.hasChild("Outline")) {
+    SetGaugeOutline(gaugeNode.getChild("Outline").getTextAsBool());
   }
 	
   CustomXMLInit(gaugeNode);

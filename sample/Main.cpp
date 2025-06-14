@@ -29,7 +29,7 @@
 #include "AppObject.h"
 #include "preference_manager.h"
 #include "RasterMapManager.h"
-#include "XMLParser.h"
+#include "xml_parser.h"
 
 #define DEFAULT_XML_FILE	(char*) "../resource/Default.xml"
 #define PREFERENCES_XML_FILE	(char*) "../resource/Preferences.xml"
@@ -81,14 +81,14 @@ int main(int argc, char* argv[])
   // Read the XML file and do some basic checks about its contents
   XMLParser parser;
 
-  Assert(parser.ReadFile(xmlFileName), "unable to read XML file");
-  Check(parser.HasNode("/"));
-  Assert(parser.HasNode("/Window"), "invalid XML, no Window node");
-  Assert(parser.HasNode("/DataSource"), "invalid XML, no DataSource node");
+  Assert(parser.read(xmlFileName), "unable to read XML file");
+  Check(parser.hasNode("/"));
+  Assert(parser.hasNode("/Window"), "invalid XML, no Window node");
+  Assert(parser.hasNode("/DataSource"), "invalid XML, no DataSource node");
 	
   // Set the user-defined (in XML file) application preferences
-  if (parser.HasNode("/Preferences")) {
-    PreferenceManager::getInstance()->populate(parser.GetNode("/Preferences"));
+  if (parser.hasNode("/Preferences")) {
+    PreferenceManager::getInstance()->populate(parser.getNode("/Preferences"));
   }
 
   // Set RasterMaps path
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
 
   // Run up the application
   int retval;
-  XMLNode rootNode = parser.GetNode("/");
+  XMLNode rootNode = parser.getNode("/");
 
   if (theApp->Go(rootNode)) {
     LogPrintf("Done, exiting cleanly.\n");

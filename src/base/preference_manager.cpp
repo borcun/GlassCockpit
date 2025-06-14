@@ -24,44 +24,44 @@ OpenGC::PreferenceManager *OpenGC::PreferenceManager::getInstance(void) {
 
 void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
   XMLParser parser;
-  Assert(parser.ReadFile(xmlFileName), xmlFileName /*"unable to read XML file"*/);
-  Check(parser.HasNode("/"));
+  Assert(parser.read(xmlFileName), xmlFileName /*"unable to read XML file"*/);
+  Check(parser.hasNode("/"));
 
-  XMLNode rootNode = parser.GetNode("/");
-  Check(rootNode.IsValid() && rootNode.GetName() == "Preferences");
+  XMLNode rootNode = parser.getNode("/");
+  Check(rootNode.isValid() && rootNode.getName() == "Preferences");
 
   // Iterate over the preference definitions
-  std::list<XMLNode> nodeList = rootNode.GetChildList();
+  std::list<XMLNode> nodeList = rootNode.getChildList();
   
   for (std::list<XMLNode>::iterator it = nodeList.begin(); it != nodeList.end(); ++it) {
     XMLNode node = *it;
       
-    Check(node.GetName() == "Preference");
-    Check(node.HasChild("Name") && node.HasChild("Type") && node.HasChild("DefaultValue"));
+    Check(node.getName() == "Preference");
+    Check(node.hasChild("Name") && node.hasChild("Type") && node.hasChild("DefaultValue"));
 		
     // Now create each Preference struct
-    Preference *preference = new Preference;
-    std::string type = node.GetChild("Type").GetText();
+    Preference *preference = new Preference();
+    std::string type = node.getChild("Type").getText();
 
     if (type == "double") {
       preference->type = 'D';
-      preference->asDouble = node.GetChild("DefaultValue").GetTextAsDouble();
+      preference->asDouble = node.getChild("DefaultValue").getTextAsDouble();
     }
     else if (type == "string") {
       preference->type = 'S';
-      preference->asString = node.GetChild("DefaultValue").GetText();
+      preference->asString = node.getChild("DefaultValue").getText();
     }
     else if (type == "integer") {
       preference->type = 'I';
-      preference->asInt = node.GetChild("DefaultValue").GetTextAsInt();
+      preference->asInt = node.getChild("DefaultValue").getTextAsInt();
     }
     else if (type == "boolean") {
       preference->type = 'B';
-      preference->asBool = node.GetChild("DefaultValue").GetTextAsBool();
+      preference->asBool = node.getChild("DefaultValue").getTextAsBool();
     }
     
     preference->isSet = true;
-    m_preferences[node.GetChild("Name").GetText()] = preference;
+    m_preferences[node.getChild("Name").getText()] = preference;
   }
 
   return;
@@ -69,30 +69,30 @@ void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
 
 void OpenGC::PreferenceManager::populate(XMLNode prefNode) {
   // Load in XML values for the preferences
-  Check(prefNode.IsValid() && prefNode.GetName() == "Preferences");
+  Check(prefNode.isValid() && prefNode.getName() == "Preferences");
   
-  std::list<XMLNode> nodeList = prefNode.GetChildList();
+  std::list<XMLNode> nodeList = prefNode.getChildList();
   std::list<XMLNode>::iterator it;
     
   for (it = nodeList.begin(); it != nodeList.end(); ++it) {
-    std::string key = it->GetName();
+    std::string key = it->getName();
 	
-    LogPrintf("PreferenceManager: setting %s = %s\n", key.c_str(), it->GetText().c_str());
+    LogPrintf("PreferenceManager: setting %s = %s\n", key.c_str(), it->getText().c_str());
 
     // set the preference
     Preference *toSet = m_preferences[key];
 
     if (toSet->type == 'D') {
-      setDouble(key, it->GetTextAsDouble());
+      setDouble(key, it->getTextAsDouble());
     }
     else if (toSet->type == 'S') {
-      setString(key, it->GetText());
+      setString(key, it->getText());
     }
     else if (toSet->type == 'I') {
-      setInteger(key, it->GetTextAsInt());
+      setInteger(key, it->getTextAsInt());
     }
     else if (toSet->type == 'B') {
-      setBoolean(key, it->GetTextAsBool());
+      setBoolean(key, it->getTextAsBool());
     }
   }
 

@@ -56,19 +56,19 @@ namespace OpenGC {
     NavDatabase::getInstance()->InitDatabase();
 
     // Create the data source
-    XMLNode dsNode = rootNode.GetChild("DataSource");
-    Assert(dsNode.HasProperty("type"), "DataSource node has no type property");
-    string dsName = dsNode.GetProperty("type");
+    XMLNode dsNode = rootNode.getChild("DataSource");
+    Assert(dsNode.hasProperty("type"), "DataSource node has no type property");
+    string dsName = dsNode.getProperty("type");
     char *titleSuffix = nullptr;
     
     if (dsName == "FlightGear") {
       // Get host/port settings
-      if (dsNode.HasChild("Host")) {
-	PreferenceManager::getInstance()->setString("FlightGearHost", dsNode.GetChild("Host").GetText());
+      if (dsNode.hasChild("Host")) {
+	PreferenceManager::getInstance()->setString("FlightGearHost", dsNode.getChild("Host").getText());
       }
       
-      if (dsNode.HasChild("Port")) {
-	PreferenceManager::getInstance()->setInteger("FlightGearPort", dsNode.GetChild("Port").GetTextAsInt());
+      if (dsNode.hasChild("Port")) {
+	PreferenceManager::getInstance()->setInteger("FlightGearPort", dsNode.getChild("Port").getTextAsInt());
       }
 
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_FG);
@@ -103,11 +103,11 @@ namespace OpenGC {
     }
 
     // Set up the window title
-    XMLNode windowNode = rootNode.GetChild("Window");
+    XMLNode windowNode = rootNode.getChild("Window");
     string windowTitle = "Glass Cockpit";
 
-    if (windowNode.HasChild("Title")) {
-      windowTitle = windowNode.GetChild("Title").GetText();
+    if (windowNode.hasChild("Title")) {
+      windowTitle = windowNode.getChild("Title").getText();
     }
     
     windowTitle += titleSuffix;
@@ -115,12 +115,12 @@ namespace OpenGC {
     // Calculate window size
     double xSize = 1127.0, ySize = 785.0; // default size
     
-    if (windowNode.HasChild("Geometry"))
+    if (windowNode.hasChild("Geometry"))
       {
-	XMLNode geoNode = windowNode.GetChild("Geometry");
-	if (geoNode.HasChild("Size"))
+	XMLNode geoNode = windowNode.getChild("Geometry");
+	if (geoNode.hasChild("Size"))
 	  {
-	    geoNode.GetChild("Size").GetTextAsCoord(xSize, ySize);
+	    geoNode.getChild("Size").getTextAsCoord(xSize, ySize);
 	  }
       }
     double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
@@ -142,13 +142,13 @@ namespace OpenGC {
     Fl::flush();
 
     // Create Gauges as described by the XML file
-    std::list<XMLNode> nodeList = windowNode.GetChildList("Gauge");
+    std::list<XMLNode> nodeList = windowNode.getChildList("Gauge");
     std::list<XMLNode>::iterator iter;
     
     for (iter = nodeList.begin(); iter != nodeList.end(); ++iter)
       {
 	Gauge *pGauge;
-	string name = (*iter).GetProperty("type");
+	string name = (*iter).getProperty("type");
 
 	if(name == "PFD")
 	  {

@@ -7,7 +7,7 @@
 #pragma once
 
 #include "FLTKRenderWindow.h"
-#include "XMLNode.h"
+#include "xml_node.h"
 
 namespace OpenGC {
   class AppObject {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <map>
-#include "XMLParser.h"
+#include "xml_parser.h"
 
 namespace OpenGC {
   // The structure that configuration options are stored in
