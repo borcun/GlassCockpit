@@ -8,7 +8,7 @@ add_subdirectory(ext/tinyjpeg)
 add_subdirectory(ext/libshape)
 
 # glass-cockpit modules
-add_subdirectory(src/base)
+add_subdirectory(src/config)
 add_subdirectory(src/data)
 add_subdirectory(src/font)
 add_subdirectory(src/gauge)
@@ -20,7 +20,7 @@ include_directories(
   /usr/include/freetype2
   ext/tinyjpeg
   ext/libshape
-  src/base
+  src/config
   src/data
   src/font
   src/gauge
@@ -32,7 +32,7 @@ link_directories(
   /usr/lib/x86_64-linux-gnu
   ext/tinyjpeg
   ext/libshape
-  src/base
+  src/config
   src/data
   src/font
   src/gauge
@@ -46,7 +46,7 @@ link_libraries(
   ftgl
   freetype
   z
-  opengc-base
+  opengc-config
   opengc-data
   opengc-font
   opengc-gauge

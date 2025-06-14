@@ -12,7 +12,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE USE_FREETYPE2 TARGET_RT_LITTL
 target_include_directories(${PROJECT_NAME} PUBLIC
   ../../ext/tinyjpeg
   ../util
-  ../base
+  ../config
   ../data
   ../navigation
   /usr/include/libxml2

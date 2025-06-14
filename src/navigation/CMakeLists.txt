@@ -13,7 +13,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ../../ext/tinyjpeg
   ../../ext/libshape
   ../util
-  ../base
+  ../config
   ../data
   /usr/include/libxml2
   /usr/include/freetype2

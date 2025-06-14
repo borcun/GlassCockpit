@@ -10,7 +10,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   ../../ext/tinyjpeg
   ../../ext/libshape
   ../util
-  ../base
+  ../config
   ../font
   ../data
   ../navigation
