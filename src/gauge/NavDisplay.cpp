@@ -10,9 +10,7 @@
 #include "CircleEvaluator.h"
 #include "data_source.h"
 #include "NavDisplay.h"
-#include "GeographicObject.h"
 #include "WaypointGeoObj.h"
-#include "AirportGeoObj.h"
 #include "NavaidGeoObj.h"
 #include "Conversion.h"
 

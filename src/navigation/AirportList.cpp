@@ -2,7 +2,6 @@
 #include <sstream>
 #include <fstream>
 #include "AirportList.h"
-#include "AirportGeoObj.h"
 #include "Constants.h"
 #include "BinaryNavData.h"
 #include "Debug.h"
@@ -46,14 +45,15 @@ namespace OpenGC
 	  }
 		
 	// Create the AirportGeoObj and fill out it's fields
-	AirportGeoObj* pAirport = new AirportGeoObj();
-	pAirport->SetAltitudeMeters(apt->elev);
-	pAirport->SetIdentification(apt->id);
-	pAirport->SetDegreeLat(apt->lat);
-	pAirport->SetDegreeLon(apt->lon);
+	GeographicObject *airport = new GeographicObject();
+	
+	airport->SetAltitudeMeters(apt->elev);
+	airport->SetIdentification(apt->id);
+	airport->SetDegreeLat(apt->lat);
+	airport->SetDegreeLon(apt->lon);
 
 	// Now add the airport to the list
-	this->push_back(pAirport);
+	this->push_back(airport);
       }
     delete apt;
     return true;
