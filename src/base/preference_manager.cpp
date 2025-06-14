@@ -31,9 +31,9 @@ void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
   Check(rootNode.IsValid() && rootNode.GetName() == "Preferences");
 
   // Iterate over the preference definitions
-  XMLNode::NodeList nodeList = rootNode.GetChildList();
+  std::list<XMLNode> nodeList = rootNode.GetChildList();
   
-  for (XMLNode::NodeList::iterator it = nodeList.begin(); it != nodeList.end(); ++it) {
+  for (std::list<XMLNode>::iterator it = nodeList.begin(); it != nodeList.end(); ++it) {
     XMLNode node = *it;
       
     Check(node.GetName() == "Preference");
@@ -71,8 +71,8 @@ void OpenGC::PreferenceManager::populate(XMLNode prefNode) {
   // Load in XML values for the preferences
   Check(prefNode.IsValid() && prefNode.GetName() == "Preferences");
   
-  XMLNode::NodeList nodeList = prefNode.GetChildList();
-  XMLNode::NodeList::iterator it;
+  std::list<XMLNode> nodeList = prefNode.GetChildList();
+  std::list<XMLNode>::iterator it;
     
   for (it = nodeList.begin(); it != nodeList.end(); ++it) {
     std::string key = it->GetName();

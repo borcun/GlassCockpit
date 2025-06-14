@@ -142,8 +142,9 @@ namespace OpenGC {
     Fl::flush();
 
     // Create Gauges as described by the XML file
-    XMLNode::NodeList nodeList = windowNode.GetChildList("Gauge");
-    XMLNode::NodeList::iterator iter;
+    std::list<XMLNode> nodeList = windowNode.GetChildList("Gauge");
+    std::list<XMLNode>::iterator iter;
+    
     for (iter = nodeList.begin(); iter != nodeList.end(); ++iter)
       {
 	Gauge *pGauge;

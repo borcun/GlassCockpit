@@ -1,160 +1,120 @@
-/*=========================================================================
-
-  Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
-  All rights reserved.
-  
-  This project is distributed under the terms of the GNU General Public License
-  Version 3 <http://www.gnu.org/licenses/gpl.html>.
-  
-      This program is free software: you can redistribute it and/or modify
-      it under the terms of the GNU General Public License as published by
-      the Free Software Foundation, specifically version 3 of the License.
-  
-      This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-      GNU General Public License for more details.
-  
-      You should have received a copy of the GNU General Public License
-      along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-=========================================================================*/
-
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
-#include "Debug.h"
+#include <cstdlib>
+#include <cstring>
 #include "XMLNode.h"
+#include "Debug.h"
 
-XMLNode::XMLNode()
-	: m_Node(0)
-{
-
-}
-
-XMLNode::~XMLNode()
-{
+XMLNode::XMLNode(void) {
 
 }
 
-XMLNode::XMLNode(xmlNode *node)
-	: m_Node(node)
-{
+XMLNode::XMLNode(xmlNode *node) : m_node(node) {
 
 }
 
-bool XMLNode::HasChild(const string& name)
-{
-	return GetChild(name).IsValid();
+XMLNode::~XMLNode() {
+
 }
 
-string XMLNode::GetText()
-{
-	// Little dance to avoid memory leak...
-	const char *tmp = (const char*)xmlNodeGetContent(m_Node->children);
-	string ret(tmp);
-	xmlFree((void*)tmp);
-	return ret;
+bool XMLNode::HasChild(const std::string &name) {
+  return GetChild(name).IsValid();
 }
 
-bool XMLNode::IsValid()
-{
-	return m_Node != NULL;
+std::string XMLNode::GetText() {
+  // Little dance to avoid memory leak...
+  const char *tmp = (const char *) xmlNodeGetContent(m_node->children);
+  std::string ret(tmp);
+  
+  xmlFree((void *) tmp);
+
+  return ret;
 }
 
-string XMLNode::GetName()
-{
-	return string((const char*)m_Node->name);
+bool XMLNode::IsValid() {
+  return m_node != NULL;
 }
 
-double XMLNode::GetTextAsDouble()
-{
-	// return boost::lexical_cast<double>(GetText());
-	return strtod(GetText().c_str(), NULL);
+std::string XMLNode::GetName() {
+  return std::string((const char *) m_node->name);
 }
 
-int XMLNode::GetTextAsInt()
-{
-	// return boost::lexical_cast<int>(GetText());
-	return strtol(GetText().c_str(), NULL, 0);
+double XMLNode::GetTextAsDouble() {
+  return strtod(GetText().c_str(), NULL);
+}
+
+int XMLNode::GetTextAsInt() {
+  return strtol(GetText().c_str(), NULL, 0);
 }
 		
-bool XMLNode::GetTextAsBool()
-{
-	string text = GetText();
-	if (text == "1" || text == "true" ||text == "TRUE" || text == "True")
-		return true;
-	else
-		return false;
+bool XMLNode::GetTextAsBool() {
+  std::string text = GetText();  
+  return text == "1" || text == "true" ||text == "TRUE" || text == "True";
 }
 
-void XMLNode::GetTextAsCoord(double &x, double &y)
-{
-	string text = GetText();
-	Assert(text.find(',',0) != string::npos, "coordinates must contain a comma");
+void XMLNode::GetTextAsCoord(double &x, double &y) {
+  std::string text = GetText();
+  
+  Assert(text.find(',',0) != std::string::npos, "coordinates must contain a comma");
+  /// @todo remove sscanf
+  sscanf(text.c_str(), "%lf,%lf", &x, &y);
 
-	sscanf(text.c_str(), "%lf,%lf", &x, &y);
+  return;
 }
 
-XMLNode XMLNode::GetChild(const string& name)
-{
-	xmlNode *curNode = m_Node->children;
+XMLNode XMLNode::GetChild(const std::string &name) {
+  for (xmlNode *curNode = m_node->children; nullptr != curNode; curNode = curNode->next) {
+    if (curNode->type == XML_ELEMENT_NODE) {
+      if (strcmp((const char *) curNode->name, name.c_str()) == 0) {
+	return XMLNode(curNode);
+      }
+    }
+  }
+
+  return XMLNode();
+}
+
+bool XMLNode::HasProperty(const std::string &name) {
+  return GetProperty(name) != "";
+}
+
+std::string XMLNode::GetProperty(const std::string &name) {
+  std::string retval;
+  
+  for (xmlAttr *prop = m_node->properties; nullptr != prop; prop = prop->next) {
+    if (strcmp((const char *) prop->name, name.c_str()) == 0) {
+      const char *val = (const char *) xmlNodeGetContent(prop->children); 
+
+      retval = val;
+      xmlFree((void *) val);
+
+      break;
+    }
+  }
 	
-	// Iterate through the children
-	for (; curNode; curNode = curNode->next)
-		if (curNode->type == XML_ELEMENT_NODE)
-			// Check the node name
-			if (strcmp((const char*)curNode->name, name.c_str()) == 0)
-				return XMLNode(curNode);
-
-	return XMLNode();
+  return retval;
 }
 
-bool XMLNode::HasProperty(const string& name)
-{
-	return GetProperty(name) != "";
-}
-
-string XMLNode::GetProperty(const string& name)
-{
-	for (xmlAttr *prop = m_Node->properties; prop; prop = prop->next)
-		if (strcmp((const char*)prop->name, name.c_str()) == 0)
-		{
-			// Little dance to avoid memory leak...
-			const char *val = (const char*)xmlNodeGetContent(prop->children); 
-			string ret(val);
-			xmlFree((void*)val);
-			return ret;
-		}
+std::list<XMLNode> XMLNode::GetChildList() {
+  std::list<XMLNode> nodeList;
 	
-	return string("");
+  for (xmlNode *curNode = m_node->children; nullptr != curNode; curNode = curNode->next) {
+    if (curNode->type == XML_ELEMENT_NODE) {
+      nodeList.push_back(XMLNode(curNode));
+    }
+  }
+
+  return nodeList;
 }
 
-XMLNode::NodeList XMLNode::GetChildList()
-{
-	xmlNode *curNode = m_Node->children;
-	XMLNode::NodeList nodeList;
+std::list<XMLNode> XMLNode::GetChildList(const std::string &name) {
+  std::list<XMLNode> nodeList;
 	
-	// Iterate through the children
-	for (; curNode; curNode = curNode->next)
-		if (curNode->type == XML_ELEMENT_NODE)
-			nodeList.push_back(XMLNode(curNode));
+  for (xmlNode *curNode = m_node->children; nullptr != curNode; curNode = curNode->next) {
+    if (curNode->type == XML_ELEMENT_NODE) {
+      if (strcmp((const char*)curNode->name, name.c_str()) == 0) {
+	nodeList.push_back(XMLNode(curNode));
+      }
+    }
+  }
 
-	return nodeList;
+  return nodeList;
 }
-
-XMLNode::NodeList XMLNode::GetChildList(const string& name)
-{
-	xmlNode *curNode = m_Node->children;
-	XMLNode::NodeList nodeList;
-	
-	// Iterate through the children
-	for (; curNode; curNode = curNode->next)
-		if (curNode->type == XML_ELEMENT_NODE)
-			// Check the node name
-			if (strcmp((const char*)curNode->name, name.c_str()) == 0)
-				nodeList.push_back(XMLNode(curNode));
-
-	return nodeList;
-}
-
