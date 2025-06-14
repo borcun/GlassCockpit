@@ -1,25 +1,3 @@
-/*=========================================================================
-
-  Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
-  All rights reserved.
-  
-  This project is distributed under the terms of the GNU General Public License
-  Version 3 <http://www.gnu.org/licenses/gpl.html>.
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, specifically version 3 of the License.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  =========================================================================*/
-
 #include "NavDatabase.h"
 #include "BinaryNavData.h"
 #include "Debug.h"
@@ -68,7 +46,7 @@ namespace OpenGC {
     return m_instance;
   }
   
-  bool fileExists(const string& filename)
+  bool fileExists(const std::string& filename)
   {
     struct stat stFileInfo;
     if(stat(filename.c_str(), &stFileInfo) == 0) 
@@ -79,8 +57,8 @@ namespace OpenGC {
 
   void NavDatabase::InitDatabase()
   {	
-    const string& pathToNav = PreferenceManager::getInstance()->getString("PathToData") + "Navigation/";
-    const string& pathToWritableNav = PreferenceManager::getInstance()->getString("PathToCaches") + "Navigation/";
+    const std::string& pathToNav = PreferenceManager::getInstance()->getString("PathToData") + "Navigation/";
+    const std::string& pathToWritableNav = PreferenceManager::getInstance()->getString("PathToCaches") + "Navigation/";
 	
     // Check for cached binary copies of nav data otherwise convert and cache
     if (!fileExists(pathToWritableNav + "nav_dat.bin"))

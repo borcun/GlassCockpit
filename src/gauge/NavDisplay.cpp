@@ -1,25 +1,3 @@
-/*=========================================================================
-
-  Copyright (c) 2005-2010 Hugo Vincent <hugo.vincent@gmail.com>
-  All rights reserved.
-  
-  This project is distributed under the terms of the GNU General Public License
-  Version 3 <http://www.gnu.org/licenses/gpl.html>.
-  
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, specifically version 3 of the License.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  =========================================================================*/
-
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
@@ -29,7 +7,6 @@
 #include "NavDatabase.h"
 #include "RasterMapManager.h"
 #include "CircleEvaluator.h"
-#include "Constants.h"
 #include "CircleEvaluator.h"
 #include "data_source.h"
 #include "NavDisplay.h"
@@ -37,6 +14,7 @@
 #include "WaypointGeoObj.h"
 #include "AirportGeoObj.h"
 #include "NavaidGeoObj.h"
+#include "Conversion.h"
 
 namespace OpenGC
 {    
@@ -96,7 +74,7 @@ namespace OpenGC
     //	}
 	
     // Northing and Easting in nautical miles (Mercator Coordinates)
-    GeographicObject::LatLonToMercator(aircraftLat, aircraftLon, mercatorNorthing, mercatorEasting);
+    Conversion::LatLonToMercator(aircraftLat, aircraftLon, mercatorNorthing, mercatorEasting);
     
     mercatorNorthing /= METER_PER_NM;
     mercatorEasting /= METER_PER_NM;
@@ -361,8 +339,11 @@ namespace OpenGC
     glBegin(GL_LINE_STRIP);
 
     for (iter = course->begin(); iter != course->end(); ++iter) {
-      (*iter).GetCoords(lat, lon);
-      GeographicObject::LatLonToMercator(lat, lon, northing, easting);
+      lat = iter->first;
+      lat = iter->second;
+
+      Conversion::LatLonToMercator(lat, lon, northing, easting);
+
       PointToPixelCoord(northing, easting, xPos, yPos);
       glVertex2f(xPos, yPos);
     }

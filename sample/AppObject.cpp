@@ -188,9 +188,8 @@ namespace OpenGC {
     // FIXME this isn't really the right place for this...
     double lat = data->GetLatitude();
     double lon = data->GetLongitude();
-    CoursePoint p = CoursePoint(lat, lon);
 
-    NavDatabase::getInstance()->GetFlightCourse()->push_back(p);
+    NavDatabase::getInstance()->GetFlightCourse()->push_back(std::pair<double, double>(lat, lon));
 
     // and re-render the window if there is new data.
     if(changed1) {
