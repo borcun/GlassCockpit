@@ -3,15 +3,14 @@
  * used by OpenGC.
  */
 
-#ifndef NavDatabase_h
-#define NavDatabase_h
+#pragma once
 
 #include <string>
-#include "NavaidList.h"
-#include "AirportList.h"
-#include "WaypointList.h"
-#include "FlightCourse.h"
-#include "GeographicHash.h"
+#include "nav_aid_list.h"
+#include "airport_list.h"
+#include "waypoint_list.h"
+#include "flight_course.h"
+#include "geographic_hash.h"
 
 namespace OpenGC {
   class NavDatabase {
@@ -21,45 +20,26 @@ namespace OpenGC {
 
     /** Load the nav data */
     void InitDatabase();
-
     /** Get the hashed navaid list */
-    GeographicHash* GetNavaidHash() {return m_NavaidHash;}
-
+    GeographicHash* GetNavaidHash() { return m_NavaidHash; }
     /** Get the hashed airport list */
-    GeographicHash* GetAirportHash() {return m_AirportHash;}
-
+    GeographicHash* GetAirportHash() { return m_AirportHash; }
     /** Get the waypoint list */
-    WaypointList* GetWaypointList() {return m_WaypointList;}
-
+    WaypointList* GetWaypointList() { return m_WaypointList; }
     /** Get the flight path */
-    FlightCourse* GetFlightCourse() {return m_FlightCourse;}
+    FlightCourse* GetFlightCourse() { return m_FlightCourse; }
 
   private:
     static NavDatabase *m_instance;
     
-    /** The flight path/course */
     FlightCourse *m_FlightCourse;
-		
-    /** A list of all waypoints */
     WaypointList *m_WaypointList;
-
-    /** Airport list */
     AirportList *m_AirportList;
-
-    /** Airport list hashed by lat/lon */
     GeographicHash *m_AirportHash;
-
-    /** Navaid list */
     NavaidList *m_NavaidList;
-		
-    /** Navaid list hashed by lat/lon */
     GeographicHash *m_NavaidHash;
 
     /// default constructor
     NavDatabase();
   };
-
-} // end namespace OpenGC
-
-#endif
-
+}

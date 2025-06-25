@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "Debug.h"
+#include "debug.h"
 #include "Font_GLTexture.h"
 #include "Font_FileStore.h"
 

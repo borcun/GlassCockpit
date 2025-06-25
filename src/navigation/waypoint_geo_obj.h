@@ -1,14 +1,15 @@
 #pragma once
 
-#include "GeographicObject.h"
+#include "geographic_object.h"
 
 namespace OpenGC {
   class WaypointGeoObj : public GeographicObject {
   public:
+    enum {STYLE_FUNDAMENTAL, STYLE_INTERP};
+    
     WaypointGeoObj() {}
     virtual ~WaypointGeoObj() {}
     void SetStyle(int style) { m_Style = style; }
-    enum {STYLE_FUNDAMENTAL, STYLE_INTERP};
 
   protected:
     int m_Style;

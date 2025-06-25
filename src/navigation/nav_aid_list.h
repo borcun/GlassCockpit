@@ -1,8 +1,6 @@
 #pragma once
 
-#include <list>
-#include <string>
-#include "GeographicObjectList.h"
+#include "geographic_object_list.h"
 
 namespace OpenGC {
   class NavaidList : public GeographicObjectList {
@@ -10,6 +8,6 @@ namespace OpenGC {
     NavaidList();
     virtual ~NavaidList();
     /** Read a file contain navaids, returns true if successful, else false */
-    bool LoadData(const std::string& fileName);
+    bool LoadData(const std::string &fileName);
   };
-} // end namespace OpenGC
+}

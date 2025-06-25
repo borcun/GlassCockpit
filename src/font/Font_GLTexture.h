@@ -23,7 +23,7 @@
 #ifndef Font_GLTexture_H
 #define Font_GLTexture_H
 
-#include "GLHeaders.h"
+#include "gl_headers.h"
 
 class Font_FileStore;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GeographicObjectList.h"
+#include "geographic_object_list.h"
 
 namespace OpenGC {
   class WaypointList : public GeographicObjectList {

@@ -31,7 +31,7 @@
 #ifndef CircleEvaluator_h
 #define CircleEvaluator_h
 
-#include "GLHeaders.h"
+#include "gl_headers.h"
 
 namespace OpenGC {
   class CircleEvaluator  {

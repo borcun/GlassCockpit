@@ -26,7 +26,7 @@
 
 #include "data_source_manager.h"
 #include "preference_manager.h"
-#include "Constants.h"
+#include "constants.h"
 #include "data_source.h"
 #include "EngineInstruments.h"
 #include "PieDial.h"

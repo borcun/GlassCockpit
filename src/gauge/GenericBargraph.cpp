@@ -21,7 +21,7 @@
   =========================================================================*/
 
 #include "data_source_manager.h"
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "GenericBargraph.h"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))

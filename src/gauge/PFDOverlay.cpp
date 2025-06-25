@@ -21,7 +21,7 @@
   =========================================================================*/
 
 #include "data_source_manager.h"
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "PFDOverlay.h"
 
 namespace OpenGC

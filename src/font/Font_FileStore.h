@@ -24,7 +24,7 @@
 #define Font_FileStore_H
 
 #include <string>
-#include "GLHeaders.h"
+#include "gl_headers.h"
 
 class Font_FileStore
 {

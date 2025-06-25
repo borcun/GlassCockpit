@@ -1,12 +1,16 @@
 #pragma once
 
-#include "GeographicObject.h"
+#include "geographic_object.h"
 
 namespace OpenGC {
   class NavaidGeoObj : public GeographicObject {
   public:
-    NavaidGeoObj();
-    virtual ~NavaidGeoObj();
+    NavaidGeoObj() {
+      m_Frequency = 0.0;
+      m_NavaidType = 0;
+    }
+      
+    virtual ~NavaidGeoObj() {}
   
     /** Accessors for frequency */
     void SetFrequency(float freq) {m_Frequency = freq;}

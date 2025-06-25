@@ -2,6 +2,7 @@
 #define NavDisplay_h
 
 #include "Gauge.h"
+#include "geographic_object.h"
 
 namespace OpenGC
 {
@@ -28,7 +29,7 @@ namespace OpenGC
     void PlotMap();
 
     /** Display geographic objects such as airports or navaids on the map */
-    void PlotGeoObjs(std::list<GeographicObject*>& geoList);
+    void PlotGeoObjs(std::list<GeographicObject*> &geoList);
 
     //////////// Helper functions /////////////////////////////////////////
 		

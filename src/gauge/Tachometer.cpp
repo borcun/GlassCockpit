@@ -22,10 +22,10 @@
 
 #include <math.h>
 
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "Tachometer.h"
 #include "CircleEvaluator.h"
-#include "Constants.h"
+#include "constants.h"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
 

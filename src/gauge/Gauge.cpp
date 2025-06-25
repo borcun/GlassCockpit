@@ -1,7 +1,7 @@
 #include "data_source_manager.h"
 #include "preference_manager.h"
 #include "Gauge.h"
-#include "Debug.h"
+#include "debug.h"
 
 OpenGC::Gauge::Gauge() {
   m_NumGaugeComponents = 0;

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "xml_parser.h"
-#include "Debug.h"
+#include "debug.h"
 
 XMLParser::XMLParser() {
   // This initializes the library and checks that the ABI version matches the API version etc.

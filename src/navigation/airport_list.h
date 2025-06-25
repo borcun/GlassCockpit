@@ -1,11 +1,11 @@
 #pragma once
 
-#include "GeographicObjectList.h"
+#include "geographic_object_list.h"
 
 namespace OpenGC {
   class AirportList : public GeographicObjectList {
   public:
-    AirportList();
+    AirportList(void);
     virtual ~AirportList();
 
     /** Read binary file containing airport database,

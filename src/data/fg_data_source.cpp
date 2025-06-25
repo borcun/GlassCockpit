@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <iostream>
 #include "fg_data_source.h"
-#include "Constants.h"
+#include "constants.h"
 #include "preference_manager.h"
-#include "Debug.h"
+#include "debug.h"
 
 OpenGC::FGDataSource::FGDataSource(void)
   : OpenGC::DataSource()

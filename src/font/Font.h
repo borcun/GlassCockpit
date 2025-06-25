@@ -31,7 +31,7 @@
 
 #include <string>
 #include <utility>
-#include "Debug.h"
+#include "debug.h"
 
 #if defined(MACOSX) || defined(IPHONE)
 #define USE_GL_FONTS

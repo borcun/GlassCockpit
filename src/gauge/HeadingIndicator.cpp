@@ -22,7 +22,7 @@
   =========================================================================*/
 
 #include "data_source_manager.h"
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include <stdio.h>
 #include <math.h>
 #include "GaugeComponent.h"

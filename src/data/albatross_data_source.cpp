@@ -1,5 +1,5 @@
 #include "albatross_data_source.h"
-#include "Debug.h"
+#include "debug.h"
 
 OpenGC::AlbatrossDataSource::AlbatrossDataSource(void)
     : OpenGC::DataSource()

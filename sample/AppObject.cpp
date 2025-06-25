@@ -18,13 +18,13 @@
 #include <iostream>
 
 //--------Base-----------------
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include <FL/Fl.H>
 #include "AppObject.h"
 #include "RenderObject.h"
 #include "preference_manager.h"
-#include "NavDatabase.h"
-#include "Debug.h"
+#include "nav_database.h"
+#include "debug.h"
 
 //--------Data Sources---------
 #include "data_source_manager.h"

@@ -20,7 +20,7 @@
 
 =========================================================================*/
 
-#include "Debug.h"
+#include "debug.h"
 #include <string.h>
 #include <math.h>
 #include "Font_FileStore.h"

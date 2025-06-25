@@ -25,10 +25,10 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "Debug.h"
+#include "debug.h"
 #include "AppObject.h"
 #include "preference_manager.h"
-#include "RasterMapManager.h"
+#include "raster_map_manager.h"
 #include "xml_parser.h"
 
 #define DEFAULT_XML_FILE	(char*) "../resource/Default.xml"

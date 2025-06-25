@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "CircleEvaluator.h"
 
 namespace OpenGC {

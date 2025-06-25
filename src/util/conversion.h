@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cmath>
-#include "Constants.h"
+#include "constants.h"
 
 namespace OpenGC {
   class Conversion {

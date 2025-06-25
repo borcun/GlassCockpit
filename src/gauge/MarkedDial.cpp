@@ -24,7 +24,7 @@
 #include "data_source_manager.h"
 #include "MarkedDial.h"
 #include "CircleEvaluator.h"
-#include "Constants.h"
+#include "constants.h"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
 

@@ -2,10 +2,9 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-
-#include "Constants.h"
-#include "Debug.h"
-#include "BinaryNavData.h"
+#include "constants.h"
+#include "debug.h"
+#include "binary_nav_data.h"
 
 using namespace std;
 

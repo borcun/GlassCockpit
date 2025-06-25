@@ -2,7 +2,7 @@
 #include <math.h>
 #include <unistd.h>
 #include "data_source_manager.h"
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "Gauge.h"
 #include "RenderWindow.h"
 

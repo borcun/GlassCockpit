@@ -1,6 +1,6 @@
 #include <iostream>
 #include "preference_manager.h"
-#include "Debug.h"
+#include "debug.h"
 
 OpenGC::PreferenceManager *OpenGC::PreferenceManager::m_instance = nullptr;
 

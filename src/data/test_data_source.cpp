@@ -1,5 +1,5 @@
 #include <math.h>
-#include "Debug.h"
+#include "debug.h"
 #include "test_data_source.h"
 
 OpenGC::TestDataSource::TestDataSource()

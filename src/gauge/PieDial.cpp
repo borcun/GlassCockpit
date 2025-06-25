@@ -23,9 +23,9 @@
 #include <math.h>
 #include "data_source_manager.h"
 #include "CircleEvaluator.h"
-#include "GLHeaders.h"
+#include "gl_headers.h"
 #include "PieDial.h"
-#include "Constants.h"
+#include "constants.h"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
 

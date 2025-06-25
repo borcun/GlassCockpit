@@ -2,17 +2,16 @@
 #include <stdio.h>
 #include <math.h>
 #include <string>
-
+#include "NavDisplay.h"
 #include "data_source_manager.h"
-#include "NavDatabase.h"
-#include "RasterMapManager.h"
+#include "nav_database.h"
+#include "raster_map_manager.h"
 #include "CircleEvaluator.h"
 #include "CircleEvaluator.h"
 #include "data_source.h"
-#include "NavDisplay.h"
-#include "WaypointGeoObj.h"
-#include "NavaidGeoObj.h"
-#include "Conversion.h"
+#include "waypoint_geo_obj.h"
+#include "nav_aid_geo_obj.h"
+#include "conversion.h"
 
 namespace OpenGC
 {    

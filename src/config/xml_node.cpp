@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "xml_node.h"
-#include "Debug.h"
+#include "debug.h"
 
 XMLNode::XMLNode(void) {
 
