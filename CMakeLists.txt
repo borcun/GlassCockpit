@@ -9,6 +9,8 @@ add_subdirectory(externals/libxml2)
 add_subdirectory(externals/tinyjpeg)
 add_subdirectory(externals/libshape)
 add_subdirectory(externals/ftgl)
+add_subdirectory(externals/freetype)
+add_subdirectory(externals/zlib)
 
 include_directories(
   externals/freetype/include
@@ -16,6 +18,7 @@ include_directories(
   externals/ftgl/src
   externals/tinyjpeg
   externals/libshape
+  externals/zlib
   include/config
   include/data
   include/font
@@ -32,12 +35,12 @@ add_subdirectory(src/gauge)
 add_subdirectory(src/navigation)
 
 link_directories(
-  #/usr/lib/x86_64-linux-gnu
   externals/tinyjpeg
   externals/libshape
   externals/libxml2
   externals/ftgl
   externals/freetype
+  externals/zlib
   src/config
   src/data
   src/font
