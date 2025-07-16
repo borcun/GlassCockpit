@@ -7,3 +7,6 @@
 [submodule "externals/libxml2"]
 	path = externals/libxml2
 	url = https://github.com/GNOME/libxml2.git
+[submodule "externals/ftgl"]
+	path = externals/ftgl
+	url = https://github.com/ulrichard/ftgl.git

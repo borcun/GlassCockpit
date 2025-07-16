@@ -4,11 +4,11 @@ SOURCE=Main.cpp AppObject.cpp FLTKRenderWindow.cpp
 OBJ=$(SOURCE:.cpp=.o)
 EXEC=opengc-sample
 
-INC_DIR=-I ../ext/tinyjpeg -I ../ext/libshape -I ../src/config  -I ../src/data -I ../src/font -I ../src/navigation -I ../src/gauge -I ../src/util
-EXT_INC_DIR=-I /usr/include/FL -I /usr/include/freetype2 -I /usr/include/FTGL -I /usr/include/libxml2
+INC_DIR=-I ../externals/tinyjpeg -I ../externals/libshape -I ../include/config  -I ../include/data -I ../include/font -I ../include/navigation -I ../include/gauge -I ../include/util -I ../externals/FTGL -I ../externals/libxml2/include
+EXT_INC_DIR=-I /usr/include/FL -I /usr/include/freetype2
 
 LFLAGS=-Wl,--no-as-needed -lfltk -lfltk_gl -lftgl -lGL -lGLU -lm -lxml2 -lfreetype -lz -ltinyjpeg -lshape -lopengc-config -lopengc-font -lopengc-navigation -lopengc-data -lopengc-gauge
-LINK_DIR=-L ../build/ext/tinyjpeg/Debug -L ../build/ext/libshape/Debug -L ../build/src/config/Debug -L ../build/src/navigation/Debug -L ../build/src/data/Debug -L ../build/src/font/Debug -L ../build/src/gauge/Debug
+LINK_DIR=-L ../build/externals/libxml2 -L ../build/externals/ftgl -L ../build/externals/tinyjpeg -L ../build/externals/libshape -L ../build/src/config -L ../build/src/navigation -L ../build/src/data -L ../build/src/font -L ../build/src/gauge
 EXT_LINK_DIR=-L /usr/lib/x86_64-linux-gnu
 
 all: $(EXEC)

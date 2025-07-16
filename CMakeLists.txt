@@ -5,17 +5,17 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # external modules
+add_subdirectory(externals/libxml2)
 add_subdirectory(externals/tinyjpeg)
 add_subdirectory(externals/libshape)
-add_subdirectory(externals/libxml2)
+add_subdirectory(externals/ftgl)
 
 include_directories(
-  /usr/include/libxml2
-  /usr/include/FTGL
   /usr/include/freetype2
   externals/tinyjpeg
   externals/libshape
   externals/libxml2/include
+  externals/ftgl/src
   include/config
   include/data
   include/font
@@ -36,6 +36,7 @@ link_directories(
   externals/tinyjpeg
   externals/libshape
   externals/libxml2
+  externals/ftgl
   src/config
   src/data
   src/font
