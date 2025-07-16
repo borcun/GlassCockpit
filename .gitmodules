@@ -4,3 +4,6 @@
 [submodule "ext/libshape"]
 	path = externals/libshape
 	url = https://github.com/borcun/libshape.git
+[submodule "externals/libxml2"]
+	path = externals/libxml2
+	url = https://github.com/GNOME/libxml2.git

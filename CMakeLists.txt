@@ -4,12 +4,18 @@ project(opengc VERSION 0.0.1 DESCRIPTION "Modernized Glass Cockpit library" LANG
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# external modules
+add_subdirectory(externals/tinyjpeg)
+add_subdirectory(externals/libshape)
+add_subdirectory(externals/libxml2)
+
 include_directories(
   /usr/include/libxml2
   /usr/include/FTGL
   /usr/include/freetype2
   externals/tinyjpeg
   externals/libshape
+  externals/libxml2/include
   include/config
   include/data
   include/font
@@ -18,9 +24,6 @@ include_directories(
   include/util
 )
 
-# external modules
-add_subdirectory(externals/tinyjpeg)
-add_subdirectory(externals/libshape)
 # glass-cockpit modules
 add_subdirectory(src/config)
 add_subdirectory(src/data)
@@ -29,9 +32,10 @@ add_subdirectory(src/gauge)
 add_subdirectory(src/navigation)
 
 link_directories(
-  /usr/lib/x86_64-linux-gnu
-  ext/tinyjpeg
-  ext/libshape
+  #/usr/lib/x86_64-linux-gnu
+  externals/tinyjpeg
+  externals/libshape
+  externals/libxml2
   src/config
   src/data
   src/font
