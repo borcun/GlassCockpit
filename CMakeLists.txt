@@ -4,37 +4,24 @@ project(opengc VERSION 0.0.1 DESCRIPTION "Modernized Glass Cockpit library" LANG
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# external modules
-add_subdirectory(externals/libxml2)
-add_subdirectory(externals/tinyjpeg)
-add_subdirectory(externals/libshape)
-add_subdirectory(externals/ftgl)
-add_subdirectory(externals/freetype)
-add_subdirectory(externals/zlib)
+add_library(${PROJECT_NAME} SHARED src/version.cpp)
 
-include_directories(
+target_include_directories(${PROJECT_NAME} PUBLIC
   externals/freetype/include
   externals/libxml2/include
   externals/ftgl/src
   externals/tinyjpeg
   externals/libshape
   externals/zlib
+  include/util
   include/config
   include/data
   include/font
   include/navigation
   include/gauge
-  include/util
 )
 
-# glass-cockpit modules
-add_subdirectory(src/config)
-add_subdirectory(src/data)
-add_subdirectory(src/font)
-add_subdirectory(src/gauge)
-add_subdirectory(src/navigation)
-
-link_directories(
+target_link_directories(${PROJECT_NAME} PUBLIC
   externals/tinyjpeg
   externals/libshape
   externals/libxml2
@@ -48,16 +35,32 @@ link_directories(
   src/navigation
 )
 
-link_libraries(
+target_link_libraries(${PROJECT_NAME} PUBLIC
   shape
   tinyjpeg
   xml2
   ftgl
   freetype
   z
-  opengc-config
-  opengc-data
-  opengc-font
-  opengc-gauge
-  opengc-navigation
+  opengc_config
+  opengc_data
+  opengc_font
+  opengc_gauge
+  opengc_navigation
 )
+
+# external modules
+add_subdirectory(externals/libxml2)
+add_subdirectory(externals/tinyjpeg)
+add_subdirectory(externals/libshape)
+add_subdirectory(externals/ftgl)
+add_subdirectory(externals/freetype)
+add_subdirectory(externals/zlib)
+# glass-cockpit modules
+add_subdirectory(src/config)
+add_subdirectory(src/data)
+add_subdirectory(src/font)
+add_subdirectory(src/gauge)
+add_subdirectory(src/navigation)
+# sample
+add_subdirectory(sample)

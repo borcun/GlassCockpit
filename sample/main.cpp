@@ -31,8 +31,8 @@
 #include "raster_map_manager.h"
 #include "xml_parser.h"
 
-#define DEFAULT_XML_FILE	(char*) "../resource/Default.xml"
-#define PREFERENCES_XML_FILE	(char*) "../resource/Preferences.xml"
+#define DEFAULT_XML_FILE	(char*) "./default.xml"
+#define PREFERENCES_XML_FILE	(char*) "./preferences.xml"
 
 using namespace OpenGC;
 
@@ -57,29 +57,12 @@ void GlobalIdle(void *)
 int main(int argc, char* argv[])
 {	
   // Check the command line arguments
-  char *xmlFileName = DEFAULT_XML_FILE;
-
-  if (argc > 2) {
-    usage();
-    return 1;
-  }
-  else if (argc == 2) {
-    // Check the file exists
-    FILE *f = fopen(argv[1], "r");
-    
-    if (f == NULL) {
-      usage();
-      return 1;
-    }
-    else {
-      xmlFileName = argv[1];
-    }
-  }
-	
-  theApp = new AppObject();
-  PreferenceManager::getInstance()->initialize(PREFERENCES_XML_FILE);
+  char *xmlFileName = argv[1];	
+  PreferenceManager::getInstance()->initialize(argv[2]);
   // Read the XML file and do some basic checks about its contents
   XMLParser parser;
+  
+  theApp = new AppObject();
 
   Assert(parser.read(xmlFileName), "unable to read XML file");
   Check(parser.hasNode("/"));

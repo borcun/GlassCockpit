@@ -24,7 +24,7 @@ OpenGC::PreferenceManager *OpenGC::PreferenceManager::getInstance(void) {
 
 void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
   XMLParser parser;
-  Assert(parser.read(xmlFileName), xmlFileName /*"unable to read XML file"*/);
+  Assert(parser.read(xmlFileName), "unable to read XML file");
   Check(parser.hasNode("/"));
 
   XMLNode rootNode = parser.getNode("/");
