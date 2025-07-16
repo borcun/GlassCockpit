@@ -11,11 +11,11 @@ add_subdirectory(externals/libshape)
 add_subdirectory(externals/ftgl)
 
 include_directories(
-  /usr/include/freetype2
-  externals/tinyjpeg
-  externals/libshape
+  externals/freetype/include
   externals/libxml2/include
   externals/ftgl/src
+  externals/tinyjpeg
+  externals/libshape
   include/config
   include/data
   include/font
@@ -37,6 +37,7 @@ link_directories(
   externals/libshape
   externals/libxml2
   externals/ftgl
+  externals/freetype
   src/config
   src/data
   src/font
