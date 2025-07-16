@@ -7,22 +7,9 @@ file(GLOB SOURCES *.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-# referring own directory is due to circular dependency, will be solved
-target_include_directories(${PROJECT_NAME} PUBLIC
-  ./
-  ../../ext/tinyjpeg
-  ../../ext/libshape
-  ../util
-  ../config
-  ../data
-  /usr/include/libxml2
-  /usr/include/freetype2
-  /usr/include/FTGL
-)
-
 target_link_directories(${PROJECT_NAME} PUBLIC
   /usr/lib/x86_64-linux-gnu
-  ../../ext/libshape
+  ../../externals/libshape
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

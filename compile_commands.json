@@ -1,0 +1,247 @@
+[
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/cc -Dtinyjpeg_EXPORTS -fPIC -o externals/tinyjpeg/CMakeFiles/tinyjpeg.dir/jidctflt.c.o -c /home/boo/Workspace/GlassCockpit/externals/tinyjpeg/jidctflt.c",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/tinyjpeg/jidctflt.c"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dtinyjpeg_EXPORTS -fPIC -std=gnu++11 -o externals/tinyjpeg/CMakeFiles/tinyjpeg.dir/lodepng.cpp.o -c /home/boo/Workspace/GlassCockpit/externals/tinyjpeg/lodepng.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/tinyjpeg/lodepng.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/cc -Dtinyjpeg_EXPORTS -fPIC -o externals/tinyjpeg/CMakeFiles/tinyjpeg.dir/tinyjpeg.c.o -c /home/boo/Workspace/GlassCockpit/externals/tinyjpeg/tinyjpeg.c",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/tinyjpeg/tinyjpeg.c"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/cc -Dshape_EXPORTS -fPIC -o externals/libshape/CMakeFiles/shape.dir/dbfopen.c.o -c /home/boo/Workspace/GlassCockpit/externals/libshape/dbfopen.c",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/libshape/dbfopen.c"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/cc -Dshape_EXPORTS -fPIC -o externals/libshape/CMakeFiles/shape.dir/shpopen.c.o -c /home/boo/Workspace/GlassCockpit/externals/libshape/shpopen.c",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/libshape/shpopen.c"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/cc -Dshape_EXPORTS -fPIC -o externals/libshape/CMakeFiles/shape.dir/shptree.c.o -c /home/boo/Workspace/GlassCockpit/externals/libshape/shptree.c",
+  "file": "/home/boo/Workspace/GlassCockpit/externals/libshape/shptree.c"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_config_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/config/CMakeFiles/opengc-config.dir/preference_manager.cpp.o -c /home/boo/Workspace/GlassCockpit/src/config/preference_manager.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/config/preference_manager.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_config_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/config/CMakeFiles/opengc-config.dir/xml_node.cpp.o -c /home/boo/Workspace/GlassCockpit/src/config/xml_node.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/config/xml_node.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_config_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/config/CMakeFiles/opengc-config.dir/xml_parser.cpp.o -c /home/boo/Workspace/GlassCockpit/src/config/xml_parser.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/config/xml_parser.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_data_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/data/CMakeFiles/opengc-data.dir/albatross_data_source.cpp.o -c /home/boo/Workspace/GlassCockpit/src/data/albatross_data_source.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/data/albatross_data_source.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_data_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/data/CMakeFiles/opengc-data.dir/data_source.cpp.o -c /home/boo/Workspace/GlassCockpit/src/data/data_source.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/data/data_source.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_data_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/data/CMakeFiles/opengc-data.dir/data_source_manager.cpp.o -c /home/boo/Workspace/GlassCockpit/src/data/data_source_manager.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/data/data_source_manager.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_data_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/data/CMakeFiles/opengc-data.dir/fg_data_source.cpp.o -c /home/boo/Workspace/GlassCockpit/src/data/fg_data_source.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/data/fg_data_source.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_data_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/data/CMakeFiles/opengc-data.dir/test_data_source.cpp.o -c /home/boo/Workspace/GlassCockpit/src/data/test_data_source.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/data/test_data_source.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -DTARGET_RT_LITTLE_ENDIAN -DUSE_FREETYPE2 -Dopengc_font_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/font/CMakeFiles/opengc-font.dir/Font.cpp.o -c /home/boo/Workspace/GlassCockpit/src/font/Font.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/font/Font.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -DTARGET_RT_LITTLE_ENDIAN -DUSE_FREETYPE2 -Dopengc_font_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/font/CMakeFiles/opengc-font.dir/FontManager.cpp.o -c /home/boo/Workspace/GlassCockpit/src/font/FontManager.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/font/FontManager.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -DTARGET_RT_LITTLE_ENDIAN -DUSE_FREETYPE2 -Dopengc_font_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/font/CMakeFiles/opengc-font.dir/Font_FileStore.cpp.o -c /home/boo/Workspace/GlassCockpit/src/font/Font_FileStore.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/font/Font_FileStore.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -DTARGET_RT_LITTLE_ENDIAN -DUSE_FREETYPE2 -Dopengc_font_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/font/CMakeFiles/opengc-font.dir/Font_FileStore_BinaryIO.cpp.o -c /home/boo/Workspace/GlassCockpit/src/font/Font_FileStore_BinaryIO.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/font/Font_FileStore_BinaryIO.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -DTARGET_RT_LITTLE_ENDIAN -DUSE_FREETYPE2 -Dopengc_font_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/font/CMakeFiles/opengc-font.dir/Font_GLTexture.cpp.o -c /home/boo/Workspace/GlassCockpit/src/font/Font_GLTexture.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/font/Font_GLTexture.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/AltitudeTape.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/AltitudeTape.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/AltitudeTape.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/AltitudeTicker.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/AltitudeTicker.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/AltitudeTicker.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/ArtificialHorizon.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/ArtificialHorizon.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/ArtificialHorizon.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/CircleEvaluator.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/CircleEvaluator.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/CircleEvaluator.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/EngineInstruments.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/EngineInstruments.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/EngineInstruments.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/FlightDirector.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/FlightDirector.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/FlightDirector.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/Gauge.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/Gauge.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/Gauge.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/GaugeComponent.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/GaugeComponent.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/GaugeComponent.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/GenericBargraph.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/GenericBargraph.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/GenericBargraph.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/HeadingIndicator.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/HeadingIndicator.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/HeadingIndicator.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/MarkedDial.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/MarkedDial.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/MarkedDial.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/NavDisplay.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/NavDisplay.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/NavDisplay.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/PFD.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/PFD.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/PFD.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/PFDOverlay.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/PFDOverlay.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/PFDOverlay.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/PieDial.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/PieDial.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/PieDial.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/RenderObject.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/RenderObject.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/RenderObject.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/RenderWindow.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/RenderWindow.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/RenderWindow.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/SpeedTape.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/SpeedTape.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/SpeedTape.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/SpeedTicker.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/SpeedTicker.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/SpeedTicker.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/Tachometer.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/Tachometer.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/Tachometer.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_gauge_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/gauge/CMakeFiles/opengc-gauge.dir/VSI.cpp.o -c /home/boo/Workspace/GlassCockpit/src/gauge/VSI.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/gauge/VSI.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/airport_list.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/airport_list.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/airport_list.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/binary_nav_data.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/binary_nav_data.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/binary_nav_data.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/geographic_hash.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/geographic_hash.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/geographic_hash.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/geographic_object_list.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/geographic_object_list.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/geographic_object_list.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/nav_aid_list.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/nav_aid_list.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/nav_aid_list.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/nav_database.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/nav_database.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/nav_database.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/raster_map_manager.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/raster_map_manager.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/raster_map_manager.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/raster_map_tile.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/raster_map_tile.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/raster_map_tile.cpp"
+},
+{
+  "directory": "/home/boo/Workspace/GlassCockpit/build",
+  "command": "/usr/bin/c++ -Dopengc_navigation_EXPORTS -I/usr/include/libxml2 -I/usr/include/FTGL -I/usr/include/freetype2 -I/home/boo/Workspace/GlassCockpit/externals/tinyjpeg -I/home/boo/Workspace/GlassCockpit/externals/libshape -I/home/boo/Workspace/GlassCockpit/include/config -I/home/boo/Workspace/GlassCockpit/include/data -I/home/boo/Workspace/GlassCockpit/include/font -I/home/boo/Workspace/GlassCockpit/include/navigation -I/home/boo/Workspace/GlassCockpit/include/gauge -I/home/boo/Workspace/GlassCockpit/include/util -fPIC -std=gnu++11 -o src/navigation/CMakeFiles/opengc-navigation.dir/waypoint_list.cpp.o -c /home/boo/Workspace/GlassCockpit/src/navigation/waypoint_list.cpp",
+  "file": "/home/boo/Workspace/GlassCockpit/src/navigation/waypoint_list.cpp"
+}
+]
