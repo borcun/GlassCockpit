@@ -38,3 +38,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #+CAPTION: Screenshot
 [[output.png]]
 
+*Changes*
+- tinyjpeg and libshape are converted to independent libraries, and included into the project as submodules.
+- all dependencies, libxml2, ftgl, freetype and zlib are involved as submodules instead of loading as package.
+- scons build system is removed. The build system is changed to CMake.
+- the source tree is re-designed, all subdirectories are designed as individual subprojects. (that is not final decision now)
+- C++ is upgraded to C++11.
+- Filenames, namespace usage, unused files, function and members are deleted.
