@@ -64,11 +64,11 @@ namespace OpenGC {
     if (dsName == "FlightGear") {
       // Get host/port settings
       if (dsNode.hasChild("Host")) {
-	PreferenceManager::getInstance()->setString("FlightGearHost", dsNode.getChild("Host").getText());
+	// PreferenceManager::getInstance()->setString("FlightGearHost", dsNode.getChild("Host").getText());
       }
       
       if (dsNode.hasChild("Port")) {
-	PreferenceManager::getInstance()->setInteger("FlightGearPort", dsNode.getChild("Port").getTextAsInt());
+	// PreferenceManager::getInstance()->setInteger("FlightGearPort", dsNode.getChild("Port").getTextAsInt());
       }
 
       DataSourceManager::getInstance()->allocate(DATA_SOURCE_FG);
@@ -113,7 +113,7 @@ namespace OpenGC {
     windowTitle += titleSuffix;
 	
     // Calculate window size
-    double xSize = 1127.0, ySize = 785.0; // default size
+    double xSize = 1280.0, ySize = 860.0; // default size
     
     if (windowNode.hasChild("Geometry"))
       {
@@ -131,7 +131,7 @@ namespace OpenGC {
     // Create the render window
     m_pRenderWindow = new FLTKRenderWindow(4, 0, windowX, windowY, windowTitle.c_str());
     m_pRenderWindow->mode(FL_RGB | FL_DOUBLE);
-    PreferenceManager::getInstance()->setDouble("UnitsPerPixel",  m_pRenderWindow->GetUnitsPerPixel());	
+    // PreferenceManager::getInstance()->setDouble("UnitsPerPixel",  m_pRenderWindow->GetUnitsPerPixel());	
 
     // We need to go ahead and show the window so that an OpenGL device
     // context exists once we start loading fonts

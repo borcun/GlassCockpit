@@ -68,19 +68,13 @@ int main(int argc, char* argv[])
   Check(parser.hasNode("/"));
   Assert(parser.hasNode("/Window"), "invalid XML, no Window node");
   Assert(parser.hasNode("/DataSource"), "invalid XML, no DataSource node");
-	
-  // Set the user-defined (in XML file) application preferences
-  if (parser.hasNode("/Preferences")) {
-    PreferenceManager::getInstance()->populate(parser.getNode("/Preferences"));
-  }
 
   // Set RasterMaps path
   RasterMapManager::getInstance()->SetCachePath(
       RasterMapManager::RMM_CACHE_MGMAPS, 
       PreferenceManager::getInstance()->getString("PathToData") + "MGMapsCache", "GoogleTer");
 
-  // FIXME debug:
-  PreferenceManager::getInstance()->display();
+  PreferenceManager::getInstance()->print();
 
   // Set the update rate in nominal seconds per frame
   Fl::add_timeout(PreferenceManager::getInstance()->getDouble("AppUpdateRate"), GlobalIdle);

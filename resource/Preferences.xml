@@ -9,56 +9,56 @@ them in the Preferences section of your main XML file or Default.xml -->
   <Preference>
     <Name>AppUpdateRate</Name>
     <Type>double</Type>
-    <DefaultValue>0.04</DefaultValue> <!-- 25 Hz -->
+    <Value>0.04</Value> <!-- 25 Hz -->
   </Preference>
 
   <Preference>
     <Name>PathToData</Name>
     <Type>string</Type>
-    <DefaultValue>/home/boo/Workspace/glass-cockpit/resource/</DefaultValue>
+    <Value>/home/boo/Workspace/glass-cockpit/resource/</Value>
     <!-- Not used on Cocoa port - we use the app resource dir instead -->
   </Preference>
 
   <Preference>
     <Name>PathToCaches</Name>
     <Type>string</Type>
-    <DefaultValue>/home/boo/Workspace/glass-cockpit/resource/</DefaultValue>
+    <Value>/home/boo/Workspace/glass-cockpit/resource/</Value>
     <!-- Not used on Cocoa port - we use the ~/Library/Application Support/ instead -->
   </Preference>
 
   <Preference>
     <Name>Zoom</Name>
     <Type>double</Type>
-    <DefaultValue>1.0</DefaultValue>
+    <Value>1.0</Value>
   </Preference>
   
   <Preference>
     <Name>FullScreen</Name>
     <Type>boolean</Type>
-    <DefaultValue>false</DefaultValue>
+    <Value>false</Value>
   </Preference>
 
   <Preference>
     <Name>UnitsPerPixel</Name>
     <Type>double</Type>
-    <DefaultValue>1.0</DefaultValue>
+    <Value>1.0</Value>
   </Preference>
 
   <Preference>
-    <Name>DefaultGaugeScale</Name>
+    <Name>GaugeScale</Name>
     <Type>double</Type>
-    <DefaultValue>0.75</DefaultValue>
+    <Value>0.75</Value>
   </Preference>
 
   <Preference>
     <Name>FlightGearHost</Name>
     <Type>string</Type>
-    <DefaultValue>localhost</DefaultValue>
+    <Value>localhost</Value>
   </Preference>
 
   <Preference>
     <Name>FlightGearPort</Name>
     <Type>integer</Type>
-    <DefaultValue>5800</DefaultValue>
+    <Value>5800</Value>
   </Preference>
 </Preferences>
