@@ -1,10 +1,10 @@
 #include <iostream>
+#include "xml_parser.h"
 #include "preference_manager.h"
-#include "debug.h"
 
 OpenGC::PreferenceManager *OpenGC::PreferenceManager::m_instance = nullptr;
 
-OpenGC::PreferenceManager::PreferenceManager() {
+OpenGC::PreferenceManager::PreferenceManager(void) {
   
 }
 
@@ -19,41 +19,72 @@ OpenGC::PreferenceManager *OpenGC::PreferenceManager::getInstance(void) {
   return m_instance;
 }
 
-void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
+bool OpenGC::PreferenceManager::load(const char *xml_file) {
+  if (nullptr == xml_file) {
+    std::cerr << "invalid xml file name" << std::endl;
+    return false;
+  }
+
   XMLParser parser;
-  Assert(parser.read(xmlFileName), "unable to read XML file");
-  Check(parser.hasNode("/"));
+
+  if (!parser.read(xml_file)) {
+    std::cerr << "could not read XML file: " << xml_file << std::endl;
+    return false;
+  }
+  
+  if (!parser.hasNode("/")) {
+    std::cerr << "could not read XML file, there is root node" << std::endl;
+    return false;
+  }
 
   XMLNode rootNode = parser.getNode("/");
-  Check(rootNode.isValid() && rootNode.getName() == "Preferences");
+
+  if (!rootNode.isValid() || 0 != rootNode.getName().compare("Preferences")) {
+    std::cerr << "invalid root node, it is not equal to \'Preferences\'" << std::endl;
+    return false;
+  }
 
   std::list<XMLNode> node_list = rootNode.getChildList();
+  bool is_succeed = true;
   
-  for (auto it = node_list.begin(); it != node_list.end(); ++it) {
-    Check(it->getName() == "Preference");
-    Check(it->hasChild("Name") && it->hasChild("Type") && it->hasChild("Value"));
-		
-    std::string type = it->getChild("Type").getText();
-    std::string key = it->getChild("Name").getText();
+  for (auto it = node_list.begin(); is_succeed && it != node_list.end(); ++it) {
+    if (0 != it->getName().compare("Preference")) {
+      is_succeed = false;
+    }
+    else if (!it->hasChild("Name") || !it->hasChild("Type") || !it->hasChild("Value")) {
+      is_succeed = false;
+    }
+    else {	
+      std::string type = it->getChild("Type").getText();
+      std::string key = it->getChild("Name").getText();
     
-    if (type == "double") {
-      m_floating_preferences[key] = it->getChild("Value").getTextAsDouble();
-    }
-    else if (type == "integer") {
-      m_decimal_preferences[key] = it->getChild("Value").getTextAsInt();
-    }
-    else if (type == "string") {
-      m_string_preferences[key] = it->getChild("Value").getText();
-    }
-    else if (type == "boolean") {
-      m_boolean_preferences[key] = it->getChild("Value").getTextAsBool();
-    }
-    else {
-      std::cerr << "invalid field type in XML: " << type << std::endl;
+      if (type == "double") {
+	m_floating_preferences[key] = it->getChild("Value").getTextAsDouble();
+      }
+      else if (type == "integer") {
+	m_decimal_preferences[key] = it->getChild("Value").getTextAsInt();
+      }
+      else if (type == "string") {
+	m_string_preferences[key] = it->getChild("Value").getText();
+      }
+      else if (type == "boolean") {
+	m_boolean_preferences[key] = it->getChild("Value").getTextAsBool();
+      }
+      else {
+	std::cerr << "invalid field type in XML: " << type << std::endl;
+      }
     }
   }
 
-  return;
+  // if parsing failed, clear data cached s
+  if (!is_succeed) {
+    m_floating_preferences.clear();
+    m_decimal_preferences.clear();
+    m_string_preferences.clear();
+    m_boolean_preferences.clear();
+  }
+  
+  return is_succeed;
 }
 
 bool OpenGC::PreferenceManager::get(const std::string &key, double &value) {

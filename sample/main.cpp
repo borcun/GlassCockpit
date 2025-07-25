@@ -57,7 +57,10 @@ int main(int argc, char **argv) {
   char *xmlFileName = argv[1];	
   XMLParser parser;
     
-  pref_man->initialize(argv[2]);
+  if (!pref_man->load(argv[2])) {
+    std::cerr << "could not load xml file" << std::endl;
+    return -1;
+  }
 
   Assert(parser.read(xmlFileName), "unable to read XML file");
   Check(parser.hasNode("/"));

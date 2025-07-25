@@ -1,7 +1,11 @@
+/**
+ * @file preference_manager.h
+ * @brief preference manager that reads XML file, and gets the fields when requested
+ */
+
 #pragma once
 
 #include <map>
-#include "xml_parser.h"
 
 namespace OpenGC {
   class PreferenceManager {
@@ -11,9 +15,10 @@ namespace OpenGC {
     static PreferenceManager *getInstance(void);
     /// destructor
     virtual ~PreferenceManager();    
-    /// function that initializes the preferences map from an XML file
-    /// @param [in] path - XML file path
-    void initialize(const char *path);
+    /// function that loads XML file, and populates the preferences maps
+    /// @param [in] xml_file - XML file path
+    /// @return true if the loading is done successfully, otherwise false
+    bool load(const char *xml_file);
     /// function that gets floating value of field matching key
     /// @param [in] key - key field
     /// @param [out] value - value field
