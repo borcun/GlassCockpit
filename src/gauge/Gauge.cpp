@@ -22,8 +22,8 @@ OpenGC::Gauge::Gauge() {
 
 OpenGC::Gauge::~Gauge() {
   // If there are gauge components, delete them
-  if( m_NumGaugeComponents!=0 ) {
-    std::list<GaugeComponent*>::iterator it;
+  if (m_NumGaugeComponents != 0) {
+    std::list<GaugeComponent *>::iterator it;
 	
     for (it = m_GaugeComponentList.begin(); it != m_GaugeComponentList.end(); ++it) {
       delete *it;
@@ -34,16 +34,22 @@ OpenGC::Gauge::~Gauge() {
 void OpenGC::Gauge::InitFromXMLNode(XMLNode gaugeNode) {
   Check(gaugeNode.isValid() && gaugeNode.getName() == "Gauge");
 
-  double scale = PreferenceManager::getInstance()->getDouble("DefaultGaugeScale");
-  double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
+  double scale;
+  double zoom;
   double x, y; // temp variables
-	
+
+  PreferenceManager::getInstance()->get("DefaultGaugeScale", scale);
+  PreferenceManager::getInstance()->get("Zoom", zoom);
+
   // Set the units per pixel
   if (gaugeNode.hasChild("UnitsPerPixel")) {
     SetUnitsPerPixel(gaugeNode.getChild("UnitsPerPixel").getTextAsDouble());
   }
   else {
-    SetUnitsPerPixel(PreferenceManager::getInstance()->getDouble("UnitsPerPixel"));
+    double units_per_pixel = 0.0;
+    
+    PreferenceManager::getInstance()->get("UnitsPerPixel", units_per_pixel);
+    SetUnitsPerPixel(units_per_pixel);
   }
 
   // Set the position

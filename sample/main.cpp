@@ -21,69 +21,71 @@
  * from the XML file, and starting the application.
  */
 
+#include <iostream>
 #include <FL/Fl.H>
 #include <unistd.h>
 #include <string.h>
-
 #include "debug.h"
 #include "AppObject.h"
 #include "preference_manager.h"
 #include "raster_map_manager.h"
 #include "xml_parser.h"
 
-#define DEFAULT_XML_FILE	(char*) "./default.xml"
-#define PREFERENCES_XML_FILE	(char*) "./preferences.xml"
-
 using namespace OpenGC;
 
 /// Construct the one and only App Object
-AppObject *theApp;
+AppObject application;
 
-/** Print usage information */
-void usage()
-{
-  LogPrintf("usage: OpenGC [config.xml]\nIf no XML configuration file"
-	    "is provided Data/Default.xml is used.\n");
-}
-
-/** Global idle function to handle app updates */
-void GlobalIdle(void *)
-{
-  theApp->IdleFunction();
-  Fl::repeat_timeout(PreferenceManager::getInstance()->getDouble("AppUpdateRate"), GlobalIdle);
-}
-
-/** Main entry point for the application */
-int main(int argc, char* argv[])
-{	
-  // Check the command line arguments
-  char *xmlFileName = argv[1];	
-  PreferenceManager::getInstance()->initialize(argv[2]);
-  // Read the XML file and do some basic checks about its contents
-  XMLParser parser;
+void GlobalIdle(void *) {
+  double update_rate = 0.0;
+  application.IdleFunction();
   
-  theApp = new AppObject();
+  if (PreferenceManager::getInstance()->get("AppUpdateRate", update_rate)) {
+    Fl::repeat_timeout(update_rate, GlobalIdle);
+  }
+
+  return;
+}
+
+int main(int argc, char **argv) {	
+  if (3 != argc) {
+    std::cout << "usage: ./opengc-sample default.xml preference.xml - " << argc << std::endl;
+    return -1;
+  }
+
+  PreferenceManager *pref_man = PreferenceManager::getInstance();
+  char *xmlFileName = argv[1];	
+  XMLParser parser;
+    
+  pref_man->initialize(argv[2]);
 
   Assert(parser.read(xmlFileName), "unable to read XML file");
   Check(parser.hasNode("/"));
   Assert(parser.hasNode("/Window"), "invalid XML, no Window node");
   Assert(parser.hasNode("/DataSource"), "invalid XML, no DataSource node");
 
-  // Set RasterMaps path
-  RasterMapManager::getInstance()->SetCachePath(
-      RasterMapManager::RMM_CACHE_MGMAPS, 
-      PreferenceManager::getInstance()->getString("PathToData") + "MGMapsCache", "GoogleTer");
+  std::string path_to_data;
+  
+  if (!pref_man->get("PathToData", path_to_data)) {
+    std::cerr << "could not path to data" << std::endl;
+    return -1;
+  }
+  
+  RasterMapManager::getInstance()->SetCachePath(RasterMapManager::RMM_CACHE_MGMAPS, path_to_data + "MGMapsCache", "GoogleTer");
 
-  PreferenceManager::getInstance()->print();
+  double update_rate = 0.0;
 
-  // Set the update rate in nominal seconds per frame
-  Fl::add_timeout(PreferenceManager::getInstance()->getDouble("AppUpdateRate"), GlobalIdle);
+  if (!pref_man->get("AppUpdateRate", update_rate)) {
+    std::cerr << "could not get application update rate" << std::endl;
+    return -1;
+  }
+  
+  Fl::add_timeout(update_rate, GlobalIdle);
 
-  // Run up the application
   int retval;
   XMLNode rootNode = parser.getNode("/");
 
-  if (theApp->Go(rootNode)) {
+  if (application.Go(rootNode)) {
     LogPrintf("Done, exiting cleanly.\n");
     retval = 0;
   }
@@ -91,9 +93,6 @@ int main(int argc, char* argv[])
     LogPrintf("Error, exiting.\n");
     retval = 1;
   }
-
-  // Clean up
-  delete theApp;
 
   return retval;
 }

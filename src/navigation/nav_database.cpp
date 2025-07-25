@@ -49,9 +49,15 @@ bool fileExists(const std::string &filename) {
 }
 
 void OpenGC::NavDatabase::InitDatabase() {
-  const std::string &pathToNav = PreferenceManager::getInstance()->getString("PathToData") + "Navigation/";
-  const std::string &pathToWritableNav = PreferenceManager::getInstance()->getString("PathToCaches") + "Navigation/";
-	
+  std::string pathToNav;
+  std::string pathToWritableNav;
+
+  PreferenceManager::getInstance()->get("PathToData", pathToNav);
+  PreferenceManager::getInstance()->get("PathToCaches", pathToWritableNav);
+
+  pathToNav.append("Navigation/");
+  pathToWritableNav.append("Navigation/");
+
   // Check for cached binary copies of nav data otherwise convert and cache
   if (!fileExists(pathToWritableNav + "nav_dat.bin")) {
     LogPrintf("Generating binary cache of navaid data...\n");

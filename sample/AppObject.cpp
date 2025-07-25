@@ -115,15 +115,17 @@ namespace OpenGC {
     // Calculate window size
     double xSize = 1280.0, ySize = 860.0; // default size
     
-    if (windowNode.hasChild("Geometry"))
-      {
-	XMLNode geoNode = windowNode.getChild("Geometry");
-	if (geoNode.hasChild("Size"))
-	  {
-	    geoNode.getChild("Size").getTextAsCoord(xSize, ySize);
-	  }
+    if (windowNode.hasChild("Geometry")) {
+      XMLNode geoNode = windowNode.getChild("Geometry");
+      if (geoNode.hasChild("Size")) {
+	geoNode.getChild("Size").getTextAsCoord(xSize, ySize);
       }
-    double zoom = PreferenceManager::getInstance()->getDouble("Zoom");
+    }
+
+    double zoom = 0.0;
+
+    PreferenceManager::getInstance()->get("Zoom", zoom);
+
     int windowX = (int)(xSize * zoom), windowY = (int)(ySize * zoom);
     
     LogPrintf("Application: Window Size = %ix%ipx\n", windowX, windowY);

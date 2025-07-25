@@ -31,8 +31,8 @@ OpenGC::FGDataSource::~FGDataSource() {
 
 bool OpenGC::FGDataSource::open(void) {
   // Get the host:port string from the Config system and parse it
-  m_Host = PreferenceManager::getInstance()->getString("FlightGearHost");
-  m_ReceivePort = PreferenceManager::getInstance()->getInteger("FlightGearPort");
+  PreferenceManager::getInstance()->get("FlightGearHost", m_Host);
+  PreferenceManager::getInstance()->get("FlightGearPort", m_ReceivePort);
     
   if (true) {
     printf("FGDataSourse: host \"%s\", port %d\n", m_Host.c_str(), m_ReceivePort);

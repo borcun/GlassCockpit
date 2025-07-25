@@ -27,81 +27,75 @@ void OpenGC::PreferenceManager::initialize(const char *xmlFileName) {
   XMLNode rootNode = parser.getNode("/");
   Check(rootNode.isValid() && rootNode.getName() == "Preferences");
 
-  // Iterate over the preference definitions
-  std::list<XMLNode> nodeList = rootNode.getChildList();
+  std::list<XMLNode> node_list = rootNode.getChildList();
   
-  for (std::list<XMLNode>::iterator it = nodeList.begin(); it != nodeList.end(); ++it) {
-    XMLNode node = *it;
-      
-    Check(node.getName() == "Preference");
-    Check(node.hasChild("Name") && node.hasChild("Type") && node.hasChild("Value"));
+  for (auto it = node_list.begin(); it != node_list.end(); ++it) {
+    Check(it->getName() == "Preference");
+    Check(it->hasChild("Name") && it->hasChild("Type") && it->hasChild("Value"));
 		
-    Preference preference;
-    std::string type = node.getChild("Type").getText();
-
+    std::string type = it->getChild("Type").getText();
+    std::string key = it->getChild("Name").getText();
+    
     if (type == "double") {
-      preference.type = 'D';
-      preference.asDouble = node.getChild("Value").getTextAsDouble();
-    }
-    else if (type == "string") {
-      preference.type = 'S';
-      preference.asString = node.getChild("Value").getText();
+      m_floating_preferences[key] = it->getChild("Value").getTextAsDouble();
     }
     else if (type == "integer") {
-      preference.type = 'I';
-      preference.asInt = node.getChild("Value").getTextAsInt();
+      m_decimal_preferences[key] = it->getChild("Value").getTextAsInt();
+    }
+    else if (type == "string") {
+      m_string_preferences[key] = it->getChild("Value").getText();
     }
     else if (type == "boolean") {
-      preference.type = 'B';
-      preference.asBool = node.getChild("Value").getTextAsBool();
+      m_boolean_preferences[key] = it->getChild("Value").getTextAsBool();
     }
-    
-    preference.isSet = true;
-    m_preferences[node.getChild("Name").getText()] = preference;
+    else {
+      std::cerr << "invalid field type in XML: " << type << std::endl;
+    }
   }
 
   return;
 }
 
-bool OpenGC::PreferenceManager::getBoolean(const std::string &key) {
-  auto it = m_preferences.find(key);
-  return it->second.asBool;
-}
+bool OpenGC::PreferenceManager::get(const std::string &key, double &value) {
+  auto it = m_floating_preferences.find(key);
 
-int OpenGC::PreferenceManager::getInteger(const std::string &key) {
-  auto it = m_preferences.find(key);
-  return it->second.asInt;
-}
-
-double OpenGC::PreferenceManager::getDouble(const std::string &key) {
-  auto it = m_preferences.find(key);
-  return it->second.asDouble;
-}
-
-std::string OpenGC::PreferenceManager::getString(const std::string &key) {
-  auto it = m_preferences.find(key);
-  return it->second.asString;
-}
-
-void OpenGC::PreferenceManager::print(void) const {
-  std::cout << "PreferenceManager: database contains " << m_preferences.size() << " entries:" << std::endl;
-
-  for (auto it = m_preferences.begin(); it != m_preferences.end(); ++it) {
-    switch (it->second.type) {
-    case 'D':
-      std::cout << "\t" << it->first.c_str() << " = [double] " << it->second.asDouble << std::endl;
-      break;
-    case 'S':
-      std::cout << "\t" << it->first.c_str() << " = [string] " << it->second.asString << std::endl;
-      break;
-    case 'B':
-      std::cout << "\t" << it->first.c_str() << " = [bool] " << it->second.asBool << std::endl;
-      break;
-    case 'I':
-      std::cout << "\t" << it->first.c_str() << " = [integer] " << it->second.asInt << std::endl;
-      break;
-    }
+  if (m_floating_preferences.end() == it) {
+    return false;
   }
-  
-  return;
+
+  value = it->second;
+  return true;
+}
+
+bool OpenGC::PreferenceManager::get(const std::string &key, int &value) {
+  auto it = m_decimal_preferences.find(key);
+
+  if (m_decimal_preferences.end() == it) {
+    return false;
+  }
+
+  value = it->second;
+  return true;
+}
+
+bool OpenGC::PreferenceManager::get(const std::string &key, std::string &value) {
+  auto it = m_string_preferences.find(key);
+
+  if (m_string_preferences.end() == it) {
+    return false;
+  }
+
+  value = it->second;
+  return true;
+}
+
+bool OpenGC::PreferenceManager::get(const std::string &key, bool &value) {
+  auto it = m_boolean_preferences.find(key);
+
+  if (m_boolean_preferences.end() == it) {
+    return false;
+  }
+
+  value = it->second;
+  return true;
 }

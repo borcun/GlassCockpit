@@ -164,22 +164,24 @@ namespace OpenGC
   double EngineInstruments::GetFPS()
   {
     static double rate, last;
-    static int count;
-    static int updateRate = (int)(1.0 / PreferenceManager::getInstance()->getDouble(
-									 "AppUpdateRate"));
+    static int count = 0;
+    static double update_rate = 0.0;
+    
+    PreferenceManager::getInstance()->get("AppUpdateRate", update_rate);
+    update_rate = (int) (1.0 / update_rate);
 
     double now;
     struct timeval tv;
     struct timezone tz;
 	
-    if (++count > updateRate)
-      { // recalculate roughly once per second
-	gettimeofday(&tv, &tz);
-	now = (double)tv.tv_usec/1e6 + (double)tv.tv_sec;
-	rate = (double)updateRate / (now - last);
-	last = now;
-	count = 0;
-      }
+    if (++count > update_rate) {
+      // recalculate roughly once per second
+      gettimeofday(&tv, &tz);
+      now = (double) tv.tv_usec/1e6 + (double) tv.tv_sec;
+      rate = (double) update_rate / (now - last);
+      last = now;
+      count = 0;
+    }
 
     return rate;
   }

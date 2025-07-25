@@ -42,8 +42,8 @@ namespace OpenGC
   int FontManager::LoadFont(const string& name)
   {
     if (m_FontPath == "") {
-		
-      m_FontPath = PreferenceManager::getInstance()->getString("PathToData") + "Fonts/";
+      PreferenceManager::getInstance()->get("PathToData", m_FontPath);
+      m_FontPath.append("Fonts/");
     }
 	
     // Concatenate the font name onto the font path
